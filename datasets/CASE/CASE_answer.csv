@@ -1,0 +1,252 @@
+answer_id,text,question_id
+BMSB.INST.Q5.A1,Yes,BMSB.INST.Q5
+BMSB.INST.Q6.A5,5 or more,BMSB.INST.Q6
+BMSB.INST.Q12.A3,Pesco e nettarino,BMSB.INST.Q12
+BMSB.INST.Q14.A4,Laghetti e bacini irrigui,BMSB.INST.Q14
+BMSB.INSTNEW.Q1.A1,Text,BMSB.INSTNEW.Q1
+BMSB.INSTNEW.Q2.A1,Yes,BMSB.INSTNEW.Q2
+BMSB.INSTNEW.Q2.A2,No,BMSB.INSTNEW.Q2
+BMSB.INSTNEW.Q3.A1,Drupe precoci (Prunus),BMSB.INSTNEW.Q3
+BMSB.INSTNEW.Q3.A2,Drupe tardive (Ligustrum),BMSB.INSTNEW.Q3
+BMSB.INSTNEW.Q3.A3,"Bacche (Cornus, Rhamnus frangula, Viburnum)",BMSB.INSTNEW.Q3
+BMSB.INSTNEW.Q3.A4,"Samare e disamare (Acer, Fraxinus, Ailanthus)",BMSB.INSTNEW.Q3
+BMSB.INSTNEW.Q3.A5,"Pomacee (Pyracantha, Crataegus, Cotoneaster)",BMSB.INSTNEW.Q3
+BMSB.INSTNEW.Q3.A6,Gelso (Morus),BMSB.INSTNEW.Q3
+BMSB.INSTNEW.Q3.A7,Edera,BMSB.INSTNEW.Q3
+BMSB.INSTNEW.Q3.A8,Nocciolo,BMSB.INSTNEW.Q3
+BMSB.INSTNEW.Q3.A9,Other,BMSB.INSTNEW.Q3
+BMSB.INSTNEW.Q4.A1,Yes,BMSB.INSTNEW.Q4
+BMSB.INSTNEW.Q4.A2,No,BMSB.INSTNEW.Q4
+BMSB.INSTNEW.Q5.A1,Sempreverdi,BMSB.INSTNEW.Q5
+BMSB.INSTNEW.Q5.A2,"Fagacee, Ulmacee, Malvales (quercia, olmo, tiglio)",BMSB.INSTNEW.Q5
+BMSB.INSTNEW.Q5.A3,Salicacee (pioppo e salice),BMSB.INSTNEW.Q5
+BMSB.INSTNEW.Q5.A4,"Piante da frutto (fico, caco, pomacee e drupacee)",BMSB.INSTNEW.Q5
+BMSB.INSTNEW.Q5.A5,Catalpa e Paulownia,BMSB.INSTNEW.Q5
+BMSB.INSTNEW.Q5.A6,Other,BMSB.INSTNEW.Q5
+BMSB.INSTNEW.Q6.A1,Yes,BMSB.INSTNEW.Q6
+BMSB.INSTNEW.Q6.A2,No,BMSB.INSTNEW.Q6
+BMSB.INSTNEW.Q7.A1,1,BMSB.INSTNEW.Q7
+BMSB.INSTNEW.Q7.A2,2,BMSB.INSTNEW.Q7
+BMSB.INSTNEW.Q7.A3,3,BMSB.INSTNEW.Q7
+BMSB.INSTNEW.Q7.A4,4,BMSB.INSTNEW.Q7
+BMSB.INSTNEW.Q7.A5,5 or more,BMSB.INSTNEW.Q7
+BMSB.INSTNEW.Q8.A1,Yes,BMSB.INSTNEW.Q8
+BMSB.INSTNEW.Q8.A2,No,BMSB.INSTNEW.Q8
+BMSB.INSTNEW.Q9.A1,1,BMSB.INSTNEW.Q9
+BMSB.INSTNEW.Q9.A2,2,BMSB.INSTNEW.Q9
+BMSB.INSTNEW.Q9.A3,3,BMSB.INSTNEW.Q9
+BMSB.INSTNEW.Q9.A4,4,BMSB.INSTNEW.Q9
+BMSB.INSTNEW.Q9.A5,5 or more,BMSB.INSTNEW.Q9
+BMSB.INSTNEW.Q10.A1,Yes,BMSB.INSTNEW.Q10
+BMSB.INSTNEW.Q10.A2,No,BMSB.INSTNEW.Q10
+BMSB.INSTNEW.Q11.A1,Soia,BMSB.INSTNEW.Q11
+BMSB.INSTNEW.Q11.A2,Leguminose,BMSB.INSTNEW.Q11
+BMSB.INSTNEW.Q11.A3,Mais,BMSB.INSTNEW.Q11
+BMSB.INSTNEW.Q11.A4,Cereali autunno-vernini,BMSB.INSTNEW.Q11
+BMSB.INSTNEW.Q11.A5,Pomodoro,BMSB.INSTNEW.Q11
+BMSB.INSTNEW.Q11.A6,Colza,BMSB.INSTNEW.Q11
+BMSB.INSTNEW.Q11.A7,Orticole,BMSB.INSTNEW.Q11
+BMSB.INSTNEW.Q11.A8,Other,BMSB.INSTNEW.Q11
+BMSB.INSTNEW.Q12.A1,Yes,BMSB.INSTNEW.Q12
+BMSB.INSTNEW.Q12.A2,No,BMSB.INSTNEW.Q12
+BMSB.INSTNEW.Q13.A1,Melo,BMSB.INSTNEW.Q13
+BMSB.INSTNEW.Q13.A2,Pero,BMSB.INSTNEW.Q13
+BMSB.INSTNEW.Q13.A3,Pesco e nettarino,BMSB.INSTNEW.Q13
+BMSB.INSTNEW.Q13.A4,Albicocco,BMSB.INSTNEW.Q13
+BMSB.INSTNEW.Q13.A5,Susino,BMSB.INSTNEW.Q13
+BMSB.INSTNEW.Q13.A6,Ciliegio,BMSB.INSTNEW.Q13
+BMSB.INSTNEW.Q13.A7,Vite,BMSB.INSTNEW.Q13
+BMSB.INSTNEW.Q13.A8,Actinidia,BMSB.INSTNEW.Q13
+BMSB.INSTNEW.Q13.A9,Caco,BMSB.INSTNEW.Q13
+BMSB.INSTNEW.Q13.A10,Noce,BMSB.INSTNEW.Q13
+BMSB.INSTNEW.Q13.A11,Pioppo,BMSB.INSTNEW.Q13
+BMSB.INSTNEW.Q13.A12,Paulownia,BMSB.INSTNEW.Q13
+BMSB.INSTNEW.Q13.A13,Other,BMSB.INSTNEW.Q13
+BMSB.INSTNEW.Q14.A1,Yes,BMSB.INSTNEW.Q14
+BMSB.INSTNEW.Q14.A2,No,BMSB.INSTNEW.Q14
+BMSB.INSTNEW.Q15.A1,Argine fiume,BMSB.INSTNEW.Q15
+BMSB.INSTNEW.Q15.A2,Argine canale,BMSB.INSTNEW.Q15
+BMSB.INSTNEW.Q15.A3,Fossi e scoline,BMSB.INSTNEW.Q15
+BMSB.INSTNEW.Q15.A4,Laghetti e bacini irrigui,BMSB.INSTNEW.Q15
+BMSB.INSTNEW.Q15.A5,Other,BMSB.INSTNEW.Q15
+BMSB.INSTNEW.Q16.A1,Text,BMSB.INSTNEW.Q16
+BMSB.PASSNEW.Q1.A1,Text,BMSB.PASSNEW.Q1
+BMSB.PASSNEW.Q2.A1,Working fine,BMSB.PASSNEW.Q2
+BMSB.PASSNEW.Q2.A2,Not working,BMSB.PASSNEW.Q2
+BMSB.PASSNEW.Q3.A1,Text,BMSB.PASSNEW.Q3
+BMSB.PASSNEW.Q4.A1,Text,BMSB.PASSNEW.Q4
+BMSB.PASSNEW.Q5.A1,Text,BMSB.PASSNEW.Q5
+BMSB.INST.Q1.A1,Yes,BMSB.INST.Q1
+BMSB.INST.Q1.A2,No,BMSB.INST.Q1
+BMSB.INST.Q2.A1,Drupe precoci (Prunus),BMSB.INST.Q2
+BMSB.INST.Q2.A2,Drupe tardive (Ligustrum),BMSB.INST.Q2
+BMSB.INST.Q2.A3,"Bacche (Cornus, Rhamnus frangula, Viburnum)",BMSB.INST.Q2
+BMSB.INST.Q2.A4,"Samare e disamare (Acer, Fraxinus, Ailanthus)",BMSB.INST.Q2
+BMSB.INST.Q2.A5,"Pomacee (Pyracantha, Crataegus, Cotoneaster)",BMSB.INST.Q2
+BMSB.INST.Q2.A6,Gelso (Morus),BMSB.INST.Q2
+BMSB.INST.Q2.A7,Edera,BMSB.INST.Q2
+BMSB.ACT.Q3.A1,Base monitoring,BMSB.ACT.Q3
+BMSB.ACT.Q13.A1,Text,BMSB.ACT.Q13
+BMSB.ACTNEW.Q1.A1,Text,BMSB.ACTNEW.Q1
+BMSB.ACTNEW.Q3.A1,Text,BMSB.ACTNEW.Q3
+BMSB.ACTNEW.Q4.A1,Text,BMSB.ACTNEW.Q4
+BMSB.ACTNEW.Q5.A1,Text,BMSB.ACTNEW.Q5
+BMSB.ACTNEW.Q6.A1,Text,BMSB.ACTNEW.Q6
+BMSB.SCENNEW.Q1.A1,Hedge,BMSB.SCENNEW.Q1
+BMSB.SCENNEW.Q1.A2,Culture,BMSB.SCENNEW.Q1
+BMSB.SCENNEW.Q1.A3,Other,BMSB.SCENNEW.Q1
+BMSB.SCENNEW.Q3.A1,Text,BMSB.SCENNEW.Q3
+BMSB.SCENNEW.Q2.A1,"SELECT text_to_show  FROM (
+    SELECT 
+    CASE
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q3.A1' THEN 'Siepe/bordura drupe precoci (Prunus)'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q3.A2' THEN 'Siepe/bordura drupe tardive (Ligustrum)'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q3.A3' THEN 'Siepe/bordura bacche (Cornus, Rhamnus frangula, Viburnum)'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q3.A4' THEN 'Siepe/bordura samare e disamare (Acer, Fraxinus, Ailanthus)'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q3.A5' THEN 'Siepe/bordura pomacee (Pyracantha, Crataegus, Cotoneaster)'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q3.A6' THEN 'Siepe/bordura gelso (Morus)'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q3.A7' THEN 'Siepe/bordura edera'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q3.A8' THEN 'Siepe/bordura nocciolo'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q3.A9' THEN 'Altra siepe o bordura'
+
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q5.A1' THEN 'Giardino/boschetto sempreverdi'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q5.A2' THEN 'Giardino/boschetto Fagacee, Ulmacee, Malvales (quercia, olmo, tiglio)'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q5.A3' THEN 'Giardino/boschetto Salicacee (pioppo e salice)'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q5.A4' THEN 'Giardino/boschetto piante da frutto (fico, caco, pomacee e drupacee)'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q5.A5' THEN 'Giardino/boschetto Catalpa o Paulownia'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q5.A6' THEN 'Altro giardino o boschetto'
+
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q7.A1' THEN 'Fabbricato/i ad uso agricolo'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q9.A1' THEN 'Fabbricato/i ad uso abitativo'
+
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q11.A1' THEN 'Coltura estensiva soia'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q11.A2' THEN 'Coltura estensiva leguminose'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q11.A3' THEN 'Coltura estensiva mais'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q11.A4' THEN 'Coltura estensiva cereali autunno-vernini'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q11.A5' THEN 'Coltura estensiva pomodoro'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q11.A6' THEN 'Coltura estensiva colza'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q11.A7' THEN 'Coltura estensiva orticole'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q11.A8' THEN 'Altra coltura estensiva'
+
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q13.A1' THEN 'Coltura arborea melo'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q13.A2' THEN 'Coltura arborea pero' 
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q13.A3' THEN 'Coltura arborea pesco e nettarino'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q13.A4' THEN 'Coltura arborea albicocco'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q13.A5' THEN 'Coltura arborea susino'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q13.A6' THEN 'Coltura arborea ciliegio'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q13.A7' THEN 'Coltura arborea vite'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q13.A8' THEN 'Coltura arborea actinidia'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q13.A9' THEN 'Coltura arborea caco'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q13.A10' THEN 'Coltura arborea noce'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q13.A11' THEN 'Coltura arborea pioppo'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q13.A12' THEN 'Coltura arborea Paulownia'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q13.A13' THEN 'Altra coltura arborea'
+
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q15.A1' THEN 'Argine fiume'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q15.A2' THEN 'Argine canale'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q15.A3' THEN 'Fosso o scolina'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q15.A4' THEN 'Laghetto e bacino irriguo'
+        WHEN ga.answer_id = 'BMSB.INSTNEW.Q15.A5' THEN 'Altro argine o canale'
+        
+        ELSE ''
+    END AS text_to_show
+    FROM task_on_geo_object AS togo
+    JOIN task AS t on togo.task_id = t.task_id
+    JOIN given_answer AS ga ON togo.togo_id = ga.togo_id
+    JOIN answer AS ans ON ans.answer_id = ga.answer_id
+    JOIN question AS q ON q.question_id = ans.question_id
+    WHERE togo.gid = $gid AND
+    t.task_id = 5) AS sq2 
+WHERE text_to_show != ''",BMSB.SCENNEW.Q2
+BMSB.ACTNEW.Q2.A1,"SELECT ga.text as text_to_show 
+FROM task_on_geo_object AS togo
+JOIN given_answer as ga ON togo.togo_id = ga.togo_id
+WHERE togo.task_id = 8 AND togo.gid = $gid AND ga.answer_id='BMSB.SCENNEW.Q3.A1'",BMSB.ACTNEW.Q2
+BMSB.INST.Q2.A8,Nocciolo,BMSB.INST.Q2
+BMSB.INST.Q2.A9,Other,BMSB.INST.Q2
+BMSB.INST.Q3.A1,Yes,BMSB.INST.Q3
+BMSB.INST.Q3.A2,No,BMSB.INST.Q3
+BMSB.INST.Q4.A1,Sempreverdi,BMSB.INST.Q4
+BMSB.INST.Q4.A2,"Fagacee, Ulmacee, Malvales (quercia, olmo, tiglio)",BMSB.INST.Q4
+BMSB.INST.Q4.A3,Salicacee (pioppo e salice),BMSB.INST.Q4
+BMSB.INST.Q4.A4,"Piante da frutto (fico, caco, pomacee e drupacee)",BMSB.INST.Q4
+BMSB.INST.Q4.A5,Catalpa e Paulownia,BMSB.INST.Q4
+BMSB.INST.Q4.A6,Other,BMSB.INST.Q4
+BMSB.INST.Q8.A1,1,BMSB.INST.Q8
+BMSB.INST.Q5.A2,No,BMSB.INST.Q5
+BMSB.INST.Q6.A1,1,BMSB.INST.Q6
+BMSB.INST.Q6.A2,2,BMSB.INST.Q6
+BMSB.INST.Q6.A3,3,BMSB.INST.Q6
+BMSB.INST.Q6.A4,4,BMSB.INST.Q6
+BMSB.INST.Q7.A1,Yes,BMSB.INST.Q7
+BMSB.INST.Q7.A2,No,BMSB.INST.Q7
+BMSB.INST.Q8.A2,2,BMSB.INST.Q8
+BMSB.INST.Q8.A3,3,BMSB.INST.Q8
+BMSB.INST.Q8.A4,4,BMSB.INST.Q8
+BMSB.INST.Q8.A5,5 or more,BMSB.INST.Q8
+BMSB.INST.Q9.A1,Yes,BMSB.INST.Q9
+BMSB.INST.Q11.A1,Yes,BMSB.INST.Q11
+BMSB.INST.Q13.A1,Yes,BMSB.INST.Q13
+BMSB.INST.Q11.A2,No,BMSB.INST.Q11
+BMSB.INST.Q9.A2,No,BMSB.INST.Q9
+BMSB.INST.Q13.A2,No,BMSB.INST.Q13
+BMSB.INST.Q10.A1,Soia,BMSB.INST.Q10
+BMSB.INST.Q10.A2,Leguminose,BMSB.INST.Q10
+BMSB.INST.Q10.A3,Mais,BMSB.INST.Q10
+BMSB.INST.Q10.A5,Pomodoro,BMSB.INST.Q10
+BMSB.INST.Q10.A4,Cereali autunno-vernini,BMSB.INST.Q10
+BMSB.INST.Q10.A6,Colza,BMSB.INST.Q10
+BMSB.INST.Q10.A7,Orticole,BMSB.INST.Q10
+BMSB.INST.Q10.A8,Other,BMSB.INST.Q10
+BMSB.INST.Q12.A1,Melo,BMSB.INST.Q12
+BMSB.INST.Q12.A2,Pero,BMSB.INST.Q12
+BMSB.INST.Q12.A4,Albicocco,BMSB.INST.Q12
+BMSB.INST.Q12.A5,Susino,BMSB.INST.Q12
+BMSB.INST.Q12.A6,Ciliegio,BMSB.INST.Q12
+BMSB.INST.Q12.A7,Vite,BMSB.INST.Q12
+BMSB.INST.Q12.A8,Actinidia,BMSB.INST.Q12
+BMSB.INST.Q12.A9,Caco,BMSB.INST.Q12
+BMSB.INST.Q12.A10,Noce,BMSB.INST.Q12
+BMSB.INST.Q12.A12,Paulownia,BMSB.INST.Q12
+BMSB.INST.Q14.A1,Argine fiume,BMSB.INST.Q14
+BMSB.INST.Q14.A2,Argine canale,BMSB.INST.Q14
+BMSB.INST.Q14.A3,Fossi e scoline,BMSB.INST.Q14
+BMSB.PASS.Q1.A1,Working fine,BMSB.PASS.Q1
+BMSB.PASS.Q1.A2,Partially occluded,BMSB.PASS.Q1
+BMSB.PASS.Q1.A3,Highly occluded,BMSB.PASS.Q1
+BMSB.PASS.Q1.A4,Broken,BMSB.PASS.Q1
+BMSB.PASS.Q2.A1,Yes,BMSB.PASS.Q2
+BMSB.PASS.Q2.A2,No,BMSB.PASS.Q2
+BMSB.PASS.Q3.A1,Base monitoring,BMSB.PASS.Q3
+BMSB.ACT.Q3.A2,Advanced monitoring,BMSB.ACT.Q3
+BMSB.PASS.Q3.A2,Advanced monitoring,BMSB.PASS.Q3
+BMSB.ACT.Q4.A1,Text,BMSB.ACT.Q4
+BMSB.ACT.Q5.A1,Text,BMSB.ACT.Q5
+BMSB.ACT.Q6.A1,Text,BMSB.ACT.Q6
+BMSB.ACT.Q7.A1,Text,BMSB.ACT.Q7
+BMSB.ACT.Q8.A1,Text,BMSB.ACT.Q8
+BMSB.ACT.Q9.A1,Text,BMSB.ACT.Q9
+BMSB.ACT.Q10.A1,Text,BMSB.ACT.Q10
+BMSB.ACT.Q11.A1,Text,BMSB.ACT.Q11
+BMSB.ACT.Q12.A1,Text,BMSB.ACT.Q12
+BMSB.ACT.Q14.A1,Text,BMSB.ACT.Q14
+BMSB.ACT.Q15.A1,Text,BMSB.ACT.Q15
+BMSB.ACT.Q16.A1,Text,BMSB.ACT.Q16
+BMSB.ACT.Q17.A1,Text,BMSB.ACT.Q17
+BMSB.ACT.Q18.A1,Text,BMSB.ACT.Q18
+BMSB.PASS.Q18.A1,Text,BMSB.PASS.Q18
+BMSB.PASS.Q17.A1,Text,BMSB.PASS.Q17
+BMSB.PASS.Q16.A1,Text,BMSB.PASS.Q16
+BMSB.PASS.Q15.A1,Text,BMSB.PASS.Q15
+BMSB.PASS.Q14.A1,Text,BMSB.PASS.Q14
+BMSB.PASS.Q13.A1,Text,BMSB.PASS.Q13
+BMSB.PASS.Q12.A1,Text,BMSB.PASS.Q12
+BMSB.PASS.Q11.A1,Text,BMSB.PASS.Q11
+BMSB.PASS.Q10.A1,Text,BMSB.PASS.Q10
+BMSB.PASS.Q9.A1,Text,BMSB.PASS.Q9
+BMSB.PASS.Q8.A1,Text,BMSB.PASS.Q8
+BMSB.PASS.Q7.A1,Text,BMSB.PASS.Q7
+BMSB.PASS.Q6.A1,Text,BMSB.PASS.Q6
+BMSB.PASS.Q5.A1,Text,BMSB.PASS.Q5
+BMSB.PASS.Q4.A1,Text,BMSB.PASS.Q4
+BMSB.ACT.Q1.A1,"SELECT togo_id, answer_id, text_to_show FROM ( SELECT togo.togo_id, answer_id, CASE WHEN ga.answer_id = 'BMSB.INST.Q1.A1' THEN 'Siepi e bordure' WHEN ga.answer_id = 'BMSB.INST.Q3.A1' THEN 'Giardini e boschetti' WHEN ga.answer_id = 'BMSB.INST.Q5.A1' THEN 'Fabbricati ad uso agricolo' WHEN ga.answer_id = 'BMSB.INST.Q7.A1' THEN 'Fabbricati ad uso abitativo' WHEN ga.answer_id = 'BMSB.INST.Q9.A1' THEN 'Colture estensive' WHEN ga.answer_id = 'BMSB.INST.Q11.A1' THEN 'Colture arboree' WHEN ga.answer_id = 'BMSB.INST.Q13.A1' THEN 'Argini e canali' ELSE '' END AS text_to_show FROM task_on_geo_object AS togo JOIN task AS t on togo.task_id = t.task_id JOIN given_answer AS ga ON togo.togo_id = ga.togo_id WHERE togo.gid = $1 AND t.task_id = $2 ) AS sq2 WHERE text_to_show != '' ",BMSB.ACT.Q1

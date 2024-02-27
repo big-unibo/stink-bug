@@ -1,4 +1,4 @@
-# BIG - Project template (your repo name here)
+# BIG - Project template (BMSB)
 
 [![build](https://github.com/big-unibo/experimental-project/actions/workflows/build.yml/badge.svg)](https://github.com/big-unibo/experimental-project/actions/workflows/build.yml)
 

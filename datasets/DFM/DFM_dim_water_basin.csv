@@ -1,0 +1,12 @@
+water_basin_id,water_resource_type
+1,Pond
+2,Other artificial reservoir
+3,Saltworks
+4,Lake
+5,Lagoon
+6,Artificial lake
+7,Lake for electricity production
+8,Quarry in aquifer
+9,Swamp
+10,Pulping mill
+0,Nessuno
