@@ -1,6 +1,7 @@
 package it.unibo.big
 
-import it.unibo.big.normalized_fact.GenerateNormalizedFactWithMeteo
+import it.unibo.big.casedimension.GenerateCaseDimensionTable
+import it.unibo.big.normalized_fact.{GenerateNormalizedFactWithMeteo, GenerateTrapsValidity}
 
 object GenerateDFM extends App {
 
@@ -23,6 +24,11 @@ object GenerateDFM extends App {
           t.getKey -> df
         }).toMap
     val normalizedFinalDf: DataFrame = GenerateNormalizedFactWithMeteo(sparkSession, config, caseInputData)
+    val trapsValidityDf : DataFrame = GenerateTrapsValidity(sparkSession, caseInputData)
+    val (caseDimensionDf, caseBridgeDf) = GenerateCaseDimensionTable(sparkSession, caseInputData)
     FileUtils.saveFile(normalizedFinalDf, config.getString("dataset.DFM.fact_passive_monitoring"))
+    FileUtils.saveFile(caseDimensionDf, config.getString("dataset.DFM.dim_case"))
+    FileUtils.saveFile(caseBridgeDf, config.getString("dataset.DFM.bridge_trap_case"))
+    FileUtils.saveFile(caseInputData("monitoring_session"), config.getString("dataset.DFM.monitoring_session"))
   }
 }

@@ -25,74 +25,7 @@ object GenerateNormalizedFactWithMeteo {
     var dfNormalized: DataFrame = null
     val format = new SimpleDateFormat("dd-MM-yyyy")
 
-    //get the traps that have been monitored
-    val monitoredTrapsDf = caseInputData("task_on_geo_object").as("togo")
-      .join(caseInputData("given_answer").as("ga"), "togo_id")
-      .join(caseInputData("answer").as("a"), "answer_id")
-      .join(caseInputData("question").as("q"), "question_id")
-      .join(caseInputData("traps").as("geo"), "gid")
-      .filter((col("togo.task_id") === 6 && col("geo.ms_id").isin(9, 12)) || (col("togo.task_id") === 3 && col("geo.ms_id") === 6))
-      .filter(col("timestamp_completed").isNotNull)
-      .filter(col("a.question_id").isin("BMSB.PASS.Q4", "BMSB.PASS.Q7", "BMSB.PASS.Q8",
-        "BMSB.PASS.Q10", "BMSB.PASS.Q11", "BMSB.PASS.Q14", "BMSB.PASS.Q15",
-        "BMSB.PASS.Q16", "BMSB.PASS.Q17", "BMSB.PASSNEW.Q3", "BMSB.PASSNEW.Q4", "BMSB.PASSNEW.Q5"))
-      .groupBy(col("togo.timestamp_assignment"), col("togo.timestamp_completed"), col("togo.togo_id"), col("geo.name"), col("togo.gid"), col("geo.ms_id"))
-      .agg(sum(when(col("a.question_id").isin("BMSB.PASS.Q10", "BMSB.PASS.Q11", "BMSB.PASS.Q4", "BMSB.PASSNEW.Q3"), col("ga.text").cast("integer")).otherwise(lit(0))).as("Adults captured"),
-        sum(when(col("a.question_id").isin("BMSB.PASS.Q14", "BMSB.PASS.Q15", "BMSB.PASS.Q7", "BMSB.PASSNEW.Q4"), col("ga.text").cast("integer")).otherwise(lit(0))).as("Small instars captured"),
-        sum(when(col("a.question_id").isin("BMSB.PASS.Q16", "BMSB.PASS.Q17", "BMSB.PASS.Q8", "BMSB.PASSNEW.Q5"), col("ga.text").cast("integer")).otherwise(lit(0))).as("Large instars captured"))
-      .withColumn("is_monitored", lit(true))
-      .cache
-
-    //get the traps that have been selected as working
-    val workingTrapsDf = caseInputData("traps").as("geo").join(caseInputData("task_on_geo_object").as("togo"), "gid")
-      .join(caseInputData("given_answer").as("ans"), "togo_id")
-      .filter((col("ans.answer_id") === "BMSB.PASSNEW.Q2.A2" && col("geo.ms_id").isin(9, 12)) || (col("ans.answer_id").isin("BMSB.PASS.Q1.A3", "BMSB.PASS.Q1.A4", "BMSB.PASS.Q1.A5") && col("geo.ms_id") === 6))
-      .select(col("togo.timestamp_assignment"), col("togo.timestamp_completed"), col("togo.togo_id"), col("geo.name"), col("geo.gid"), col("geo.ms_id"), lit(false).as("is_working"))
-      .cache
-
-    //get monitored dates for each trap
-    val trapMonitoring: Map[Any, Array[Any]] = monitoredTrapsDf.collect().map(r => {
-      r.get(r.fieldIndex("gid")) -> r.get(r.fieldIndex("timestamp_assignment"))
-    }).groupBy(_._1).map {
-      case (x, y) => x -> y.map(_._2)
-    }
-
-    //get all the dates in which the traps have been assigned to a task
-    val togo_dates = caseInputData("traps").as("geo").join(caseInputData("task_on_geo_object").as("togo"), "gid")
-      .filter(col("togo.task_id").isin(3, 6))
-      .select(col("togo.timestamp_assignment"), col("geo.ms_id"))
-      .distinct()
-    //get the installation date of each trap
-    val inst = caseInputData("traps").as("geo").join(caseInputData("task_on_geo_object").as("togo"), "gid")
-      .filter((col("togo.task_id") === 5 && col("geo.ms_id").isin(9, 12)) || (col("togo.task_id") === 2 && col("geo.ms_id") === 6))
-      .filter(col("geo.geometry").isNotNull)
-      .select(col("togo.timestamp_completed"), col("geo.name"), col("geo.gid"), col("geo.ms_id"))
-    //get the not monitored tasks for each trap
-    val notMonitoredTrapsDf = togo_dates.as("togo_dates").join(inst.as("inst"), "ms_id")
-      .where(col("timestamp_assignment") > col("inst.timestamp_completed"))
-      .select(col("timestamp_assignment"), lit(null).as("timestamp_completed"), lit(null).as("togo_id"),
-        col("inst.name"), col("inst.gid"), col("ms_id"),
-        lit(null).as("Adults captured"), lit(null).as("Small instars captured"), lit(null).as("Large instars captured"),
-        lit(false).as("is_monitored"))
-      //add a filter that remove the timestamp assignment for the traps that are already monitored, i.e. if the pair gid and timestamp_assignment is present in the monitoredTrapsDf
-      .filter(r => !trapMonitoring.getOrElse(r.get(r.fieldIndex("gid")), Array[Any]()).contains(r.get(r.fieldIndex("timestamp_assignment"))))
-      .cache
-
-    //link all the partial results to create the final dataframe
-    val fullDf = workingTrapsDf.as("working") //apply full-outer join with the union of the two dataframes
-      .join(monitoredTrapsDf.union(notMonitoredTrapsDf).as("monitoring"), Seq("gid", "timestamp_assignment"), "full_outer")
-      .select(
-        date_format(col("timestamp_assignment"), "dd-MM-yyyy").as("taskDate"),
-        date_format(coalesce(col("working.timestamp_completed"), col("monitoring.timestamp_completed")), "dd-MM-yyyy").as("rilevationDate"),
-        coalesce(col("working.name"), col("monitoring.name")).as("name"),
-        coalesce(col("working.togo_id"), col("monitoring.togo_id")).as("togo_id"),
-        col("gid"),
-        coalesce(col("working.ms_id"), col("monitoring.ms_id")).as("ms_id"),
-        coalesce(col("is_working"), lit(true)).as("is_working"),
-        coalesce(col("is_monitored"), lit(false)).as("is_monitored"),
-        col("monitoring.Adults captured"), col("monitoring.Small instars captured"), col("monitoring.Large instars captured")
-      ).cache
-    fullDf.show()
+    val (fullDf, inst) = getNormalizedCaputresDataframe(sparkSession, caseInputData)
 
     //read the weather data
     val weatherDf = sparkSession.read.option("header", "true").csv(config.getString("dataset.weather")).cache
@@ -228,7 +161,83 @@ object GenerateNormalizedFactWithMeteo {
 
       dfNormalized = sparkSession.createDataFrame(sparkSession.sparkContext.parallelize(normalizedRecords), struct)
     }
-    val normalizedFinalDf = addUsefulHoursColumnAndGroupData(dfNormalized, weatherDf = weatherDf, struct = struct).cache
+    val normalizedFinalDf = addUsefulHoursColumnAndGroupData(dfNormalized, weatherDf = weatherDf, struct = struct)
     normalizedFinalDf
+  }
+
+  /**
+   *
+   * @param sparkSession the spark session
+   * @param caseInputData the case input data
+   * @return a dataframe where for each possible monitoring task there is the fact if the trap is monitored or not and is working or not
+   *         another dataframe with traps installation date
+   */
+  private[normalized_fact] def getNormalizedCaputresDataframe(sparkSession: SparkSession, caseInputData: Map[String, DataFrame]): (DataFrame, DataFrame) = {
+    //get the traps that have been monitored
+    val monitoredTrapsDf = caseInputData("task_on_geo_object").as("togo")
+      .join(caseInputData("given_answer").as("ga"), "togo_id")
+      .join(caseInputData("answer").as("a"), "answer_id")
+      .join(caseInputData("question").as("q"), "question_id")
+      .join(caseInputData("traps").as("geo"), "gid")
+      .filter((col("togo.task_id") === 6 && col("geo.ms_id").isin(9, 12)) || (col("togo.task_id") === 3 && col("geo.ms_id") === 6))
+      .filter(col("timestamp_completed").isNotNull)
+      .filter(col("a.question_id").isin("BMSB.PASS.Q4", "BMSB.PASS.Q7", "BMSB.PASS.Q8",
+        "BMSB.PASS.Q10", "BMSB.PASS.Q11", "BMSB.PASS.Q14", "BMSB.PASS.Q15",
+        "BMSB.PASS.Q16", "BMSB.PASS.Q17", "BMSB.PASSNEW.Q3", "BMSB.PASSNEW.Q4", "BMSB.PASSNEW.Q5"))
+      .groupBy(col("togo.timestamp_assignment"), col("togo.timestamp_completed"), col("togo.togo_id"), col("geo.name"), col("togo.gid"), col("geo.ms_id"))
+      .agg(sum(when(col("a.question_id").isin("BMSB.PASS.Q10", "BMSB.PASS.Q11", "BMSB.PASS.Q4", "BMSB.PASSNEW.Q3"), col("ga.text").cast("integer")).otherwise(lit(0))).as("Adults captured"),
+        sum(when(col("a.question_id").isin("BMSB.PASS.Q14", "BMSB.PASS.Q15", "BMSB.PASS.Q7", "BMSB.PASSNEW.Q4"), col("ga.text").cast("integer")).otherwise(lit(0))).as("Small instars captured"),
+        sum(when(col("a.question_id").isin("BMSB.PASS.Q16", "BMSB.PASS.Q17", "BMSB.PASS.Q8", "BMSB.PASSNEW.Q5"), col("ga.text").cast("integer")).otherwise(lit(0))).as("Large instars captured"))
+      .withColumn("is_monitored", lit(true))
+      .cache
+
+    //get the traps that have been selected as working
+    val workingTrapsDf = caseInputData("traps").as("geo").join(caseInputData("task_on_geo_object").as("togo"), "gid")
+      .join(caseInputData("given_answer").as("ans"), "togo_id")
+      .filter((col("ans.answer_id") === "BMSB.PASSNEW.Q2.A2" && col("geo.ms_id").isin(9, 12)) || (col("ans.answer_id").isin("BMSB.PASS.Q1.A3", "BMSB.PASS.Q1.A4", "BMSB.PASS.Q1.A5") && col("geo.ms_id") === 6))
+      .select(col("togo.timestamp_assignment"), col("togo.timestamp_completed"), col("togo.togo_id"), col("geo.name"), col("geo.gid"), col("geo.ms_id"), lit(false).as("is_working"))
+
+    //get monitored dates for each trap
+    val trapMonitoring: Map[Any, Array[Any]] = monitoredTrapsDf.collect().map(r => {
+      r.get(r.fieldIndex("gid")) -> r.get(r.fieldIndex("timestamp_assignment"))
+    }).groupBy(_._1).map {
+      case (x, y) => x -> y.map(_._2)
+    }
+
+    //get all the dates in which the traps have been assigned to a task
+    val togo_dates = caseInputData("traps").as("geo").join(caseInputData("task_on_geo_object").as("togo"), "gid")
+      .filter(col("togo.task_id").isin(3, 6))
+      .select(col("togo.timestamp_assignment"), col("geo.ms_id"))
+      .distinct()
+    //get the installation date of each trap
+    val inst = caseInputData("traps").as("geo").join(caseInputData("task_on_geo_object").as("togo"), "gid")
+      .filter((col("togo.task_id") === 5 && col("geo.ms_id").isin(9, 12)) || (col("togo.task_id") === 2 && col("geo.ms_id") === 6))
+      .filter(col("geo.geometry").isNotNull)
+      .select(col("togo.timestamp_completed"), col("geo.name"), col("geo.gid"), col("geo.ms_id"))
+    //get the not monitored tasks for each trap
+    val notMonitoredTrapsDf = togo_dates.as("togo_dates").join(inst.as("inst"), "ms_id")
+      .where(col("timestamp_assignment") > col("inst.timestamp_completed"))
+      .select(col("timestamp_assignment"), lit(null).as("timestamp_completed"), lit(null).as("togo_id"),
+        col("inst.name"), col("inst.gid"), col("ms_id"),
+        lit(null).as("Adults captured"), lit(null).as("Small instars captured"), lit(null).as("Large instars captured"),
+        lit(false).as("is_monitored"))
+      //add a filter that remove the timestamp assignment for the traps that are already monitored, i.e. if the pair gid and timestamp_assignment is present in the monitoredTrapsDf
+      .filter(r => !trapMonitoring.getOrElse(r.get(r.fieldIndex("gid")), Array[Any]()).contains(r.get(r.fieldIndex("timestamp_assignment"))))
+
+    //link all the partial results to create the final dataframe
+    val fullDf = workingTrapsDf.as("working") //apply full-outer join with the union of the two dataframes
+      .join(monitoredTrapsDf.union(notMonitoredTrapsDf).as("monitoring"), Seq("gid", "timestamp_assignment"), "full_outer")
+      .select(
+        date_format(col("timestamp_assignment"), "dd-MM-yyyy").as("taskDate"),
+        date_format(coalesce(col("working.timestamp_completed"), col("monitoring.timestamp_completed")), "dd-MM-yyyy").as("rilevationDate"),
+        coalesce(col("working.name"), col("monitoring.name")).as("name"),
+        coalesce(col("working.togo_id"), col("monitoring.togo_id")).as("togo_id"),
+        col("gid"),
+        coalesce(col("working.ms_id"), col("monitoring.ms_id")).as("ms_id"),
+        coalesce(col("is_working"), lit(true)).as("is_working"),
+        coalesce(col("is_monitored"), lit(false)).as("is_monitored"),
+        col("monitoring.Adults captured"), col("monitoring.Small instars captured"), col("monitoring.Large instars captured")
+      ).cache
+    (fullDf, inst)
   }
 }
