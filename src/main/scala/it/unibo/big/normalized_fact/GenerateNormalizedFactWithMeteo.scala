@@ -18,7 +18,7 @@ object GenerateNormalizedFactWithMeteo {
    * Generate the normalized fact with the meteo data
    * @param sparkSession the spark session
    * @param config the configuration
-   * @param caseInputData the case input data
+   * @param caseInputData a map where for each case table there is a dataframe
    * @return the normalized fact with the meteo data
    */
   def apply(sparkSession: SparkSession, config: Config, caseInputData: Map[String, DataFrame]): DataFrame = {
@@ -168,7 +168,7 @@ object GenerateNormalizedFactWithMeteo {
   /**
    *
    * @param sparkSession the spark session
-   * @param caseInputData the case input data
+   * @param caseInputData a map where for each case table there is a dataframe
    * @return a dataframe where for each possible monitoring task there is the fact if the trap is monitored or not and is working or not
    *         another dataframe with traps installation date
    */

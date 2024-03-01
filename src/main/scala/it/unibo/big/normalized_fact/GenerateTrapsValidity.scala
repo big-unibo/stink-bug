@@ -13,7 +13,7 @@ object GenerateTrapsValidity {
    * - otherwise, it is interesting
    *
    * @param sparkSession  the spark session
-   * @param caseInputData the case input data
+   * @param caseInputData a map where for each case table there is a dataframe
    * @return a dataframe where for each gid (trap identifier) there is the validity (valid, invalid, noisy)
    */
   def apply(sparkSession: SparkSession, caseInputData: Map[String, DataFrame]): DataFrame = {

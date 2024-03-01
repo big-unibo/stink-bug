@@ -7,7 +7,7 @@ object GenerateCaseDimensionTable {
   /**
    * Generate the case dimension table and bridge table
    * @param sparkSession the spark session
-   * @param caseInputData the case input data
+   * @param caseInputData a map where for each case table there is a dataframe
    * @return the case dimension table and bridge table dataframes
    */
   def apply(sparkSession: SparkSession, caseInputData: Map[String, DataFrame]): (DataFrame, DataFrame) = {

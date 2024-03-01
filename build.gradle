@@ -81,6 +81,10 @@ dependencies {
     // implementation "org.apache.spark:spark-sql_2.11:2.4.0-cdh6.2.0"
     // implementation "org.apache.spark:spark-hive_2.11:2.4.0-cdh6.2.0"
     // implementation "org.apache.spark:spark-mllib_2.11:2.4.0-cdh6.2.0"
+    //geo trellis
+    implementation "org.locationtech.geotrellis:geotrellis-vector_${scalaRelease}:${geoTrellisVersion}"
+    implementation "org.locationtech.geotrellis:geotrellis-spark_${scalaRelease}:${geoTrellisVersion}"
+    implementation "org.locationtech.geotrellis:geotrellis-raster_${scalaRelease}:${geoTrellisVersion}"
 }
 
 test {
