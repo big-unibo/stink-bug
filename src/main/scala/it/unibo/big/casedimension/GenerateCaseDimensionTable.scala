@@ -21,13 +21,13 @@ object GenerateCaseDimensionTable {
         "BMSB.INST.Q10", "BMSB.INSTNEW.Q11", "BMSB.INST.Q12", "BMSB.INSTNEW.Q13",
         "BMSB.INST.Q14", "BMSB.INSTNEW.Q15"
       )).select(col("answer_id"),
-        when(col("question_id").isin("BMSB.INST.Q2", "BMSB.INSTNEW.Q3"), lit("Siepi e bordure"))
-          .when(col("question_id").isin("BMSB.INST.Q4", "BMSB.INSTNEW.Q5"), lit("Giardini e boschetti"))
-          .when(col("question_id").isin("BMSB.INST.Q6", "BMSB.INSTNEW.Q7"), lit("Fabbricati ad uso agricolo"))
-          .when(col("question_id").isin("BMSB.INST.Q8", "BMSB.INSTNEW.Q9"), lit("Fabbricati ad uso abitativo"))
-          .when(col("question_id").isin("BMSB.INST.Q10", "BMSB.INSTNEW.Q11"), lit("Colture estensive"))
-          .when(col("question_id").isin("BMSB.INST.Q12", "BMSB.INSTNEW.Q13"), lit("Colture arboree"))
-          .when(col("question_id").isin("BMSB.INST.Q14", "BMSB.INSTNEW.Q15"), lit("Argini e canali"))
+        when(col("question_id").isin("BMSB.INST.Q2", "BMSB.INSTNEW.Q3"), lit("Hedges and borders"))
+          .when(col("question_id").isin("BMSB.INST.Q4", "BMSB.INSTNEW.Q5"), lit("Gardens and groves"))
+          .when(col("question_id").isin("BMSB.INST.Q6", "BMSB.INSTNEW.Q7"), lit("Agricultural buildings"))
+          .when(col("question_id").isin("BMSB.INST.Q8", "BMSB.INSTNEW.Q9"), lit("Residential buildings"))
+          .when(col("question_id").isin("BMSB.INST.Q10", "BMSB.INSTNEW.Q11"), lit("Herbaceous crops"))
+          .when(col("question_id").isin("BMSB.INST.Q12", "BMSB.INSTNEW.Q13"), lit("Tree fruit crops"))
+          .when(col("question_id").isin("BMSB.INST.Q14", "BMSB.INSTNEW.Q15"), lit("River banks and channels"))
           .otherwise(col("question_id")).alias("answer_category"),
         when(col("answer_id").isin("BMSB.INST.Q2.A9", "BMSB.INSTNEW.Q3.A9"), lit("Altra siepe o bordura"))
           .when(col("answer_id").isin("BMSB.INST.Q4.A6", "BMSB.INSTNEW.Q5.A6"), lit("Altro giardino o boschetto"))
@@ -39,7 +39,7 @@ object GenerateCaseDimensionTable {
           .when(col("answer_id").isin("BMSB.INST.Q12.A13", "BMSB.INSTNEW.Q13.A13"), lit("Altra coltura arborea"))
           .when(col("answer_id").isin("BMSB.INST.Q14.A5", "BMSB.INSTNEW.Q15.A5"), lit("Altro argine o canale"))
           .otherwise(col("a.text")).alias("answer_text")
-      ).distinct() //TODO translate
+      ).distinct()
       .withColumn("cid", monotonically_increasing_id())
     val bridgeTrapCaseDf = caseInputData("task_on_geo_object").as("togo").join(caseInputData("given_answer").as("ga"), "togo_id")
       .join(caseInputData("answer").as("a"), "answer_id")
