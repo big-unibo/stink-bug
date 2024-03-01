@@ -110,35 +110,5 @@ object QueryUtils {
        |)
        |and timestamp_assignment > inst.timestamp_completed
        |and togo_dates.ms_id = inst.ms_id""".stripMargin
-  val monitoredTraps: String =
-    """
-      |select togo.timestamp_assignment, togo.timestamp_completed, togo.togo_id, geo.name, geo.gid, geo.ms_id, true as monitored,
-      |sum(case when q.question_id in ('BMSB.PASS.Q10', 'BMSB.PASS.Q11', 'BMSB.PASS.Q4', 'BMSB.PASSNEW.Q3')
-      |	THEN cast(ga.text as integer)
-      |	ELSE 0 end),
-      |sum(case when q.question_id in ('BMSB.PASS.Q14', 'BMSB.PASS.Q15', 'BMSB.PASS.Q7', 'BMSB.PASSNEW.Q4')
-      |	THEN cast(ga.text as integer)
-      |	ELSE 0 end),
-      |sum(case when q.question_id in ('BMSB.PASS.Q16', 'BMSB.PASS.Q17', 'BMSB.PASS.Q8', 'BMSB.PASSNEW.Q5')
-      |	THEN cast(ga.text as integer)
-      |	ELSE 0 end)
-      |
-      |from task_on_geo_object togo
-      |JOIN given_answer ga ON togo.togo_id = ga.togo_id
-      |JOIN answer a ON ga.answer_id = a.answer_id JOIN question q ON q.question_id = a.question_id
-      |join traps geo on geo.gid = togo.gid
-      |where ((togo.task_id = 6 and geo.ms_id in (9, 12)) or (togo.task_id = 3 and geo.ms_id = 6) )
-      |and timestamp_completed is not null
-      |and q.question_id in ('BMSB.PASS.Q4','BMSB.PASS.Q7','BMSB.PASS.Q8',
-      |    'BMSB.PASS.Q10','BMSB.PASS.Q11','BMSB.PASS.Q14','BMSB.PASS.Q15',
-      |	'BMSB.PASS.Q16','BMSB.PASS.Q17', 'BMSB.PASSNEW.Q3', 'BMSB.PASSNEW.Q4', 'BMSB.PASSNEW.Q5')
-      |group by togo.timestamp_assignment, togo.timestamp_completed, togo.togo_id, geo.name, geo.gid, geo.ms_id""".stripMargin
-  val workingTraps: String =
-    s"""
-       |select togo.timestamp_assignment, togo.timestamp_completed, togo.togo_id, geo.name, geo.gid, geo.ms_id, false as is_working
-       | from task_on_geo_object togo
-       | join traps geo on geo.gid = togo.gid
-       | join given_answer ans on ans.togo_id = togo.togo_id
-       | where (ans.answer_id = 'BMSB.PASSNEW.Q2.A2' and geo.ms_id in (9, 12)) or (ans.answer_id IN ('BMSB.PASS.Q1.A3', 'BMSB.PASS.Q1.A4', 'BMSB.PASS.Q1.A5') and geo.ms_id = 6)
-       |""".stripMargin
+
 }

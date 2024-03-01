@@ -27,17 +27,59 @@ object GenerateDFM extends App {
           val df = sparkSession.read.option("header", "true").csv(t.getValue.render().replaceAll("\"", ""))
           df.createTempView(t.getKey)
           t.getKey -> df
-        })
+        }).toMap
     var dfNormalized: DataFrame = null
     var dfDaily: DataFrame = null
     //TODO fix query
     val format = new java.text.SimpleDateFormat("dd-MM-yyyy")
-    val monitoredTrapsDf = sparkSession.sql(QueryUtils.monitoredTraps).cache
+    val monitoredTrapsDf = caseInputData("task_on_geo_object").as("togo")
+      .join(caseInputData("given_answer").as("ga"), "togo_id")
+      .join(caseInputData("answer").as("a"), "answer_id")
+      .join(caseInputData("question").as("q"), "question_id")
+      .join(caseInputData("traps").as("geo"), "gid")
+      .filter((col("togo.task_id") === 6 && col("geo.ms_id").isin(9, 12)) || (col("togo.task_id") === 3 && col("geo.ms_id") === 6))
+      .filter(col("timestamp_completed").isNotNull)
+      .filter(col("a.question_id").isin("BMSB.PASS.Q4", "BMSB.PASS.Q7", "BMSB.PASS.Q8",
+          "BMSB.PASS.Q10", "BMSB.PASS.Q11", "BMSB.PASS.Q14", "BMSB.PASS.Q15",
+          "BMSB.PASS.Q16", "BMSB.PASS.Q17", "BMSB.PASSNEW.Q3", "BMSB.PASSNEW.Q4", "BMSB.PASSNEW.Q5"))
+      .groupBy(col("togo.timestamp_assignment"), col("togo.timestamp_completed"), col("togo.togo_id"), col("geo.name"), col("togo.gid"), col("geo.ms_id"))
+      .agg(sum(when(col("a.question_id").isin("BMSB.PASS.Q10", "BMSB.PASS.Q11", "BMSB.PASS.Q4", "BMSB.PASSNEW.Q3"), col("ga.text").cast("integer")).otherwise(lit(0))).as("Adults captured"),
+        sum(when(col("a.question_id").isin("BMSB.PASS.Q14", "BMSB.PASS.Q15", "BMSB.PASS.Q7", "BMSB.PASSNEW.Q4"), col("ga.text").cast("integer")).otherwise(lit(0))).as("Small instars captured"),
+        sum(when(col("a.question_id").isin("BMSB.PASS.Q16", "BMSB.PASS.Q17", "BMSB.PASS.Q8", "BMSB.PASSNEW.Q5"), col("ga.text").cast("integer")).otherwise(lit(0))).as("Large instars captured"))
+      .cache
     monitoredTrapsDf.show()
-    val notMonitoredTrapsDf = sparkSession.sql(QueryUtils.notMonitoredTraps).cache
-    notMonitoredTrapsDf.show()
-    val workingTrapsDf = sparkSession.sql(QueryUtils.workingTraps).cache
+
+    val workingTrapsDf = caseInputData("traps").as("geo").join(caseInputData("task_on_geo_object").as("togo"), "gid")
+      .join(caseInputData("given_answer").as("ans"), "togo_id")
+      .filter((col("ans.answer_id") === "BMSB.PASSNEW.Q2.A2" && col("geo.ms_id").isin(9, 12)) || (col("ans.answer_id").isin("BMSB.PASS.Q1.A3", "BMSB.PASS.Q1.A4", "BMSB.PASS.Q1.A5") && col("geo.ms_id") === 6))
+      .select(col("togo.timestamp_assignment"), col("togo.timestamp_completed"), col("togo.togo_id"), col("geo.name"), col("geo.gid"), col("geo.ms_id"), lit(false).as("is_working"))
+      .cache
     workingTrapsDf.show()
+
+    val togo_dates = caseInputData("traps").as("geo").join(caseInputData("task_on_geo_object").as("togo"), "gid")
+      .filter(col("togo.task_id").isin(3, 6))
+      .select(col("togo.timestamp_assignment"), col("geo.ms_id"))
+      .distinct()
+    val inst = caseInputData("traps").as("geo").join(caseInputData("task_on_geo_object").as("togo"), "gid")
+      .filter((col("togo.task_id") === 5 && col("geo.ms_id").isin(9, 12)) || (col("togo.task_id") === 2 && col("geo.ms_id") === 6))
+      .filter(col("geo.geometry").isNotNull)
+      .select(col("togo.timestamp_completed"), col("geo.name"), col("geo.gid"), col("geo.ms_id"))
+
+    val notMonitoredTrapsDf = togo_dates.as("togo_dates").join(inst.as("inst"), "ms_id")
+      .where(!col("timestamp_assingment").isin(
+        caseInputData("task_on_geo_object").as("togo").join(caseInputData("traps").as("geo"), "gid")
+          .where(col("geo.gid") === col("inst.gid")) //TODO fix
+          .where((col("togo.task_id") === 6 && col("geo.ms_id").isin(9, 12)) || (col("togo.task_id") === 3 && col("geo.ms_id") === 6))
+          .where(col("togo.timestamp_completed").isNotNull)
+          .where(col("togo.timestamp_assignment") > col("inst.timestamp_completed"))
+          .select(col("timestamp_assignment"))
+        ) && col("timestamp_assignment") > col("inst.timestamp_completed") && col("togo_dates.ms_id") === col("inst.ms_id"))
+      .select(col("timestamp_assignment"), lit(null).as("togo_id"), lit(null).as("timestamp_completed"),
+        col("inst.name"), col("inst.gid"), col("inst.ms_id"), lit(false).as("monitored"),
+        lit(null).as("Adults captured"), lit(null).as("Small instars captured"), lit(null).as("Large instars captured"))
+      .cache
+
+    notMonitoredTrapsDf.show()
 
     // --------------------------------------------------
 /*    //read the weather data
