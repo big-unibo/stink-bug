@@ -1,6 +1,7 @@
 package it.unibo.big.casedimension
 
 object GenerateCaseDimensionTable {
+  import it.unibo.big.DimensionsTableUtils
   import org.apache.spark.sql.functions._
   import org.apache.spark.sql.{DataFrame, SparkSession}
 
@@ -8,9 +9,10 @@ object GenerateCaseDimensionTable {
    * Generate the case dimension table and bridge table
    * @param sparkSession the spark session
    * @param caseInputData a map where for each case table there is a dataframe
+   * @param trapDimension the trap dimension dataframe
    * @return the case dimension table and bridge table dataframes
    */
-  def apply(sparkSession: SparkSession, caseInputData: Map[String, DataFrame]): (DataFrame, DataFrame) = {
+  def apply(sparkSession: SparkSession, caseInputData: Map[String, DataFrame], trapDimension: DataFrame): (DataFrame, DataFrame) = {
     val dimCaseDf : DataFrame = caseInputData("task_on_geo_object").as("togo").join(caseInputData("traps").as("go"), "gid")
       .join(caseInputData("geo_answer").as("ga"), "gid")
       .join(caseInputData("answer").as("a"), "answer_id")
@@ -41,6 +43,7 @@ object GenerateCaseDimensionTable {
           .otherwise(col("a.text")).alias("answer_text")
       ).distinct()
       .withColumn("cid", monotonically_increasing_id())
+    //create the bridge table
     val bridgeTrapCaseDf = caseInputData("task_on_geo_object").as("togo").join(caseInputData("given_answer").as("ga"), "togo_id")
       .join(caseInputData("answer").as("a"), "answer_id")
       .where(col("question_id").isin(
@@ -51,6 +54,8 @@ object GenerateCaseDimensionTable {
       )).select(col("gid"), col("answer_id"), col("text")).join(dimCaseDf.as("t"), "answer_id")
       .where((col("text").isNotNull && col("text") === col("element_name")) || col("text").isNull)
       .select(col("gid"), col("cid"))
-    (dimCaseDf, bridgeTrapCaseDf)
+    //add the traps that are not linked to the bridge table
+    val (newDimensionTable, newBridgeTable) = DimensionsTableUtils.addNotNearRows(sparkSession, "cid", dimCaseDf, bridgeTrapCaseDf, trapDimension)
+    (newDimensionTable, newBridgeTable)
   }
 }

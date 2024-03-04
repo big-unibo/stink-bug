@@ -11,6 +11,8 @@ object GenerateNormalizedFactWithMeteo {
   import java.sql
   import java.text.SimpleDateFormat
   import java.util.Date
+  import geotrellis.vector.io.readWktOrWkb
+
 
   private val LOGGER: Logger = LoggerFactory.getLogger(this.getClass)
 
@@ -34,10 +36,10 @@ object GenerateNormalizedFactWithMeteo {
       // find installation date
       val result = inst.filter(col("gid") === gid)
         .select(date_format(col("timestamp_completed"), "DD-MM-YYYY"), col("geometry")).first()
-      //TODO convert the geometry to get lat and long
-      val geometry = result(1).toString
-      val lat = ???
-      val long = ???
+      val geometry = readWktOrWkb(result(1).toString)
+      //get lat long of the geometry point
+      val latLong = geometry.asInstanceOf[geotrellis.vector.Point]
+      val (lat, long) = (latLong.y, latLong.x)
       Some(format.parse(result(0).toString), MeteoUtils.getTrapMeteoData(sparkSession, (lat, long), weatherDf))
     }
 
