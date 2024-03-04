@@ -1,7 +1,7 @@
 package it.unibo.big.normalized_fact
 
 object GenerateNormalizedFactWithMeteo {
-  import com.typesafe.config.Config
+  import geotrellis.vector.io.readWktOrWkb
   import it.unibo.big.normalized_fact.MeteoUtils.addUsefulHoursColumnAndGroupData
   import org.apache.spark.sql.functions._
   import org.apache.spark.sql.types._
@@ -11,7 +11,6 @@ object GenerateNormalizedFactWithMeteo {
   import java.sql
   import java.text.SimpleDateFormat
   import java.util.Date
-  import geotrellis.vector.io.readWktOrWkb
 
 
   private val LOGGER: Logger = LoggerFactory.getLogger(this.getClass)
