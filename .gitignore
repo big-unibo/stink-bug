@@ -471,4 +471,5 @@ gradle-app.setting
 ### Gradle Patch ###
 **/build/
 
+credentials.yml
 # End of https://www.toptal.com/developers/gitignore/api/java,macos,linux,gradle,eclipse,windows,intellij,python,venv,maven,libreoffice,microsoftoffice

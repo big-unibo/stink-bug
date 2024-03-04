@@ -20,8 +20,7 @@ jobs:
         run: |
           cd src/main/python
           pip install -r requirements.txt
-          python sample.py 
-          python charts.py
+#TODO          python sample.py
       - uses: actions/setup-java@v4.0.0
         with:
           distribution: 'adopt'

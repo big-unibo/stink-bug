@@ -1,7 +1,5 @@
 package it.unibo.big.calculated_svp
 
-import geotrellis.vector.io.readWktOrWkb
-
 /**
  * Utils for the SVP statistics
  */
@@ -13,7 +11,11 @@ object SVPUtils {
   import geotrellis.vector.Geometry
   import org.apache.hadoop.fs.Path
   import org.apache.spark.sql.{DataFrame, Row, SparkSession}
+  import geotrellis.vector.io.readWktOrWkb
+  import org.slf4j.{Logger, LoggerFactory}
+
   private val MULTIBAND_INDEXES = Seq("RGB")
+  private[calculated_svp] val LOGGER: Logger = LoggerFactory.getLogger(this.getClass)
 
   /**
    * Returns the info for each trap of the analyzed, with the specified function
@@ -71,7 +73,7 @@ object SVPUtils {
     val (res, dataCount) = cropAndGetValues(indexSource, t, geom, fun)
     val coveredArea = (dataCount * 100D) / radiusArea
 
-    println(s"Data count = $dataCount, radius = $radiusArea")
+    LOGGER.debug(s"Data count = $dataCount, radius = $radiusArea")
     (res, coveredArea)
   }
 

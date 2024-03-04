@@ -10,6 +10,8 @@ object GenerateDFM extends App {
   import com.typesafe.config.{Config, ConfigFactory, ConfigValue}
   import org.apache.spark.sql.{DataFrame, SparkSession}
   import org.slf4j.{Logger, LoggerFactory}
+  import it.unibo.big.service.Postgres
+  import it.unibo.big.service.HBase.readWeatherSequenceFile
 
   private val sparkSession = SparkSession.builder().master("local[*]").appName("BMSB DFM creation").getOrCreate()
   private val LOGGER: Logger = LoggerFactory.getLogger(this.getClass)
@@ -25,11 +27,18 @@ object GenerateDFM extends App {
           val df = sparkSession.read.option("header", "true").csv(t.getValue.render().replaceAll("\"", ""))
           t.getKey -> df
         }).toMap
-    val cerInputData = ???
+
+    val postgres = new Postgres(sparkSession, "cimice")
+    val cerInputData = Map("water_basin" -> postgres.queryTable("select d_ty_sda, geom4326 from acque_interne"),
+      "water_course" -> postgres.queryTable("select prenome as praenomen, uso as usage, tombinato as culverted, geom4326 from retebonifica"),
+      "crop" -> postgres.queryTable("select raggruppam, geom4326 from uso_suolo"))
+
+    // Read from PostgreSQL table into DataFrame
     val mapImagesSVP : Map[String, Array[String]] = ???
     val croppedDf : (Int, Map[String, DataFrame]) => DataFrame = ???
     val croppedGroundTruthDf : (Int, Map[String, DataFrame]) => DataFrame = ???
-    val weatherDf : DataFrame = ???
+    val weatherDf : DataFrame = readWeatherSequenceFile(sparkSession, s"/abds/hbase/weather_processed")
+    val calculateSVP = false //TODO set to true
 
     //generate the normalized fact table
     val normalizedFinalDf: DataFrame = GenerateNormalizedFactWithMeteo(sparkSession, caseInputData, weatherDf)
@@ -38,14 +47,16 @@ object GenerateDFM extends App {
     //generate the trap dimension table
     var trapsDimensionTable : DataFrame = GenerateTrapDimension(sparkSession, caseInputData)
     trapsDimensionTable = trapsDimensionTable.join(trapsValidityDf, Seq("gid"))
-    //calculate the automatic SVP
-    val automaticSVP = SVPStatistics.calculateAutomaticSVP(sparkSession, caseInputData ++ cerInputData, trapRadius = 200, mapImagesSVP, croppedDf)
-    //calculate the ground truth SVP
-    val groundTruthSVP = SVPStatistics.getGroundTruthSVP(sparkSession, trapRadius = 200, caseInputData ++ cerInputData, croppedGroundTruthDf)
+    if(calculateSVP) {
+      //calculate the automatic SVP
+      val automaticSVP = SVPStatistics.calculateAutomaticSVP(sparkSession, caseInputData ++ cerInputData, trapRadius = 200, mapImagesSVP, croppedDf)
+      //calculate the ground truth SVP
+      val groundTruthSVP = SVPStatistics.getGroundTruthSVP(sparkSession, trapRadius = 200, caseInputData ++ cerInputData, croppedGroundTruthDf)
 
-    //join the automatic svp with the trap dimension
-    trapsDimensionTable = trapsDimensionTable.join(automaticSVP, Seq("gid"), "left")
-      .join(groundTruthSVP, Seq("gid"), "left")
+      //join the automatic svp with the trap dimension
+      trapsDimensionTable = trapsDimensionTable.join(automaticSVP, Seq("gid"), "left")
+        .join(groundTruthSVP, Seq("gid"), "left")
+    }
 
     //generate the case dimension and bridge tables
     val (caseDimensionDf, caseBridgeDf) = GenerateCaseDimensionTable(sparkSession, caseInputData, trapsDimensionTable)
