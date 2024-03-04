@@ -1,4 +1,4 @@
-package it.unibo.big.automatic_svp
+package it.unibo.big.calculated_svp
 
 import geotrellis.vector.io.readWktOrWkb
 
@@ -101,7 +101,7 @@ object SVPUtils {
    * @param trapRadius the selected radius for the trap buffer
    * @return the area (a costant) of the selected radius
    */
-  private def getRadiusAreaFromRadius(trapRadius: Int): Int = {
+  def getRadiusAreaFromRadius(trapRadius: Int): Int = {
     require(trapRadius == 200 || trapRadius == 1000)
     if (trapRadius == 200) 1313 else 31533
   }

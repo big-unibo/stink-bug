@@ -49,11 +49,11 @@ object GenerateCERDimensionTables {
         ),
         "geom4326",
         "crop_usage_id",
-        "crop_usage"
+        "crop"
       )
     )
     configurations.map(c => {
-      val (dimensionTable, bridgeTable) = createDimensionTables(c, cerInputData, dimTrapDf)
+      val (dimensionTable, bridgeTable) = createDimensionTables(sparkSession, c, cerInputData, dimTrapDf)
       c.table_name -> (dimensionTable, bridgeTable)
     }).toMap
   }

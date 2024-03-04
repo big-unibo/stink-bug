@@ -19,18 +19,15 @@ object GenerateNormalizedFactWithMeteo {
   /**
    * Generate the normalized fact with the meteo data
    * @param sparkSession the spark session
-   * @param config the configuration
    * @param caseInputData a map where for each case table there is a dataframe
+   * @param weatherDf the dataframe with the weather data
    * @return the normalized fact with the meteo data
    */
-  def apply(sparkSession: SparkSession, config: Config, caseInputData: Map[String, DataFrame]): DataFrame = {
+  def apply(sparkSession: SparkSession, caseInputData: Map[String, DataFrame], weatherDf: DataFrame): DataFrame = {
     var dfNormalized: DataFrame = null
     val format = new SimpleDateFormat("dd-MM-yyyy")
 
     val (fullDf, inst) = getNormalizedCaputresDataframe(sparkSession, caseInputData)
-
-    //read the weather data
-    val weatherDf = sparkSession.read.option("header", "true").csv(config.getString("dataset.weather")).cache
 
     def getInstallationInfos(gid: Int, weatherDf: DataFrame): Option[(Date, (Double, Double))] = {
       // find installation date

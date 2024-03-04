@@ -1,21 +1,19 @@
-package it.unibo.big.automatic_svp
+package it.unibo.big.calculated_svp
 
 object SVPStatistics extends App {
   import geotrellis.raster.Tile
   import geotrellis.raster.io.geotiff.SinglebandGeoTiff
-  import org.apache.spark.sql.Row
+  import it.unibo.big.calculated_svp.SVPUtils._
   import org.apache.spark.sql.types._
-  import it.unibo.big.FileUtils
-  import it.unibo.big.automatic_svp.SVPUtils._
-  import org.apache.spark.sql.{DataFrame, SparkSession}
+  import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 
   import java.io.FileNotFoundException
 
   /**
    *
    * @param sparkSession the used spark session
-   * @param caseInputData map of case input data
-   * @param trapRadius the radius of the trap to consider in the calculation of the automatic SVP
+   * @param inputData map of case and cer input data
+   * @param trapRadius the radius of the trap to consider in the calculation of the automatic SVP (200 or 1000)
    * @param mapImages a map where each key is a date and the value is a list of image paths for that date,
    *                  where extract the vegetation index
    * @param croppedDf a function that starting from the trap radius and the input dataframes returns
@@ -24,15 +22,14 @@ object SVPStatistics extends App {
    *               - the second column is a geometry that is intersection between the buffer constructed using
    *                 the trap radius and the data about the cultures
    *               - the third is the trap buffer built around the trap with a radius of trapRadius
-   * @param vegetationIndexesThresholds a map where each key is a vegetation index and
-   *                                    the value is the threshold, to consider a spontaneous vegetation
-   * @return the dataframe with the result of the calculation
+   * @return the dataframe with the result of the calculation of automatic SVP
    */
-  def apply(sparkSession: SparkSession, caseInputData: Map[String, DataFrame],
-            trapRadius: Int, mapImages : Map[String, Array[String]], croppedDf: (Int, Map[String, DataFrame]) => DataFrame,
-            vegetationIndexesThresholds: Map[String, Double] = Map("NDVI" -> 0.7, "MTCI" -> 1.4)): DataFrame = {
+  def calculateAutomaticSVP(sparkSession: SparkSession, inputData: Map[String, DataFrame],
+            trapRadius: Int, mapImages : Map[String, Array[String]], croppedDf: (Int, Map[String, DataFrame]) => DataFrame): DataFrame = {
     require(trapRadius == 200 || trapRadius == 1000)
-    val trapsMap = q(trapRadius, caseInputData, croppedDf)
+    val trapsMap = q(trapRadius, inputData, croppedDf)
+    //used vegetation index for threshold calculation
+    val vegetationIndexesThresholds = Map("NDVI" -> 0.7)
 
     //For each gid and date returns a map of index and values and percentage of coverage
     var trapsDates = Map[(Int, String), Map[String, (Double, Double)]]()
@@ -82,7 +79,42 @@ object SVPStatistics extends App {
         vegetationIndexesThresholds.keys.toSeq.flatMap(ix => Seq(StructField(ix, DoubleType),
           StructField(s"${ix}_coverage", DoubleType)))
     ))
-    FileUtils.saveFile(trapsIndexDf, fileName = s"auto_svp_radius_${trapRadius}.csv")
-    trapsIndexDf
+    trapsIndexDf.select("gid", "NDVI").groupBy("gid").avg("NDVI").withColumnRenamed("avg(NDVI)", "svp (auto)")
+  }
+
+  /**
+   *
+   * @param sparkSession the spark session
+   * @param trapRadius the radius of the trap to consider in the calculation of the ground truth SVP (200 or 1000)
+   * @param inputData map of case and cer input data
+   * @param croppedGroundTruth a function that starting from the trap radius and the input dataframes returns
+   *                           a new dataframe where:
+   *                           - the first column is an integer identifier for the trap
+   *                           - the second column is a geometry that is intersection between the buffer constructed using
+   *                             the trap radius and the data about the cultures and the expert knowledge selecting the
+   *                             areas where there is not svp
+   *                          - the third is the trap buffer built around the trap with a radius of trapRadius
+   * @return the dataframe with the result of the calculation of ground truth SVP
+   */
+  def getGroundTruthSVP(sparkSession: SparkSession, trapRadius: Int, inputData: Map[String, DataFrame], croppedGroundTruth: (Int, Map[String, DataFrame]) => DataFrame) = {
+    require(trapRadius == 200 || trapRadius == 1000)
+    val trapsMap = q(trapRadius, inputData, croppedGroundTruth)
+    val result = trapsMap.collect{
+      case (gid, Some((geom1, geomBuffer))) =>
+        val radiusArea = getRadiusAreaFromRadius(trapRadius)
+        //calculate the amount of data cells in the intersection between geom1 and geomBuffer
+        val intersectionArea = geomBuffer.intersection(geom1).asMultiPolygon match {
+          case Some(multiPolygon) => multiPolygon.area  // If intersection is a MultiPolygon, get its area
+          case _ => 0.0  // If no intersection or invalid geometry, return 0
+        }
+        gid -> (intersectionArea * 100D) / radiusArea
+    }
+
+    val trapsGroundTruth = sparkSession.createDataFrame(sparkSession.sparkContext.parallelize(result.map {
+        case (gid, perc) => Row(gid, perc)
+      }.toSeq), StructType(
+        Seq(StructField("gid", IntegerType), StructField("svp (ground truth)", DoubleType))
+      ))
+    trapsGroundTruth
   }
 }
