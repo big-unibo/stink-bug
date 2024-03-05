@@ -27,7 +27,7 @@ object GenerateNormalizedFactWithMeteo {
 
     val (fullDf, inst) = getNormalizedCaputresDataframe(sparkSession, caseInputData)
     // get the installation date of each trap and the meteo data
-    val installationWeatherDf = MeteoUtils.getInstallationWeatherDataframe(sparkSession, inst, weatherDf)
+    val installationWeatherDf = MeteoUtils.getInstallationWeatherDataframe(sparkSession, inst, weatherDf).cache()
 
     /**
      *
