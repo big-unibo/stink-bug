@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
-from utils import savePdf
+from utils import savePdf, set_font_size
 def plot_svp_scatter(traps):
+    set_font_size(28)
     selected_traps = traps[traps.ms_id == 9]
     axs_limit = selected_traps["svp (manual)"].max() if selected_traps["svp (manual)"].max() >= selected_traps["svp (auto)"].max() else selected_traps["svp (auto)"].max()
     axs_labels = range(0, int(axs_limit) + 5, 5)

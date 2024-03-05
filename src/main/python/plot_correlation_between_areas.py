@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from utils import savePdf
+from utils import savePdf, set_font_size
 import numpy as np
 
 def add_week_year(x):
@@ -15,6 +15,7 @@ def rename_area(a):
     return a
 
 def plot_correlation_between_areas(fact):
+    set_font_size(28)
     fact['week_year'] = fact.timestamp.apply(lambda x: add_week_year(x))
     compress_fact = fact[["ms_id", "area", "week_year", "Tot captured"]]
     compress_fact.area = compress_fact.area.apply(lambda x: rename_area(x))

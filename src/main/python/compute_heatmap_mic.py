@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from matplotlib.backends.backend_pdf import PdfPages
 from minepy import cstats
+from utils import set_font_size
 
 
 def show_heatmaps(df1, df2, name):
@@ -59,6 +60,7 @@ def aggregate_matrix(matrixs, casuality_vars):
     return aggregate_matrix
 
 def plot_mic_heatmaps(fact, casuality_vars):
+    set_font_size(40)
     mean_data = fact.reset_index().groupby("timestamp").mean(casuality_vars).sort_values(by=['timestamp'])
     mic_c = compute_mic(mean_data, casuality_vars)
     #change with old matrix values

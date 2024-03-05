@@ -1,7 +1,10 @@
 import matplotlib.pyplot as plt
 from utils import savePdf
 import numpy as np
+from utils import set_font_size
+
 def plot_wind_and_prec(fact, casuality_vars):
+    set_font_size(28)
     for c in ['Avg wind speed', 'Tot precipitations']:
         #scatter
         plt.clf()

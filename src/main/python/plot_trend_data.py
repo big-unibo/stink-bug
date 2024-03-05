@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
-from utils import savePdf
-
+from utils import savePdf, set_font_size
 def plot_trend_data(fact, captures_categories, captures_categories_translated_reduced):
+    set_font_size(28)
     captures_colors = ['black', 'gray', 'lightgray']
     trend_data = fact.reset_index().groupby(['ms_id', 'week']).mean(captures_categories).reset_index()
     ms_ids = trend_data.ms_id.unique()
