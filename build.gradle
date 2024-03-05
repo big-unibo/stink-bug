@@ -86,7 +86,7 @@ dependencies {
     implementation "org.locationtech.geotrellis:geotrellis-spark_${scalaRelease}:${geoTrellisVersion}"
     implementation "org.locationtech.geotrellis:geotrellis-raster_${scalaRelease}:${geoTrellisVersion}"
     //postgresql
-    implementation 'org.postgresql:postgresql:42.2.23'
+    implementation 'org.postgresql:postgresql:42.2.28'
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
     implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jacksonVersion}"
