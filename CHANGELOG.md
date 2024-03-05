@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/big-unibo/BMSB/compare/1.0.0...1.0.1) (2024-03-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.core:jackson-databind to v2.9.10.8 ([faa465b](https://github.com/big-unibo/BMSB/commit/faa465b9638ebb16b03af57dadd49c6e51ef773c))
+
 ## 1.0.0 (2024-03-05)
 
 
