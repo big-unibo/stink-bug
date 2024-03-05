@@ -1,7 +1,6 @@
 package it.unibo.big.normalized_fact
 
 object GenerateNormalizedFactWithMeteo {
-  import geotrellis.vector.io.readWktOrWkb
   import it.unibo.big.normalized_fact.MeteoUtils.addUsefulHoursColumnAndGroupData
   import org.apache.spark.sql.functions._
   import org.apache.spark.sql.types._
@@ -27,16 +26,18 @@ object GenerateNormalizedFactWithMeteo {
     val format = new SimpleDateFormat("dd-MM-yyyy")
 
     val (fullDf, inst) = getNormalizedCaputresDataframe(sparkSession, caseInputData)
+    // get the installation date of each trap and the meteo data
+    val installationWeatherDf = MeteoUtils.getInstallationWeatherDataframe(sparkSession, inst, weatherDf)
 
-    def getInstallationInfos(gid: Int, weatherDf: DataFrame): Option[(Date, (Double, Double))] = {
-      // find installation date
-      val result = inst.filter(col("gid") === gid)
-        .select(date_format(col("timestamp_completed"), "DD-MM-YYYY"), col("geometry")).first()
-      val geometry = readWktOrWkb(result(1).toString)
-      //get lat long of the geometry point
-      val latLong = geometry.asInstanceOf[geotrellis.vector.Point]
-      val (lat, long) = (latLong.y, latLong.x)
-      Some(format.parse(result(0).toString), MeteoUtils.getTrapMeteoData(sparkSession, (lat, long), weatherDf))
+    /**
+     *
+     * @param gid the trap identifier
+     * @return the installation date and the lat and lon of the weather cell near the trap
+     */
+    def getInstallationInfos(gid: Int): Option[(Date, (Double, Double))] = {
+      val result = installationWeatherDf.filter(col("gid") === gid)
+        .select(col("installationDateString"), col("latW"), col("longW")).first()
+      Some(format.parse(result(0).toString), (result(1).toString.toDouble, result(2).toString.toDouble))
     }
 
     def getMonitoringValue(v: Option[Double], diff: Long, daily: Boolean = false): Any = {
@@ -88,7 +89,7 @@ object GenerateNormalizedFactWithMeteo {
         val getInstallationDate = if (pastGid.isDefined) !(pastGid.get == gid && pastDate.isDefined) else true
 
         pastDate = if (getInstallationDate) {
-          val installationData = getInstallationInfos(gid, weatherDf)
+          val installationData = getInstallationInfos(gid)
           weatherLatLon = installationData.map(_._2)
           installationData.map(_._1)
         } else pastDate
@@ -159,7 +160,7 @@ object GenerateNormalizedFactWithMeteo {
 
       dfNormalized = sparkSession.createDataFrame(sparkSession.sparkContext.parallelize(normalizedRecords), struct)
     }
-    val normalizedFinalDf = addUsefulHoursColumnAndGroupData(dfNormalized, weatherDf = weatherDf, struct = struct)
+    val normalizedFinalDf = addUsefulHoursColumnAndGroupData(dfNormalized, installationWeatherDf, weatherDf = weatherDf, struct = struct)
     normalizedFinalDf
   }
 
