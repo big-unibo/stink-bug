@@ -3,7 +3,7 @@ from get_data import obtain_data
 from plot_trend_data import plot_trend_data
 from plot_correlation_between_areas import plot_correlation_between_areas
 from plot_svp_scatter import plot_svp_scatter
-#from compute_heatmap_mic import plot_mic_heatmaps
+from compute_heatmap_mic import plot_mic_heatmaps
 from plot_wind_and_prec import plot_wind_and_prec
 from bmsb_model import generate_and_plot_model
 from plot_dimensions import plot_dim_vs
@@ -34,7 +34,7 @@ def main():
     print("Scatter plot SVP")
     plot_svp_scatter(traps)
     print("Compute and visualize MIC")
-    # TODO plot_mic_heatmaps(fact, casualty_vars)
+    plot_mic_heatmaps(fact, casualty_vars)
     print("Plot wind and precipitations")
     plot_wind_and_prec(fact, casualty_vars)
     print("Generate and plot model")

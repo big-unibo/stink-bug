@@ -2,31 +2,23 @@ package it.unibo.big
 
 object GenerateDFM extends App {
 
-
+  import Utils._
   import it.unibo.big.calculated_svp.SVPStatistics
   import it.unibo.big.casedimension.{GenerateCaseDimensionTable, GenerateTrapDimension}
   import it.unibo.big.cer.GenerateCERDimensionTables
   import it.unibo.big.normalized_fact.{GenerateNormalizedFactWithMeteo, GenerateTrapsValidity}
-  import com.typesafe.config.{Config, ConfigFactory, ConfigValue}
-  import org.apache.spark.sql.{DataFrame, SparkSession}
-  import org.slf4j.{Logger, LoggerFactory}
-  import it.unibo.big.service.Postgres
   import it.unibo.big.service.HBase.readWeatherSequenceFile
+  import it.unibo.big.service.Postgres
+  import org.apache.spark.sql.DataFrame
+  import org.slf4j.{Logger, LoggerFactory}
 
-  private val sparkSession = SparkSession.builder().master("local[*]").appName("BMSB DFM creation").getOrCreate()
   private val LOGGER: Logger = LoggerFactory.getLogger(this.getClass)
-  private val config: Config = ConfigFactory.load()
 
   apply()
 
   def apply(): Unit = {
     //read case input data and create a temp view for each file
-    val caseInputData: Map[String, DataFrame] = config.getConfig("dataset.CASE").entrySet().toArray
-      .map(_.asInstanceOf[java.util.Map.Entry[String, ConfigValue]]).map(
-        t => {
-          val df = sparkSession.read.option("header", "true").csv(t.getValue.render().replaceAll("\"", ""))
-          t.getKey -> df
-        }).toMap
+    val caseInputData: Map[String, DataFrame] = Utils.readCaseInputData()
 
     val postgres = new Postgres(sparkSession, "cimice")
     val cerInputData = Map("water_basin" -> postgres.queryTable("select d_ty_sda, geom4326 from acque_interne"),
