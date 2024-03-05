@@ -1,3 +1,10 @@
+## 1.0.0 (2024-03-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.9.10 ([169293f](https://github.com/big-unibo/BMSB/commit/169293fb67d58d6cb1de7455b95a1266a44cce5b))
+
 ## [1.0.27](https://github.com/big-unibo/project-template/compare/1.0.26...1.0.27) (2024-02-06)
 
 
