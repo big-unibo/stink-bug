@@ -3,9 +3,19 @@ from utils import savePdf, set_font_size
 import numpy as np
 
 def add_week_year(x):
+    """
+    Add week year to the timestamp
+    :param x: the timestamp
+    :return: the timestamp with the week year
+    """
     iso_cal = x.isocalendar()
     return str(iso_cal[0]) + "W" + str(iso_cal[1])
 def rename_area(a):
+    """
+    Rename the area
+    :param a: the input area
+    :return: the renamed area
+    """
     if a == "MO-RE":
         return "West"
     if a == "BO-FE":
@@ -15,6 +25,11 @@ def rename_area(a):
     return a
 
 def plot_correlation_between_areas(fact):
+    """
+    Plot the correlation between areas
+    :param fact: the input fact table
+    :return: the plot of the correlation between areas
+    """
     set_font_size(28)
     fact['week_year'] = fact.timestamp.apply(lambda x: add_week_year(x))
     compress_fact = fact[["ms_id", "area", "week_year", "Tot captured"]]

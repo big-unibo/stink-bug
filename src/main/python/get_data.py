@@ -2,7 +2,15 @@ import csv
 import pandas as pd
 from datetime import datetime
 
-def obtain_data(datasets, time_alignment = True):
+def obtain_data(datasets):
+    """
+    Obtain the data from the datasets
+    :param datasets: the input dataset folder
+    :return: the data from the datasets joined in particular:
+    - fact: the fact data joined with the traps
+    - traps: the traps data
+    - dim_data: the dimension data enriched with the trap identifier
+    """
     fact = pd.read_csv(datasets + "DFM/DFM_fact_passive_monitoring.csv", quotechar='"', sep=",", quoting=csv.QUOTE_ALL)
     fact.timestamp = fact.timestamp.apply(lambda x: datetime.fromtimestamp(x))
 
@@ -39,9 +47,6 @@ def obtain_data(datasets, time_alignment = True):
 
     #remove not valid traps
     traps = traps[traps["validity"] != "invalid"]
-    #fact alignment
-    if time_alignment:
-        fact = fact[fact["timestamp"].dt.isocalendar().week.between(18, 42)]
     traps = traps.set_index("gid").join(fact.groupby("gid").agg(monitoring = ('timestamp', 'count'))).reset_index()
     fact = fact.set_index('gid').join(traps.set_index('gid')).reset_index()
     fact["season"] = fact.apply(lambda x: generate_season(x.timestamp, x.ms_id), axis = 1)

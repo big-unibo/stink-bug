@@ -1,6 +1,13 @@
 import matplotlib.pyplot as plt
 from utils import savePdf, set_font_size
-def plot_trend_data(fact, captures_categories, captures_categories_translated_reduced):
+def plot_trend_data(fact, captures_categories, captures_categories_reduced):
+    """
+    Plot the trend data
+    :param fact: the input fact table
+    :param captures_categories: the captures categories
+    :param captures_categories_reduced: the reduced captures categories
+    :return: the plot of the trend data of each year
+    """
     set_font_size(28)
     captures_colors = ['black', 'gray', 'lightgray']
     trend_data = fact.reset_index().groupby(['ms_id', 'week']).mean(captures_categories).reset_index()
@@ -13,7 +20,7 @@ def plot_trend_data(fact, captures_categories, captures_categories_translated_re
             tmp_data = tmp_data[tmp_data.week >= 28]
 
         for i in range(0, len(captures_categories)):
-            axs[index].plot(tmp_data['week'], tmp_data[captures_categories[i]], label = captures_categories_translated_reduced[i], color = captures_colors[i])
+            axs[index].plot(tmp_data['week'], tmp_data[captures_categories[i]], label = captures_categories_reduced[i], color = captures_colors[i])
         axs[index].set_ylabel(r'Number of captures')
         axs[index].set_yticks(range(0, 50, 10))
         bbox = axs[index].get_yticklabels()[-1].get_window_extent()

@@ -13,10 +13,14 @@ outputs = "../../../outputs/"
 results = "../../../results/"
 
 def main():
+    """
+    Main function
+    :return: the plot of pdfs of the graphs used in the paper
+    """
     fact, traps, dim_data = obtain_data(datasets, False)
     captures_categories = ["Adults captured", "Small instars captured", "Large instars captured"]
-    captures_categories_translated_reduced = ["Adults", "Small instars", "Large instars"]
-    casuality_vars = captures_categories + ["Tot captured", "Tot precipitations",
+    captures_categories_reduced = ["Adults", "Small instars", "Large instars"]
+    casualty_vars = captures_categories + ["Tot captured", "Tot precipitations",
                                             "Avg temperature", "Max temperature", "Min temperature", "Avg humidity",
                                             "Max humidity", "Min humidity",
                                             "Avg wind speed", "Max wind speed", "Tot degree days", "Cum degree days"]
@@ -24,15 +28,15 @@ def main():
 
     if False:
         print("Plot trend data")
-        plot_trend_data(fact, captures_categories, captures_categories_translated_reduced)
+        plot_trend_data(fact, captures_categories, captures_categories_reduced)
         print("Correlation between areas")
         plot_correlation_between_areas(fact)
         print("Scatter plot SVP")
         plot_svp_scatter(traps)
         print("Compute and visualize MIC")
-        # TODO plot_mic_heatmaps(fact, casuality_vars)
+        # TODO plot_mic_heatmaps(fact, casualty_vars)
         print("Plot wind and precipitations")
-        plot_wind_and_prec(fact, casuality_vars)
+        plot_wind_and_prec(fact, casualty_vars)
     print("Generate and plot model")
     generate_and_plot_model(fact, captures_categories)
     #TODO other graphs without computed data
