@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/big-unibo/BMSB/compare/1.0.1...1.0.2) (2024-03-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.postgresql:postgresql to v42.2.28 ([37642f3](https://github.com/big-unibo/BMSB/commit/37642f3cdefff677902303e6294e0e5619904a0f))
+
 ## [1.0.1](https://github.com/big-unibo/BMSB/compare/1.0.0...1.0.1) (2024-03-05)
 
 
