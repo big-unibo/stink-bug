@@ -47,7 +47,6 @@ def show_heatmaps(df1, df2, name):
         tly = ax.get_yticklabels()
         ax.set_yticklabels(tly, rotation=0)
     plt.subplots_adjust(wspace=0.1)
-    plt.show()
     pp = PdfPages(name + '.pdf')
     pp.savefig( fig, dpi=300, bbox_inches = "tight" )
     pp.close()

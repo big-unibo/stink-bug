@@ -23,4 +23,3 @@ def plot_wind_and_prec(fact, casualty_vars):
         plt.ylim(0, fact['Tot captured'].max() + 3)
         plt.xticks(np.arange(0, fact[c].max() + add_x, 2 if c == "Avg wind speed" else 25))
         savePdf("fig-%s" % c, fig)
-        plt.show()

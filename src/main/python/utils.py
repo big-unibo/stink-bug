@@ -30,7 +30,7 @@ def set_font_size(size) :
         "xtick.labelsize": size,
         "ytick.labelsize": size,
         'figure.titlesize': size,
-        'text.latex.preamble': [r'\usepackage{amsmath,amssymb,bm,physics,lmodern}'],
+        #'text.latex.preamble': [r'\usepackage{amsmath,amssymb,bm,physics,lmodern}'],
         "font.family": "serif",
         "font.serif": "computer modern roman",
     }
