@@ -1,12 +1,12 @@
 package it.unibo.big.cer
 
-import geotrellis.vector.io.readWktOrWkb
-import it.unibo.big.DimensionsTableUtils
-import org.apache.spark.sql.{DataFrame, SparkSession}
-import org.apache.spark.sql.expressions.UserDefinedFunction
-import org.apache.spark.sql.functions.{col, monotonically_increasing_id, udf}
-
 object GenerateCERDimensionTables {
+  import it.unibo.big.DimensionsTableUtils
+  import it.unibo.big.Utils.readGeometry
+  import org.apache.spark.sql.{DataFrame, SparkSession}
+  import org.apache.spark.sql.expressions.UserDefinedFunction
+  import org.apache.spark.sql.functions.{col, monotonically_increasing_id, udf}
+
   /**
    * Configuration for the CER dimension tables
    * @param columns_mapping columns mapping from the input dataframe to the dimension table
@@ -79,8 +79,8 @@ object GenerateCERDimensionTables {
 
     // User defined function to check if two geometries are near in a 200 meters radius
     val near: UserDefinedFunction = udf((geom1: String, geom2: String) => {
-      val g1 = readWktOrWkb(geom1)
-      val g2 = readWktOrWkb(geom2)
+      val g1 = readGeometry(geom1).geom
+      val g2 = readGeometry(geom2).geom
       g1.distance(g2) < 200
     })
 

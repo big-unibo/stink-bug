@@ -1,10 +1,10 @@
 package it.unibo.big.casedimension
 
-import geotrellis.vector.io.readWktOrWkb
-import org.apache.spark.sql.functions.{col, when}
-import org.apache.spark.sql.{DataFrame, SparkSession}
-
 object GenerateTrapDimension {
+  import it.unibo.big.Utils.readGeometry
+  import org.apache.spark.sql.functions.{col, when}
+  import org.apache.spark.sql.{DataFrame, SparkSession}
+
   /**
    * Generate the trap dimension table
    * @param sparkSession the spark session
@@ -21,7 +21,7 @@ object GenerateTrapDimension {
     //look with traps without svp value and link to the nearest traps in 100 meters radius if present
     val traps = caseInputData("traps").cache
     val trapsRows = traps.collect().map(r => {
-      r(0).asInstanceOf[Int] -> (readWktOrWkb(r.get(r.fieldIndex("geometry")).toString), r)
+      r(0).asInstanceOf[Int] -> (readGeometry(r.get(r.fieldIndex("geometry")).toString).geom, r)
     }).toMap
     var trapsWithSVP = trapsWithValuedSVP.collect().map(r => {
       val gid =  r(0).asInstanceOf[Int]

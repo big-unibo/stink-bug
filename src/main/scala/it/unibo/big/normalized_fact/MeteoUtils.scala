@@ -1,7 +1,7 @@
 package it.unibo.big.normalized_fact
 
 private[normalized_fact] object MeteoUtils {
-  import geotrellis.vector.io.readWktOrWkb
+  import it.unibo.big.Utils.readGeometry
   import org.apache.spark.sql.expressions.Window
   import org.apache.spark.sql.functions._
   import org.apache.spark.sql.types.StructType
@@ -75,11 +75,11 @@ private[normalized_fact] object MeteoUtils {
     val harvesineUDF = sparkSession.udf.register("harvesine",
       (lat1: Double, lon1: Double, lat2: Double, lon2: Double) => Distances.haversine(lat1, lon1, lat2, lon2))
     def getLatitude = udf((geom: String) => {
-      val point = readWktOrWkb(geom).asInstanceOf[geotrellis.vector.Point]
+      val point = readGeometry(geom).geom.asInstanceOf[geotrellis.vector.Point]
       point.y
     })
     def getLongitude = udf((geom: String) => {
-      val point = readWktOrWkb(geom).asInstanceOf[geotrellis.vector.Point]
+      val point = readGeometry(geom).geom.asInstanceOf[geotrellis.vector.Point]
       point.x
     })
     val fullInstallation = instDf
@@ -114,7 +114,7 @@ private[normalized_fact] object MeteoUtils {
  * Constants and utilities for the distances
  */
 object Distances {
-  import scala.math.{asin, cos, pow, sin, sqrt}
+  import scala.math._
 
   private val R = 6372.8 //radius in km
   /**

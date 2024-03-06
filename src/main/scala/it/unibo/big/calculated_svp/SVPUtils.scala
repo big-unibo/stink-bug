@@ -13,6 +13,7 @@ object SVPUtils {
   import org.apache.spark.sql.{DataFrame, Row, SparkSession}
   import geotrellis.vector.io.readWktOrWkb
   import org.slf4j.{Logger, LoggerFactory}
+  import it.unibo.big.Utils.readGeometry
 
   private val MULTIBAND_INDEXES = Seq("RGB")
   private[calculated_svp] val LOGGER: Logger = LoggerFactory.getLogger(this.getClass)
@@ -125,6 +126,6 @@ object SVPUtils {
   def q(trapRadius: Int, inputDataframes: Map[String, DataFrame], croppedDf: (Int, Map[String, DataFrame]) => DataFrame): Map[Int, Option[(Geometry, Geometry)]] = {
     //join the dataset with external table in order to
     // have the geometry that is the difference between the trap and the cultures in the trapRadius area
-    getTrapsInfo(croppedDf(trapRadius, inputDataframes), x => if (x.isNullAt(1)) None else Some(readWktOrWkb(x.getString(1)), readWktOrWkb(x.getString(2))))
+    getTrapsInfo(croppedDf(trapRadius, inputDataframes), x => if (x.isNullAt(1)) None else Some(readGeometry(x.getString(1)).geom, readGeometry(x.getString(2)).geom))
   }
 }
