@@ -58,4 +58,4 @@ def plot_correlation_between_areas(fact):
                 ax[i].plot(pivoted_areas[a1], m*pivoted_areas[a1]+b, color = "black")
                 i = i + 1
     fig.tight_layout()
-    savePdf("fig-corr_areas", fig)
+    savePdf("graphs/fig-corr_areas", fig)

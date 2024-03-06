@@ -9,9 +9,7 @@ from bmsb_model import generate_and_plot_model
 from plot_dimensions import plot_dim_vs
 
 np.random.seed(3)
-datasets = "../../../datasets/"
-outputs = "../../../outputs/"
-results = "../../../results/"
+datasets = "datasets/"
 
 def main():
     """

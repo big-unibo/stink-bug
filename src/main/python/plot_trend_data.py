@@ -34,4 +34,4 @@ def plot_trend_data(fact, captures_categories, captures_categories_reduced):
     fig.legend(by_label.values(), by_label.keys(), loc='upper right', bbox_to_anchor=(.99,1.015), ncol=3, bbox_transform=fig.transFigure)
 
     fig.tight_layout()
-    savePdf('fig-captures', fig)
+    savePdf('graphs/fig-captures', fig)

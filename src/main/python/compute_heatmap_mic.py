@@ -4,6 +4,7 @@ import pandas as pd
 from matplotlib.backends.backend_pdf import PdfPages
 from minepy import cstats
 from utils import set_font_size
+import seaborn as sns
 
 def df_to_latex(df):
     """
@@ -47,7 +48,7 @@ def show_heatmaps(df1, df2, name):
         tly = ax.get_yticklabels()
         ax.set_yticklabels(tly, rotation=0)
     plt.subplots_adjust(wspace=0.1)
-    pp = PdfPages(name + '.pdf')
+    pp = PdfPages('graphs/' + name + '.pdf')
     pp.savefig( fig, dpi=300, bbox_inches = "tight" )
     pp.close()
 

@@ -251,7 +251,7 @@ def bar_plot_paper(name, data, x_label, y_label):
 
     for i in range(len(data)):
         plt.text(i, data[i]["y"] + data[i]["error"] + error_label_height, data[i]["error_label"], ha = 'center')
-    savePdf("fig-dim_capts_vs_%s" % name, fig)
+    savePdf("graphs/fig-dim_capts_vs_%s" % name, fig)
 
 def plot_dim_vs():
     """

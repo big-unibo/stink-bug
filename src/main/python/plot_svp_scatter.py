@@ -21,4 +21,4 @@ def plot_svp_scatter(traps):
     plt.xlabel(r"SVP (manual) (\%)")
     plt.ylabel(r"SVP (auto) (\%)")
     plt.scatter(selected_traps["svp (manual)"], selected_traps["svp (auto)"], c ="black", marker = "x")
-    savePdf("fig-svp", fig)
+    savePdf("graphs/fig-svp", fig)
