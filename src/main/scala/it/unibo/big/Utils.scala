@@ -2,29 +2,12 @@ package it.unibo.big
 
 object Utils {
   import com.typesafe.config.{Config, ConfigFactory, ConfigValue}
-  import com.esotericsoftware.kryo.Kryo
-  import org.apache.spark.serializer.KryoRegistrator
-  import org.datasyslab.geospark.serde.GeoSparkKryoRegistrator
-  import org.apache.spark.sql.{DataFrame, SparkSession}
   import geotrellis.vector._
   import geotrellis.vector.io.readWktOrWkb
-  import org.apache.spark.serializer.KryoSerializer
-  import org.datasyslab.geosparkviz.core.Serde.GeoSparkVizKryoRegistrator
-
-  /**
-   * Kryo serializer registrator, for adding multiple serializers
-   */
-  class MyRegistrator extends KryoRegistrator {
-    override def registerClasses(kryo: Kryo) {
-      kryo.register(classOf[GeoSparkKryoRegistrator])
-      kryo.register(classOf[GeoSparkVizKryoRegistrator])
-    }
-  }
+  import org.apache.spark.sql.{DataFrame, SparkSession}
 
   val sparkSession = SparkSession.builder().master("local[*]")
     .appName("BMSB DFM creation")
-    .config("spark.serializer", classOf[KryoSerializer].getName)
-    .config("spark.kryo.registrator", "it.unibo.big.Utils$MyRegistrator")
     .getOrCreate()
   val config: Config = ConfigFactory.load()
 
