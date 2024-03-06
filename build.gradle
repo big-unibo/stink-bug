@@ -81,9 +81,9 @@ dependencies {
     implementation "org.locationtech.geotrellis:geotrellis-spark_${scalaRelease}:${geoTrellisVersion}"
     implementation "org.locationtech.geotrellis:geotrellis-raster_${scalaRelease}:${geoTrellisVersion}"
     //geospark
-    implementation "org.datasyslab:geospark:${geoSparkVersion}"
+    /*implementation "org.datasyslab:geospark:${geoSparkVersion}"
     implementation "org.datasyslab:geospark-sql_2.3:${geoSparkVersion}"
-    implementation "org.datasyslab:geospark-viz_2.3:${geoSparkVersion}"
+    implementation "org.datasyslab:geospark-viz_2.3:${geoSparkVersion}"*/
     //postgresql
     implementation 'org.postgresql:postgresql:42.2.28'
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
