@@ -12,7 +12,7 @@
     {
       "url": "CUBE_dim_trap.csv",
       "dc:title": "Trap dimension",
-      "dc:description": "Represent the dimension of the monitored traps."
+      "dc:description": "It represents the dimension of the monitored traps."
     },
     {
       "url": "CUBE_fact_passive_monitoring.csv",
