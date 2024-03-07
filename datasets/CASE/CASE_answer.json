@@ -1,0 +1,37 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CASE_answer.csv",
+  "dc:title": "Answer",
+  "dc:description": "The answer to a question.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "answer_id",
+        "dc:description": "The answer identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "text",
+        "dc:description": "The text of the answer.",
+        "datatype": {
+          "base": "string"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "question_id",
+        "dc:description": "The question identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

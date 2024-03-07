@@ -1,0 +1,29 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CUBE_bridge_trap_case.csv",
+  "dc:title": "crop-trap bridge table",
+  "dc:description": "Bridge table between trap and crop dimensions.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "crop_id",
+        "dc:description": "The crop dimension identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "gid",
+        "dc:description": "The trap identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

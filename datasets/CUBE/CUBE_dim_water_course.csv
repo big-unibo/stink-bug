@@ -1,246 +1,246 @@
 water_course_id,praenomen,usage,culverted
-1,RAMO EST CAVO,Draining,Uncovered
-2,CONDOTTO,Draining,Covered
-3,ALLACCIANTE,Mixed (mainly draining),Uncovered
-4,DUGARA,Mixed (mainly irrigation),Uncovered
-5,TERZIARIO,Mixed (mainly draining),Covered
-6,FOSSETTA,Mixed (mainly draining),Uncovered
-7,DIRAMAZIONE,Mixed (mainly irrigation),Covered
-8,IRRIGATORIO,Mixed (mainly draining),Uncovered
-9,CONDOTTO,Irrigation,Uncovered
-10,FOSSA,Draining,Uncovered
-11,SCARICO,Mixed (mainly irrigation),Uncovered
-12,RAMO,Draining,Covered
-13,FOSSETTO,Mixed (mainly draining),Uncovered
-14,CANALETTO,Mixed (mainly irrigation),Covered
-15,COLLEGAMENTO,Draining,Uncovered
-16,PROLUNGAMENTO A MONTE CANALE,Mixed (mainly draining),Covered
-17,ALLACCIANTE,Mixed (mainly irrigation),Covered
-18,DUGARA,Mixed (mainly draining),Covered
-19,TERZIARIO,Mixed (mainly irrigation),Uncovered
-20,COLLETTORE,Mixed (mainly draining),Uncovered
-21,SCOLMATORE,Draining,Covered
-22,DIRAMAZIONE,Mixed (mainly draining),Uncovered
-23,CONDOTTA,Draining,Covered
-24,CANALAZZO,Draining,Uncovered
-25,SCARICATORE,Mixed (mainly draining),Uncovered
-26,SCARICO,Mixed (mainly draining),Covered
-27,DIRAMATORE,Draining,Uncovered
-28,SCOLETTO,Draining,Uncovered
-29,CONDOTTA,Irrigation,Uncovered
-30,CANALETTO,Mixed (mainly draining),Uncovered
-31,FOSSATONCELLO,Mixed (mainly draining),Uncovered
-32,CANALAZZO,Draining,Covered
-33,SCARICATORE,Mixed (mainly draining),Covered
-34,FOSSETTA,Mixed (mainly irrigation),Uncovered
-35,SCOLMATORE,Draining,Uncovered
-36,DIRAMAZIONE,Mixed (mainly draining),Covered
-37,IRRIGATORIO,Mixed (mainly irrigation),Uncovered
-38,TRAVERSANTE,Mixed (mainly draining),Uncovered
-39,CAVETTO,Mixed (mainly draining),Uncovered
-40,COLLETTORE,Mixed (mainly draining),Covered
-41,ALLACCIANTE,Mixed (mainly irrigation),Uncovered
-42,DUGARA,Mixed (mainly draining),Uncovered
-43,TERZIARIO,Mixed (mainly irrigation),Covered
-44,DIRAMATORE,Irrigation,Uncovered
-45,CONDOTTA,Irrigation,Covered
-46,CANALETTO,Mixed (mainly draining),Covered
-47,FOSSONE,Mixed (mainly draining),Uncovered
-48,SCARICO,Mixed (mainly draining),Uncovered
-49,TORRENTE,Mixed (mainly draining),Uncovered
-50,DIRAMAZIONE,Mixed (mainly irrigation),Uncovered
-51,ARIAZZO,Draining,Covered
-52,SCARICATORE,Mixed (mainly irrigation),Uncovered
-53,FOSSADONE,Mixed (mainly draining),Uncovered
-54,FOSSETTA,Mixed (mainly draining),Covered
-55,ALLACCIANTE,Mixed (mainly draining),Covered
-56,FOSSA,Irrigation,Uncovered
-57,TERZIARIO,Mixed (mainly draining),Uncovered
-58,RAMO EST CAVO,Draining,Covered
-59,CONDOTTO,Draining,Uncovered
-60,CANALETTO,Mixed (mainly irrigation),Uncovered
-61,DUGALETTO,Mixed (mainly draining),Uncovered
-62,FOSSA,Draining,Covered
-63,SCARICO,Mixed (mainly irrigation),Covered
-64,RAMO,Draining,Uncovered
-65,CONDOTTO,Irrigation,Covered
-66,CANALE,Draining,Covered
-67,DUGARO,Mixed (mainly draining),Uncovered
-68,TUBAZIONE,Draining,Covered
-69,AFFLUENTE,Draining,Uncovered
-70,FOSSATONE,Mixed (mainly draining),Covered
-71,CAVO,Mixed (mainly irrigation),Covered
-72,CANALETTA,Irrigation,Covered
-73,CANALE,Irrigation,Uncovered
-74,FOSSO,Mixed (mainly draining),Covered
-75,SCOLO,Mixed (mainly draining),Uncovered
-76,CANALETTA,Draining,Uncovered
-77,IRRIGATORE,Irrigation,Uncovered
-78,CANALINO,Mixed (mainly irrigation),Uncovered
-79,DISTRIBUTORE,Mixed (mainly draining),Uncovered
-80,DIVERSIVO,Mixed (mainly draining),Covered
-81,CANALA,Draining,Covered
-82,CANALINA,Mixed (mainly draining),Covered
-83,CAVO,Mixed (mainly draining),Uncovered
-84,SCALOPPIA,Draining,Uncovered
+1,RAMO EST CAVO,Scolo,Non tombinato
+2,CONDOTTO,Scolo,Tombinato
+3,ALLACCIANTE,Promiscuo (prevalente scolo),Non tombinato
+4,DUGARA,Promiscuo (prevalente irriguo),Non tombinato
+5,TERZIARIO,Promiscuo (prevalente scolo),Tombinato
+6,FOSSETTA,Promiscuo (prevalente scolo),Non tombinato
+7,DIRAMAZIONE,Promiscuo (prevalente irriguo),Tombinato
+8,IRRIGATORIO,Promiscuo (prevalente scolo),Non tombinato
+9,CONDOTTO,Irriguo,Non tombinato
+10,FOSSA,Scolo,Non tombinato
+11,SCARICO,Promiscuo (prevalente irriguo),Non tombinato
+12,RAMO,Scolo,Tombinato
+13,FOSSETTO,Promiscuo (prevalente scolo),Non tombinato
+14,CANALETTO,Promiscuo (prevalente irriguo),Tombinato
+15,COLLEGAMENTO,Scolo,Non tombinato
+16,PROLUNGAMENTO A MONTE CANALE,Promiscuo (prevalente scolo),Tombinato
+17,ALLACCIANTE,Promiscuo (prevalente irriguo),Tombinato
+18,DUGARA,Promiscuo (prevalente scolo),Tombinato
+19,TERZIARIO,Promiscuo (prevalente irriguo),Non tombinato
+20,COLLETTORE,Promiscuo (prevalente scolo),Non tombinato
+21,SCOLMATORE,Scolo,Tombinato
+22,DIRAMAZIONE,Promiscuo (prevalente scolo),Non tombinato
+23,CONDOTTA,Scolo,Tombinato
+24,CANALAZZO,Scolo,Non tombinato
+25,SCARICATORE,Promiscuo (prevalente scolo),Non tombinato
+26,SCARICO,Promiscuo (prevalente scolo),Tombinato
+27,DIRAMATORE,Scolo,Non tombinato
+28,SCOLETTO,Scolo,Non tombinato
+29,CONDOTTA,Irriguo,Non tombinato
+30,CANALETTO,Promiscuo (prevalente scolo),Non tombinato
+31,FOSSATONCELLO,Promiscuo (prevalente scolo),Non tombinato
+32,CANALAZZO,Scolo,Tombinato
+33,SCARICATORE,Promiscuo (prevalente scolo),Tombinato
+34,FOSSETTA,Promiscuo (prevalente irriguo),Non tombinato
+35,SCOLMATORE,Scolo,Non tombinato
+36,DIRAMAZIONE,Promiscuo (prevalente scolo),Tombinato
+37,IRRIGATORIO,Promiscuo (prevalente irriguo),Non tombinato
+38,TRAVERSANTE,Promiscuo (prevalente scolo),Non tombinato
+39,CAVETTO,Promiscuo (prevalente scolo),Non tombinato
+40,COLLETTORE,Promiscuo (prevalente scolo),Tombinato
+41,ALLACCIANTE,Promiscuo (prevalente irriguo),Non tombinato
+42,DUGARA,Promiscuo (prevalente scolo),Non tombinato
+43,TERZIARIO,Promiscuo (prevalente irriguo),Tombinato
+44,DIRAMATORE,Irriguo,Non tombinato
+45,CONDOTTA,Irriguo,Tombinato
+46,CANALETTO,Promiscuo (prevalente scolo),Tombinato
+47,FOSSONE,Promiscuo (prevalente scolo),Non tombinato
+48,SCARICO,Promiscuo (prevalente scolo),Non tombinato
+49,TORRENTE,Promiscuo (prevalente scolo),Non tombinato
+50,DIRAMAZIONE,Promiscuo (prevalente irriguo),Non tombinato
+51,ARIAZZO,Scolo,Tombinato
+52,SCARICATORE,Promiscuo (prevalente irriguo),Non tombinato
+53,FOSSADONE,Promiscuo (prevalente scolo),Non tombinato
+54,FOSSETTA,Promiscuo (prevalente scolo),Tombinato
+55,ALLACCIANTE,Promiscuo (prevalente scolo),Tombinato
+56,FOSSA,Irriguo,Non tombinato
+57,TERZIARIO,Promiscuo (prevalente scolo),Non tombinato
+58,RAMO EST CAVO,Scolo,Tombinato
+59,CONDOTTO,Scolo,Non tombinato
+60,CANALETTO,Promiscuo (prevalente irriguo),Non tombinato
+61,DUGALETTO,Promiscuo (prevalente scolo),Non tombinato
+62,FOSSA,Scolo,Tombinato
+63,SCARICO,Promiscuo (prevalente irriguo),Tombinato
+64,RAMO,Scolo,Non tombinato
+65,CONDOTTO,Irriguo,Tombinato
+66,CANALE,Scolo,Tombinato
+67,DUGARO,Promiscuo (prevalente scolo),Non tombinato
+68,TUBAZIONE,Scolo,Tombinato
+69,AFFLUENTE,Scolo,Non tombinato
+70,FOSSATONE,Promiscuo (prevalente scolo),Tombinato
+71,CAVO,Promiscuo (prevalente irriguo),Tombinato
+72,CANALETTA,Irriguo,Tombinato
+73,CANALE,Irriguo,Non tombinato
+74,FOSSO,Promiscuo (prevalente scolo),Tombinato
+75,SCOLO,Promiscuo (prevalente scolo),Non tombinato
+76,CANALETTA,Scolo,Non tombinato
+77,IRRIGATORE,Irriguo,Non tombinato
+78,CANALINO,Promiscuo (prevalente irriguo),Non tombinato
+79,DISTRIBUTORE,Promiscuo (prevalente scolo),Non tombinato
+80,DIVERSIVO,Promiscuo (prevalente scolo),Tombinato
+81,CANALA,Scolo,Tombinato
+82,CANALINA,Promiscuo (prevalente scolo),Tombinato
+83,CAVO,Promiscuo (prevalente scolo),Non tombinato
+84,SCALOPPIA,Scolo,Non tombinato
 85,Canale,,
-86,FOSSO,Mixed (mainly irrigation),Uncovered
-87,RIO,Draining,Uncovered
-88,ARIANA,Irrigation,Uncovered
-89,DOGARO,Mixed (mainly draining),Covered
-90,CANALETTA ALLACCIANTE,Mixed (mainly draining),Uncovered
-91,SCOLO,Mixed (mainly irrigation),Covered
-92,CAVO,Mixed (mainly draining),Covered
-93,CANALA,Draining,Uncovered
-94,CANALAZZETTO,Mixed (mainly draining),Uncovered
-95,CANALINA,Mixed (mainly draining),Uncovered
-96,DERIVATORE,Irrigation,Uncovered
-97,ARIANA,Draining,Uncovered
-98,RIO,Irrigation,Uncovered
-99,DIVERSIVO,Mixed (mainly draining),Uncovered
-100,SCOLO,Mixed (mainly irrigation),Uncovered
-101,RIO,Draining,Covered
-102,ARIANA,Irrigation,Covered
-103,DOGARO,Mixed (mainly draining),Uncovered
-104,,Mixed (mainly irrigation),Uncovered
-105,FOSSO,Mixed (mainly irrigation),Covered
-106,CANALETTA,Irrigation,Uncovered
-107,FOSSATONE,Mixed (mainly draining),Uncovered
-108,CAVO,Mixed (mainly irrigation),Uncovered
-109,AFFLUENTE,Draining,Covered
-110,CANALINO,Mixed (mainly draining),Uncovered
-111,CANALE,Draining,Uncovered
-112,DISTRIBUTORE,Mixed (mainly irrigation),Uncovered
-113,CANALETTA,Draining,Covered
-114,SCOLO,Mixed (mainly draining),Covered
-115,AFFLUENTE,Irrigation,Uncovered
-116,FOSSO,Mixed (mainly draining),Uncovered
-117,DUE FOSSI,Mixed (mainly draining),Uncovered
-118,CANALE,Irrigation,Covered
-119,DUGALE,Draining,Uncovered
-120,IRRIGATORIO,Irrigation,Uncovered
-121,SCOLETTO,Mixed (mainly irrigation),Uncovered
-122,FOSSETTA,Irrigation,Uncovered
-123,ALLACCIANTE,Irrigation,Uncovered
-124,FOSSA,Mixed (mainly draining),Covered
-125,DIRAMATORE,Mixed (mainly irrigation),Uncovered
-126,ALIMENTATORE,Irrigation,Uncovered
-127,SCOLMATORE,Mixed (mainly irrigation),Covered
-128,FOSSADONE,Draining,Uncovered
-129,FOSSETTA,Draining,Covered
-130,CONDOTTA,Mixed (mainly irrigation),Covered
-131,FOSSETTE,Mixed (mainly draining),Uncovered
-132,ALLACCIANTE,Draining,Covered
-133,CONDOTTO,Mixed (mainly draining),Uncovered
-134,SCARICATORE,Irrigation,Uncovered
-135,SIFONE,Irrigation,Uncovered
-136,DIRAMAZIONE,Irrigation,Uncovered
-137,Canale,Irrigation,Uncovered
-138,TORRENTE,Draining,Uncovered
-139,FOSSA,Mixed (mainly irrigation),Uncovered
-140,SCARICO,Draining,Uncovered
-141,SCARICATORE,Draining,Covered
-142,CONDOTTA,Mixed (mainly draining),Uncovered
-143,FOSSATONCELLO,Draining,Uncovered
-144,CANALETTO,Irrigation,Uncovered
-145,TRAVERSANTE,Draining,Uncovered
-146,CANAL,Mixed (mainly irrigation),Uncovered
-147,CAVETTINO,Mixed (mainly draining),Uncovered
-148,SCOLMATORE,Mixed (mainly draining),Uncovered
-149,DIRAMAZIONE,Draining,Covered
-150,CAVETTO,Draining,Uncovered
-151,DUGARA,Draining,Uncovered
-152,TORRENTE,Draining,Covered
-153,FOSSA,Mixed (mainly irrigation),Covered
-154,SCARICO,Draining,Covered
-155,DIRAMATORE,Mixed (mainly draining),Uncovered
-156,Canale,Irrigation,Covered
-157,EMISSARIO,Mixed (mainly draining),Uncovered
-158,TRE FOSSI,Mixed (mainly draining),Uncovered
-159,DIRAMAZIONE,Irrigation,Covered
-160,COLLEGAMENTO,Mixed (mainly irrigation),Covered
-161,CANALETTO,Draining,Uncovered
-162,SCOLETTO,Mixed (mainly draining),Uncovered
-163,SCARICO,Irrigation,Uncovered
-164,COLLETTORE,Draining,Uncovered
-165,CONDOTTO,Mixed (mainly irrigation),Uncovered
-166,CAVETTINO,Mixed (mainly draining),Covered
-167,SCOLMATORE,Mixed (mainly draining),Covered
-168,DIRAMAZIONE,Draining,Uncovered
-169,CANALAZZO,Mixed (mainly draining),Uncovered
-170,SCARICATORE,Draining,Uncovered
-171,FOSSATONCELLO,Draining,Covered
-172,ADDUTTORE,Irrigation,Uncovered
-173,FOSSA,Mixed (mainly draining),Uncovered
-174,DIRAMATORE,Mixed (mainly irrigation),Covered
-175,COLLEGAMENTO,Mixed (mainly draining),Uncovered
-176,SFIORATORE,Mixed (mainly draining),Uncovered
-177,IRRIGATORIO,Irrigation,Covered
-178,TERZIARIO,Draining,Covered
-179,ALLACCIANTE,Draining,Uncovered
-180,FOSSETTA,Draining,Uncovered
-181,DUGAROLO,Mixed (mainly draining),Uncovered
-182,CANAL,Mixed (mainly draining),Uncovered
-183,RAMO NORD,Mixed (mainly draining),Uncovered
+86,FOSSO,Promiscuo (prevalente irriguo),Non tombinato
+87,RIO,Scolo,Non tombinato
+88,ARIANA,Irriguo,Non tombinato
+89,DOGARO,Promiscuo (prevalente scolo),Tombinato
+90,CANALETTA ALLACCIANTE,Promiscuo (prevalente scolo),Non tombinato
+91,SCOLO,Promiscuo (prevalente irriguo),Tombinato
+92,CAVO,Promiscuo (prevalente scolo),Tombinato
+93,CANALA,Scolo,Non tombinato
+94,CANALAZZETTO,Promiscuo (prevalente scolo),Non tombinato
+95,CANALINA,Promiscuo (prevalente scolo),Non tombinato
+96,DERIVATORE,Irriguo,Non tombinato
+97,ARIANA,Scolo,Non tombinato
+98,RIO,Irriguo,Non tombinato
+99,DIVERSIVO,Promiscuo (prevalente scolo),Non tombinato
+100,SCOLO,Promiscuo (prevalente irriguo),Non tombinato
+101,RIO,Scolo,Tombinato
+102,ARIANA,Irriguo,Tombinato
+103,DOGARO,Promiscuo (prevalente scolo),Non tombinato
+104,,Promiscuo (prevalente irriguo),Non tombinato
+105,FOSSO,Promiscuo (prevalente irriguo),Tombinato
+106,CANALETTA,Irriguo,Non tombinato
+107,FOSSATONE,Promiscuo (prevalente scolo),Non tombinato
+108,CAVO,Promiscuo (prevalente irriguo),Non tombinato
+109,AFFLUENTE,Scolo,Tombinato
+110,CANALINO,Promiscuo (prevalente scolo),Non tombinato
+111,CANALE,Scolo,Non tombinato
+112,DISTRIBUTORE,Promiscuo (prevalente irriguo),Non tombinato
+113,CANALETTA,Scolo,Tombinato
+114,SCOLO,Promiscuo (prevalente scolo),Tombinato
+115,AFFLUENTE,Irriguo,Non tombinato
+116,FOSSO,Promiscuo (prevalente scolo),Non tombinato
+117,DUE FOSSI,Promiscuo (prevalente scolo),Non tombinato
+118,CANALE,Irriguo,Tombinato
+119,DUGALE,Scolo,Non tombinato
+120,IRRIGATORIO,Irriguo,Non tombinato
+121,SCOLETTO,Promiscuo (prevalente irriguo),Non tombinato
+122,FOSSETTA,Irriguo,Non tombinato
+123,ALLACCIANTE,Irriguo,Non tombinato
+124,FOSSA,Promiscuo (prevalente scolo),Tombinato
+125,DIRAMATORE,Promiscuo (prevalente irriguo),Non tombinato
+126,ALIMENTATORE,Irriguo,Non tombinato
+127,SCOLMATORE,Promiscuo (prevalente irriguo),Tombinato
+128,FOSSADONE,Scolo,Non tombinato
+129,FOSSETTA,Scolo,Tombinato
+130,CONDOTTA,Promiscuo (prevalente irriguo),Tombinato
+131,FOSSETTE,Promiscuo (prevalente scolo),Non tombinato
+132,ALLACCIANTE,Scolo,Tombinato
+133,CONDOTTO,Promiscuo (prevalente scolo),Non tombinato
+134,SCARICATORE,Irriguo,Non tombinato
+135,SIFONE,Irriguo,Non tombinato
+136,DIRAMAZIONE,Irriguo,Non tombinato
+137,Canale,Irriguo,Non tombinato
+138,TORRENTE,Scolo,Non tombinato
+139,FOSSA,Promiscuo (prevalente irriguo),Non tombinato
+140,SCARICO,Scolo,Non tombinato
+141,SCARICATORE,Scolo,Tombinato
+142,CONDOTTA,Promiscuo (prevalente scolo),Non tombinato
+143,FOSSATONCELLO,Scolo,Non tombinato
+144,CANALETTO,Irriguo,Non tombinato
+145,TRAVERSANTE,Scolo,Non tombinato
+146,CANAL,Promiscuo (prevalente irriguo),Non tombinato
+147,CAVETTINO,Promiscuo (prevalente scolo),Non tombinato
+148,SCOLMATORE,Promiscuo (prevalente scolo),Non tombinato
+149,DIRAMAZIONE,Scolo,Tombinato
+150,CAVETTO,Scolo,Non tombinato
+151,DUGARA,Scolo,Non tombinato
+152,TORRENTE,Scolo,Tombinato
+153,FOSSA,Promiscuo (prevalente irriguo),Tombinato
+154,SCARICO,Scolo,Tombinato
+155,DIRAMATORE,Promiscuo (prevalente scolo),Non tombinato
+156,Canale,Irriguo,Tombinato
+157,EMISSARIO,Promiscuo (prevalente scolo),Non tombinato
+158,TRE FOSSI,Promiscuo (prevalente scolo),Non tombinato
+159,DIRAMAZIONE,Irriguo,Tombinato
+160,COLLEGAMENTO,Promiscuo (prevalente irriguo),Tombinato
+161,CANALETTO,Scolo,Non tombinato
+162,SCOLETTO,Promiscuo (prevalente scolo),Non tombinato
+163,SCARICO,Irriguo,Non tombinato
+164,COLLETTORE,Scolo,Non tombinato
+165,CONDOTTO,Promiscuo (prevalente irriguo),Non tombinato
+166,CAVETTINO,Promiscuo (prevalente scolo),Tombinato
+167,SCOLMATORE,Promiscuo (prevalente scolo),Tombinato
+168,DIRAMAZIONE,Scolo,Non tombinato
+169,CANALAZZO,Promiscuo (prevalente scolo),Non tombinato
+170,SCARICATORE,Scolo,Non tombinato
+171,FOSSATONCELLO,Scolo,Tombinato
+172,ADDUTTORE,Irriguo,Non tombinato
+173,FOSSA,Promiscuo (prevalente scolo),Non tombinato
+174,DIRAMATORE,Promiscuo (prevalente irriguo),Tombinato
+175,COLLEGAMENTO,Promiscuo (prevalente scolo),Non tombinato
+176,SFIORATORE,Promiscuo (prevalente scolo),Non tombinato
+177,IRRIGATORIO,Irriguo,Tombinato
+178,TERZIARIO,Scolo,Tombinato
+179,ALLACCIANTE,Scolo,Non tombinato
+180,FOSSETTA,Scolo,Non tombinato
+181,DUGAROLO,Promiscuo (prevalente scolo),Non tombinato
+182,CANAL,Promiscuo (prevalente scolo),Non tombinato
+183,RAMO NORD,Promiscuo (prevalente scolo),Non tombinato
 184,Condotta,,
-185,CANALETTA,Mixed (mainly draining),Covered
-186,SCOLO,Draining,Covered
-187,FOSSO,Draining,Uncovered
-188,IRRIGATORE,Mixed (mainly irrigation),Covered
-189,DUGALE,Mixed (mainly draining),Uncovered
-190,RIO,Mixed (mainly irrigation),Uncovered
-191,FOSSATONE,Draining,Uncovered
-192,SCOLO,Irrigation,Uncovered
-193,AFFLUENTE,Mixed (mainly draining),Covered
-194,CANALINO,Draining,Uncovered
-195,,Irrigation,Uncovered
-196,FOSSO,Irrigation,Covered
-197,CONDOTTA DI PRESA,Irrigation,Covered
-198,FOSSACCIA,Mixed (mainly draining),Uncovered
-199,ARIANA,Mixed (mainly irrigation),Covered
-200,CANALE,Mixed (mainly draining),Uncovered
-201,SCOLI,Draining,Uncovered
-202,CAVO,Irrigation,Uncovered
-203,CANALETTA,Mixed (mainly irrigation),Uncovered
-204,FIUME,Mixed (mainly draining),Uncovered
-205,RIO,Mixed (mainly draining),Covered
-206,DISTRIBUTORE,Irrigation,Uncovered
-207,DIVERSIVO,Irrigation,Covered
-208,IRRIGATORE,Mixed (mainly draining),Uncovered
-209,CAVO,Draining,Covered
-210,CANALINA,Draining,Uncovered
-211,DIVERSIVO,Draining,Uncovered
-212,ARIANA,Mixed (mainly draining),Uncovered
-213,CANALE,Mixed (mainly irrigation),Covered
-214,TUBAZIONE,Mixed (mainly irrigation),Covered
-215,IRRIGATORE,Mixed (mainly draining),Covered
-216,SCALOPPIA,Mixed (mainly draining),Uncovered
-217,DUGALE,Mixed (mainly irrigation),Uncovered
-218,RIO,Mixed (mainly draining),Uncovered
-219,DIVERSIVO,Irrigation,Uncovered
-220,INCILE CANALE,Mixed (mainly irrigation),Uncovered
-221,CANALETTA,Mixed (mainly irrigation),Covered
-222,DERIVATORE,Mixed (mainly draining),Uncovered
-223,CANALINA,Irrigation,Uncovered
-224,ARGINE,Draining,Uncovered
-225,CAVO,Irrigation,Covered
-226,SCOLARECCIO,Draining,Uncovered
-227,DIVERSIVO,Draining,Covered
-228,ARIANA,Mixed (mainly draining),Covered
-229,CANALE,Mixed (mainly irrigation),Uncovered
-230,CAVO,Draining,Uncovered
-231,DUGALE,Mixed (mainly draining),Covered
-232,RIO,Mixed (mainly irrigation),Covered
-233,FOSSO,Draining,Covered
-234,IRRIGATORE,Mixed (mainly irrigation),Uncovered
-235,CANALINO,Irrigation,Uncovered
-236,SCOLO,Draining,Uncovered
-237,CANALETTA,Mixed (mainly draining),Uncovered
-238,DUGARO,Draining,Uncovered
-239,ARIANA,Mixed (mainly irrigation),Uncovered
-240,CANALE,Mixed (mainly draining),Covered
-241,AFFLUENTE,Mixed (mainly draining),Uncovered
-242,TUBAZIONE,Mixed (mainly draining),Covered
-243,FOSSO,Irrigation,Uncovered
-244,COLATORE,Mixed (mainly draining),Uncovered
+185,CANALETTA,Promiscuo (prevalente scolo),Tombinato
+186,SCOLO,Scolo,Tombinato
+187,FOSSO,Scolo,Non tombinato
+188,IRRIGATORE,Promiscuo (prevalente irriguo),Tombinato
+189,DUGALE,Promiscuo (prevalente scolo),Non tombinato
+190,RIO,Promiscuo (prevalente irriguo),Non tombinato
+191,FOSSATONE,Scolo,Non tombinato
+192,SCOLO,Irriguo,Non tombinato
+193,AFFLUENTE,Promiscuo (prevalente scolo),Tombinato
+194,CANALINO,Scolo,Non tombinato
+195,,Irriguo,Non tombinato
+196,FOSSO,Irriguo,Tombinato
+197,CONDOTTA DI PRESA,Irriguo,Tombinato
+198,FOSSACCIA,Promiscuo (prevalente scolo),Non tombinato
+199,ARIANA,Promiscuo (prevalente irriguo),Tombinato
+200,CANALE,Promiscuo (prevalente scolo),Non tombinato
+201,SCOLI,Scolo,Non tombinato
+202,CAVO,Irriguo,Non tombinato
+203,CANALETTA,Promiscuo (prevalente irriguo),Non tombinato
+204,FIUME,Promiscuo (prevalente scolo),Non tombinato
+205,RIO,Promiscuo (prevalente scolo),Tombinato
+206,DISTRIBUTORE,Irriguo,Non tombinato
+207,DIVERSIVO,Irriguo,Tombinato
+208,IRRIGATORE,Promiscuo (prevalente scolo),Non tombinato
+209,CAVO,Scolo,Tombinato
+210,CANALINA,Scolo,Non tombinato
+211,DIVERSIVO,Scolo,Non tombinato
+212,ARIANA,Promiscuo (prevalente scolo),Non tombinato
+213,CANALE,Promiscuo (prevalente irriguo),Tombinato
+214,TUBAZIONE,Promiscuo (prevalente irriguo),Tombinato
+215,IRRIGATORE,Promiscuo (prevalente scolo),Tombinato
+216,SCALOPPIA,Promiscuo (prevalente scolo),Non tombinato
+217,DUGALE,Promiscuo (prevalente irriguo),Non tombinato
+218,RIO,Promiscuo (prevalente scolo),Non tombinato
+219,DIVERSIVO,Irriguo,Non tombinato
+220,INCILE CANALE,Promiscuo (prevalente irriguo),Non tombinato
+221,CANALETTA,Promiscuo (prevalente irriguo),Tombinato
+222,DERIVATORE,Promiscuo (prevalente scolo),Non tombinato
+223,CANALINA,Irriguo,Non tombinato
+224,ARGINE,Scolo,Non tombinato
+225,CAVO,Irriguo,Tombinato
+226,SCOLARECCIO,Scolo,Non tombinato
+227,DIVERSIVO,Scolo,Tombinato
+228,ARIANA,Promiscuo (prevalente scolo),Tombinato
+229,CANALE,Promiscuo (prevalente irriguo),Non tombinato
+230,CAVO,Scolo,Non tombinato
+231,DUGALE,Promiscuo (prevalente scolo),Tombinato
+232,RIO,Promiscuo (prevalente irriguo),Tombinato
+233,FOSSO,Scolo,Tombinato
+234,IRRIGATORE,Promiscuo (prevalente irriguo),Non tombinato
+235,CANALINO,Irriguo,Non tombinato
+236,SCOLO,Scolo,Non tombinato
+237,CANALETTA,Promiscuo (prevalente scolo),Non tombinato
+238,DUGARO,Scolo,Non tombinato
+239,ARIANA,Promiscuo (prevalente irriguo),Non tombinato
+240,CANALE,Promiscuo (prevalente scolo),Tombinato
+241,AFFLUENTE,Promiscuo (prevalente scolo),Non tombinato
+242,TUBAZIONE,Promiscuo (prevalente scolo),Tombinato
+243,FOSSO,Irriguo,Non tombinato
+244,COLATORE,Promiscuo (prevalente scolo),Non tombinato
 0,Nessuno,Nessuno,Nessuno

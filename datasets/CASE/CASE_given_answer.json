@@ -1,0 +1,37 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CASE_given_answer.csv",
+  "dc:title": "Given answer",
+  "dc:description": "The answer given to a question for a given task on a geo_object.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "answer_id",
+        "dc:description": "The answer identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "togo_id",
+        "dc:description": "The task on geo object identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "text",
+        "dc:description": "The text of the answer, if needed.",
+        "datatype": {
+          "base": "string"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

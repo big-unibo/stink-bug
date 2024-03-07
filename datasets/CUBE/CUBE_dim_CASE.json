@@ -1,0 +1,37 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CUBE_dim_case.csv",
+  "dc:title": "CASE dimension",
+  "dc:description": "Dimension table about CASE environment data.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "cid",
+        "dc:description": "The CASE dimension identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "category",
+        "dc:description": "The category of the environmental element.",
+        "datatype": {
+          "base": "string"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "environmental_element (manual)",
+        "dc:description": "The element that is considered near to the trap in a radius of 200m.",
+        "datatype": {
+          "base": "string"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

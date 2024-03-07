@@ -1,0 +1,64 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CASE_task_on_geo_object.csv",
+  "dc:title": "Task on geo object",
+  "dc:description": "The task executed on a geo_object.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "togo_id",
+        "dc:description": "The task on geo object identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "timestamp_assignment",
+        "dc:description": "The timestamp assignment of the task.",
+        "datatype": {
+          "base": "string",
+          "format": "YYYY-MM-DDTHH:MM:SS.SSSZ"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "timestamp_end",
+        "dc:description": "Deadline timestamp for complete the task.",
+        "datatype": {
+          "base": "string",
+          "format": "YYYY-MM-DDTHH:MM:SS.SSSZ"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "timestamp_completed",
+        "dc:description": "The timestamp completed of the task. If null the task has not been completed.",
+        "datatype": {
+          "base": "string",
+          "format": "YYYY-MM-DDTHH:MM:SS.SSSZ"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "task_id",
+        "dc:description": "The task identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "gid",
+        "dc:description": "The trap identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

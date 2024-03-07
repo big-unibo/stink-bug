@@ -1,0 +1,29 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CUBE_bridge_trap_case.csv",
+  "dc:title": "water_course-trap bridge table",
+  "dc:description": "Bridge table between trap and water course dimensions.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "water_course_id",
+        "dc:description": "The water course dimension identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "gid",
+        "dc:description": "The trap identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

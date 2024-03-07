@@ -1,0 +1,42 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CASE_monitoring_session.csv",
+  "dc:title": "Monitoring session",
+  "dc:description": "Details about the monitoring years",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "ms_id",
+        "dc:description": "The monitoring session id.",
+        "datatype": {
+          "base": "number",
+          "minimum": "6",
+          "maximum": "12",
+          "format": "#00##"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "date_start",
+        "dc:description": "The starting date of the monitoring session.",
+        "datatype": {
+          "base": "string",
+          "format": "YYYY-MM-DD"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "date_end",
+        "dc:description": "The ending date of the monitoring session.",
+        "datatype": {
+          "base": "string",
+          "format": "YYYY-MM-DD"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

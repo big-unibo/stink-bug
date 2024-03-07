@@ -1,0 +1,117 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CUBE_dim_trap.csv",
+  "dc:title": "Trap dimension",
+  "dc:description": "Represent the dimension of the monitored traps.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "gid",
+        "dc:description": "The trap identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "longitude",
+        "dc:description": "Longitude of the trap location (point in SRID=4326).",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "latitude",
+        "dc:description": "Latitude of the trap location (point in SRID=4326).",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "name",
+        "dc:description": "The trap name.",
+        "datatype": {
+          "base": "string"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "province",
+        "dc:description": "The province of the Emilia Romagna region where the trap is located. The province on the \"name\" of trap is symbolic, this is the true province.",
+        "datatype": {
+          "base": "string",
+          "format": "BO|FC|FE|MO|PR|PC|RA|RE|RN"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "ms_id",
+        "dc:description": "The monitoring session id.",
+        "datatype": {
+          "base": "number",
+          "minimum": "6",
+          "maximum": "12",
+          "format": "#00##"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "date_start",
+        "dc:description": "The date when the monitoring started for the trap.",
+        "datatype": {
+          "base": "string",
+          "format": "YYYY-MM-DD"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "date_end",
+        "dc:description": "The date when the monitoring ended for the trap",
+        "datatype": {
+          "base": "string",
+          "format": "YYYY-MM-DD"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "svp (manual)",
+        "dc:description": "Manual spontaneous vegatation percentage (null if not present).",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "svp (auto)",
+        "dc:description": "Automatic spontaneous vegatation percentage.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "validity",
+        "dc:description": "The trap validity.\n Traps with at least 10 consecutive weeks of non-entered data or with at least 5 registered malfunctioning are reported as ''invalid''.\n - Traps with no more than 3 consecutive weeks of non-entered data are tolerated and reported as ''noisy''.\n  - Otherwise ''valid''.",
+        "datatype": {
+          "base": "string",
+          "format": "valid|invalid|noisy"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "area",
+        "dc:description": "The Emilia Romagna Region macro-area where the trap is located.",
+        "datatype": {
+          "base": "string",
+          "format": "FC-RA-RN|OTHER|BO-FE|MO-RE"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

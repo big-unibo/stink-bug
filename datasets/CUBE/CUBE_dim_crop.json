@@ -1,0 +1,29 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CUBE_dim_crop.csv",
+  "dc:title": "Crop dimension",
+  "dc:description": "Dimension table about crop data.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "crop_id",
+        "dc:description": "The crop dimension identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "crop_type",
+        "dc:description": "The crop type.",
+        "datatype": {
+          "base": "string"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

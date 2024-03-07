@@ -1,0 +1,84 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CUBE_fact_passive_monitoring.csv",
+  "dc:title": "Fact table",
+  "dc:description": "Fact table of passive monitoring.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "timestamp",
+        "dc:description": "The timestamp of the monitoring task.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "gid",
+        "dc:description": "The trap identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "Adults captured",
+        "dc:description": "Number of adults instars captured.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "Small instars captured",
+        "dc:description": "Number of small instars captured.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "Large instars captured:",
+        "dc:description": "Number of large instars captured.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "Meteo information (different columns)",
+        "dc:description": "\n        - Avg/Max/Min temperature (°C)\n        - Avg/Max/Min humidity (%)\n        - Tot precipitations (kg/m^2)\n        - Avg/Max wind speed (m/s)",
+        "datatype": {
+          "base": "number"
+        }
+      },
+      {
+        "titles": "monitored_days",
+        "dc:description": "Number of monitored days, if there is a previous monitoring it is the number of days between this monitoring and the previous one, other wise beteween the installation date and the monitoring",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "degree_days",
+        "dc:description": "Degree days of the monitored period. In particular, degree days indicate the number of degrees by which the average daily temperature is higher then a given threshold (12.2°).",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "cum_degree_days",
+        "dc:description": "Cumulative degree days starting from 01/01 of the monitored year.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

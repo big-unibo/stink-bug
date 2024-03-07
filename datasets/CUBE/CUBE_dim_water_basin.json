@@ -1,0 +1,29 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CUBE_dim_water_basin.csv",
+  "dc:title": "water_basin dimension",
+  "dc:description": "Dimension table about water_basin data.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "water_basin_id",
+        "dc:description": "The water basin dimension identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "water_resource_type",
+        "dc:description": "The water resource type.",
+        "datatype": {
+          "base": "string"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

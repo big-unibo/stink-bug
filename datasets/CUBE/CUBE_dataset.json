@@ -1,0 +1,63 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "dc:title": "Cimice.net - Cleansed dataset",
+  "dc:description": "leansed data for multi-dimensional analysis using the data collected from the CASE application in the period from march 2019 to october 2021 in the Emilia Romagna Region.",
+  "dc:creator": "BIG",
+  "tables": [
+    {
+      "url": "CUBE_monitoring_session.csv",
+      "dc:title": "Monitoring session",
+      "dc:description": "Details about the monitoring years."
+    },
+    {
+      "url": "CUBE_dim_trap.csv",
+      "dc:title": "Trap dimension",
+      "dc:description": "Represent the dimension of the monitored traps."
+    },
+    {
+      "url": "CUBE_fact_passive_monitoring.csv",
+      "dc:title": "Fact table",
+      "dc:description": "Fact table of passive monitoring."
+    },
+    {
+      "url": "CUBE_dim_case.csv",
+      "dc:title": "CASE dimension",
+      "dc:description": "Dimension table about CASE environment data."
+    },
+    {
+      "url": "CUBE_bridge_trap_case.csv",
+      "dc:title": "CASE-trap bridge table",
+      "dc:description": "Bridge table between trap and CASE dimensions."
+    },
+    {
+      "url": "CUBE_dim_crop.csv",
+      "dc:title": "Crop dimension",
+      "dc:description": "Dimension table about crop data."
+    },
+    {
+      "url": "CUBE_bridge_trap_crop.csv",
+      "dc:title": "crop-trap bridge table",
+      "dc:description": "Bridge table between trap and crop dimensions."
+    },
+    {
+      "url": "CUBE_dim_water_basin.csv",
+      "dc:title": "water_basin dimension",
+      "dc:description": "Dimension table about water_basin data."
+    },
+    {
+      "url": "CUBE_bridge_trap_water_basin.csv",
+      "dc:title": "water_basin-trap bridge table",
+      "dc:description": "Bridge table between trap and water_basin dimensions."
+    },
+    {
+      "url": "CUBE_dim_water_course.csv",
+      "dc:title": "water_course dimension",
+      "dc:description": "Dimension table about water_course data."
+    },
+    {
+      "url": "CUBE_bridge_trap_water_course.csv",
+      "dc:title": "water_course-trap bridge table",
+      "dc:description": "Bridge table between trap and water_course dimensions."
+    }
+  ]
+}

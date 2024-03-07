@@ -1,8 +1,8 @@
 task_id,name
-6,Passive monitoring task
-4,Active monitoring task
-8,Scenario definition task
-5,Trap installation task
-2,Trap installation task
-3,Passive monitoring task
-7,Active monitoring task
+6,Task monitoraggio passivo
+4,Task monitoraggio attivo
+8,Task definizione scenario
+5,Task installazione trappola
+2,Task installazione trappola
+3,Task monitoraggio passivo
+7,Task monitoraggio attivo

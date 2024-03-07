@@ -1,0 +1,46 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CUBE_dim_water_course.csv",
+  "dc:title": "water_course dimension",
+  "dc:description": "Dimension table about water_course data.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "water_course_id",
+        "dc:description": "The water course dimension identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "praenomen",
+        "dc:description": "Water course type.",
+        "datatype": {
+          "base": "string"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "usage",
+        "dc:description": "Water course usage.",
+        "datatype": {
+          "base": "string",
+          "format": "promiscuous|irrigated|drainage"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "culverted",
+        "datatype": {
+          "base": "string",
+          "format": "yes|no|nothing"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

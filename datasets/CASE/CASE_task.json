@@ -1,0 +1,29 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CASE_task.csv",
+  "dc:title": "Task",
+  "dc:description": "The task that can be done on a geo_object.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "task_id",
+        "dc:description": "The task identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "name",
+        "dc:description": "The task name.",
+        "datatype": {
+          "base": "string"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

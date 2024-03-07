@@ -1,0 +1,76 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "CASE_traps.csv",
+  "dc:title": "Trap",
+  "dc:description": "Represent the monitored traps.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "gid",
+        "dc:description": "The trap identifier.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "geometry",
+        "dc:description": "The geometry point of the trap.",
+        "datatype": {
+          "base": "string",
+          "format": "\"\"\"SRID=4326;POINT(<longitude> <latitude>)\"\"\""
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "name",
+        "dc:description": "The trap name.",
+        "datatype": {
+          "base": "string"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "province",
+        "dc:description": "The province of the Emilia Romagna region where the trap is located. The province on the \"name\" of trap is symbolic, this is the true province.",
+        "datatype": {
+          "base": "string",
+          "format": "BO|FC|FE|MO|PR|PC|RA|RE|RN"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "ms_id",
+        "dc:description": "The monitoring session id.",
+        "datatype": {
+          "base": "number",
+          "minimum": "6",
+          "maximum": "12",
+          "format": "#00##"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "monitoring_started",
+        "dc:description": "The date when the monitoring started for the trap.",
+        "datatype": {
+          "base": "string",
+          "format": "YYYY-MM-DD"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "monitoring_ended",
+        "dc:description": "The date when the monitoring ended for the trap",
+        "datatype": {
+          "base": "string",
+          "format": "YYYY-MM-DD"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

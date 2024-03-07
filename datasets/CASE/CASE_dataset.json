@@ -1,0 +1,43 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "dc:title": "Cimice.net - Raw dataset",
+  "dc:description": "Data collected from the CASE application in the period from march 2019 to october 2021 in the Emilia Romagna Region.",
+  "dc:creator": "BIG",
+  "tables": [
+    {
+      "url": "CASE_monitoring_session.csv",
+      "dc:title": "Monitoring session",
+      "dc:description": "Details about the monitoring years."
+    },
+    {
+      "url": "CASE_traps.csv",
+      "dc:title": "Trap",
+      "dc:description": "Represent the monitored traps."
+    },
+    {
+      "url": "CASE_task.csv",
+      "dc:title": "Task",
+      "dc:description": "The task that can be done on a geo_object."
+    },
+    {
+      "url": "CASE_question.csv",
+      "dc:title": "Question",
+      "dc:description": "The question that can be asked on a task."
+    },
+    {
+      "url": "CASE_answer.csv",
+      "dc:title": "Answer",
+      "dc:description": "The answer to a question."
+    },
+    {
+      "url": "CASE_task_on_geo_object.csv",
+      "dc:title": "Task on geo object",
+      "dc:description": "The task executed on a geo_object."
+    },
+    {
+      "url": "CASE_given_answer.csv",
+      "dc:title": "Given answer",
+      "dc:description": "The answer given to a question for a given task on a geo_object."
+    }
+  ]
+}
