@@ -11,6 +11,7 @@ object GenerateDFM extends App {
   import it.unibo.big.service.Postgres
   import org.apache.spark.sql.DataFrame
   import org.slf4j.{Logger, LoggerFactory}
+  import it.unibo.big.ImagesMap.generateImagesMap
 
   private val LOGGER: Logger = LoggerFactory.getLogger(this.getClass)
 
@@ -25,8 +26,11 @@ object GenerateDFM extends App {
       "water_course" -> postgres.queryTable("select prenome as praenomen, uso as usage, tombinato as culverted, geom4326 from retebonifica"),
       "crop" -> postgres.queryTable("select raggruppam, geom4326 from uso_suolo"))
 
-    // Read from PostgreSQL table into DataFrame
-    val mapImagesSVP : Map[String, Array[String]] = ???
+    val link = config.getString("dataset.satellite_images_link")
+
+    // download the images from link
+    val mapImagesSVP : Map[String, Array[String]] = generateImagesMap(link)
+
     val croppedDf : (Int, Map[String, DataFrame]) => DataFrame = ???
     val croppedGroundTruthDf : (Int, Map[String, DataFrame]) => DataFrame = ???
     val weatherDf : DataFrame = readWeatherSequenceFile(sparkSession, s"/abds/hbase/weather_processed")
