@@ -13,9 +13,7 @@ private[normalized_fact] object MeteoUtils {
     "u_day_avg", "u_day_max", "u_day_min",
     "prec_day", "rad_day", "evapo_trans",
     "wind_direction_day", "wind_speed_day_avg", "wind_speed_day_max")
-  val temperatureHour: String = "t_hour"
-  val usefulHours: String = "useful_hours"
-  val gradeDay: String = "degree_day"
+  val degreeDay: String = "degree_day"
   val gradeDay_lowerBound: Double = 12.2
 
   /**
@@ -25,7 +23,7 @@ private[normalized_fact] object MeteoUtils {
    * @param meteoAdditionalInfo the additional info to add to the meteo data
    * @return the dataframe with the useful hours and the grouped data
    */
-  def addUsefulHoursColumnAndGroupData(df: DataFrame, trapInstallationDf: DataFrame, meteoAdditionalInfo: String = "", struct: StructType, weatherDf: DataFrame): DataFrame = {
+  def addUsefulDegreeDaysAndGroupData(df: DataFrame, trapInstallationDf: DataFrame, meteoAdditionalInfo: String = "", struct: StructType, weatherDf: DataFrame): DataFrame = {
 
     val joinCondition = col("lat") === col("latW") &&
       col("long") === col("lonW") &&
@@ -33,29 +31,23 @@ private[normalized_fact] object MeteoUtils {
 
     val groupedData = struct.slice(0, 7).map(x => col(x.name))
 
-    var tmpDf = df.join(weatherDf, joinCondition).withColumn(usefulHours,
-        when(col("product_type").equalTo(temperatureHour) &&
-          col("value").between(15, 35), 1).otherwise(0))
-      .withColumn(gradeDay, when(col("product_type").equalTo(averageDayTemperature) &&
+    var tmpDf = df.join(weatherDf, joinCondition)
+      .withColumn(degreeDay, when(col("product_type").equalTo(averageDayTemperature) &&
         col("value") > gradeDay_lowerBound, col("value") - gradeDay_lowerBound).otherwise(0))
       .groupBy(groupedData :+ col("product_type"): _*)
       .agg(when(col("product_type").equalTo("prec_day"),
-        sum(col("value"))).otherwise(avg(col("value"))).as("value"),
-        sum(col(usefulHours)).as(usefulHours), sum(col(gradeDay)).as(gradeDay))
+        sum(col("value"))).otherwise(avg(col("value"))).as("value"), sum(col(degreeDay)).as(degreeDay))
       .groupBy(groupedData: _*)
-      .pivot("product_type").agg(first("value").as("value"),
-        max(col(usefulHours)).as(usefulHours), max(col(gradeDay)).as(gradeDay)) //max perchè prende valori a 0 per altri campi meteo diversi da temperatura oraria e media
-      .withColumnRenamed(s"${temperatureHour}_$usefulHours", s"$meteoAdditionalInfo$usefulHours")
-      .withColumnRenamed(s"${averageDayTemperature}_$gradeDay", s"$meteoAdditionalInfo$gradeDay")
-      .drop(meteoInfos.map(x => s"${x}_$usefulHours") ++ meteoInfos.map(x => s"${x}_$gradeDay") :+ s"${temperatureHour}_$gradeDay" :+ s"${temperatureHour}_value": _*)
+      .pivot("product_type").agg(first("value").as("value"), max(col(degreeDay)).as(degreeDay)) //max because it takes values of 0 for other weather fields other than hourly and average temperature
+      .withColumnRenamed(s"${averageDayTemperature}_$degreeDay", s"$meteoAdditionalInfo$degreeDay")
+      .drop(meteoInfos.map(x => s"${x}_$degreeDay") : _*)
 
-    val tmpColumns = tmpDf.columns ++ Seq(s"cum_$usefulHours", s"cum_$gradeDay")
-    val startingComulatives = trapInstallationDf.groupBy("gid").agg(sum(gradeDay).as("cum_dd"), sum(usefulHours).as("cum_uh"))
+    val tmpColumns = tmpDf.columns ++ Seq(s"cum_$degreeDay")
+    val startingComulatives = trapInstallationDf.groupBy("gid").agg(sum(degreeDay).as("cum_dd"))
 
     tmpDf = tmpDf.join(startingComulatives, Seq("gid"), "left")
       //generate cumulative sum of useful hours and grade day
-      .withColumn(s"cum_$gradeDay", col("cum_dd") + sum(col(gradeDay)).over(Window.partitionBy("gid").orderBy("date")))
-      .withColumn(s"cum_$usefulHours", col("cum_uh") + sum(col(usefulHours)).over(Window.partitionBy("gid").orderBy("date")))
+      .withColumn(s"cum_$degreeDay", col("cum_dd") + sum(col(degreeDay)).over(Window.partitionBy("gid").orderBy("date")))
       .select(tmpColumns.head, tmpColumns.tail: _*) //select only columns of the original dataframe
 
     for (c <- meteoInfos) {
@@ -100,10 +92,7 @@ private[normalized_fact] object MeteoUtils {
       //filter the weather data before the installation date in the same year, to calculate cumulative
       .filter(col("date").between(col("startDate"), col("installationDate")))
       //add column for useful hours and grade day
-      .withColumn(usefulHours,
-        when(col("product_type").equalTo(temperatureHour) &&
-          col("value").between(15, 35), 1).otherwise(0))
-      .withColumn(gradeDay, when(col("product_type").equalTo(averageDayTemperature) &&
+      .withColumn(degreeDay, when(col("product_type").equalTo(averageDayTemperature) &&
         col("value") > gradeDay_lowerBound, col("value") - gradeDay_lowerBound).otherwise(0))
       .drop("distance")
       .drop("minDistance")

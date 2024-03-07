@@ -1,7 +1,7 @@
 package it.unibo.big.normalized_fact
 
 object GenerateNormalizedFactWithMeteo {
-  import it.unibo.big.normalized_fact.MeteoUtils.addUsefulHoursColumnAndGroupData
+  import it.unibo.big.normalized_fact.MeteoUtils.addUsefulDegreeDaysAndGroupData
   import org.apache.spark.sql.functions._
   import org.apache.spark.sql.types._
   import org.apache.spark.sql.{DataFrame, Row, SparkSession}
@@ -160,7 +160,7 @@ object GenerateNormalizedFactWithMeteo {
 
       dfNormalized = sparkSession.createDataFrame(sparkSession.sparkContext.parallelize(normalizedRecords), struct)
     }
-    val normalizedFinalDf = addUsefulHoursColumnAndGroupData(dfNormalized, installationWeatherDf, weatherDf = weatherDf, struct = struct)
+    val normalizedFinalDf = addUsefulDegreeDaysAndGroupData(dfNormalized, installationWeatherDf, weatherDf = weatherDf, struct = struct)
     normalizedFinalDf
   }
 
