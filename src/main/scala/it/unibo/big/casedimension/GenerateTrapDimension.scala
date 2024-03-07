@@ -17,7 +17,7 @@ object GenerateTrapDimension {
       .join(caseInputData("answer").as("a"), "answer_id")
       .where(col("question_id") === "BMSB.INSTNEW.Q16")
       .where(col("ms_id").isin(9, 12))
-      .select(col("gid"), col("province"), col("geometry"), col("name"), col("ms_id"), col("date_start"), col("date_end"), col("ga.text").cast("integer").as("svp (manual)"))
+      .select(col("gid"), col("district"), col("geometry"), col("name"), col("ms_id"), col("date_start"), col("date_end"), col("ga.text").cast("integer").as("svp (manual)"))
     //look with traps without svp value and link to the nearest traps in 100 meters radius if present
     val traps = caseInputData("traps").cache
     val trapsRows = traps.collect().map(r => {
@@ -66,9 +66,9 @@ object GenerateTrapDimension {
         when(col("gid").isin(gidFCRARN: _*), "FC-RA-RN")
           .when(col("gid").isin(gidOTHER: _*), "OTHER")
           .when(col("name").isin(nameBOFE: _*), "BO-FE")
-          .when(col("province").isin(admProvBOFE: _*), "BO-FE")
-          .when(col("province").isin(admProvFCRARN: _*), "FC-RA-RN")
-          .when(col("province").isin(admProvMORE: _*), "MO-RE")
+          .when(col("district").isin(admProvBOFE: _*), "BO-FE")
+          .when(col("district").isin(admProvFCRARN: _*), "FC-RA-RN")
+          .when(col("district").isin(admProvMORE: _*), "MO-RE")
           .otherwise("OTHER")
       )
   }

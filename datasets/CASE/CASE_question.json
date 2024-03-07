@@ -16,11 +16,19 @@
       },
       {
         "titles": "reply_type",
-        "dc:description": "The type of reply. In detail:\n- 4: Multiple choice\n- 5: Single answer\n- 6: Single-choice SQL query\n- 7: Numeric counter\n- 8: Datepicker\n- 9: Multiple choice SQL query\n- 10: Percentage\n- 11: Not empty text not containing hashtag",
+        "dc:description": "The type of reply. In detail:\n- 4: Multiple choice\n- 5: Single answer\n- 6: Single-choice SQL query\n- 7: Numeric counter\n- 8: Datepicker\n- 9: Multiple choice SQL query\n- 10: Percentage\n- 11: Not empty text not containing hashtag.",
         "datatype": {
           "base": "number",
           "minimum": 4,
           "maximum": 11
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "text",
+        "dc:description": "The text of the question.",
+        "datatype": {
+          "base": "string"
         },
         "@type": "Column"
       },

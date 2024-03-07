@@ -24,7 +24,7 @@
         "@type": "Column"
       },
       {
-        "titles": "timestamp_end",
+        "titles": "timestamp_deadline",
         "dc:description": "Deadline timestamp for complete the task.",
         "datatype": {
           "base": "string",

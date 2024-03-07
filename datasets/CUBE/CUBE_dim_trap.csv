@@ -1,4 +1,4 @@
-gid,monitoring_started,monitoring_ended,longitude,latitude,province,name,ms_id,svp (manual),svp (auto),validity,area
+gid,monitoring_started,monitoring_ended,longitude,latitude,district,name,ms_id,svp (manual),svp (auto),validity,area
 195,2020-04-19,2020-10-19,11.8564744,44.4316841,RA,RA12,6.0,,1.86051572190186,si,FC-RA-RN
 251,2021-02-22,2021-10-25,11.3955411,44.7232868,BO,BO04,9.0,8.0,0.0507743082000508,si,BO-FE
 106,2020-04-19,2020-10-19,12.006047,44.247429,FC,FC03,6.0,13.0,5.04297682515504,si,FC-RA-RN

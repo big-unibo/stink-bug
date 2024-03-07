@@ -1,4 +1,4 @@
-togo_id,timestamp_assignment,timestamp_end,timestamp_completed,task_id,gid
+togo_id,timestamp_assignment,timestamp_deadline,timestamp_completed,task_id,gid
 698,2020-05-11 00:00:00.000,2020-05-16 23:59:59.000,2020-05-15 17:05:27.413,3,93
 7807,2021-05-03 00:00:00.000,2021-05-09 23:59:59.000,2021-05-04 00:00:00.000,6,361
 2619,2020-08-10 00:00:00.000,2020-08-16 23:59:59.000,2020-08-16 19:27:49.488,3,127

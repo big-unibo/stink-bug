@@ -1,4 +1,4 @@
-gid,geometry,name,province,ms_id,monitoring_started,monitoring_ended
+gid,geometry,name,district,ms_id,monitoring_started,monitoring_ended
 203,"""SRID=4326;POINT(11.8455944 44.374285)""",RA20,RA,6,2020-04-19,2020-10-19
 144,"""SRID=4326;POINT(11.055335 44.658671)""",MO01,MO,6,2020-04-19,2020-10-19
 177,"""SRID=4326;POINT(10.7953679 44.8596503)""",MO34,RE,6,2020-04-19,2020-10-19

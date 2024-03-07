@@ -39,8 +39,8 @@
         "@type": "Column"
       },
       {
-        "titles": "province",
-        "dc:description": "The province of the Emilia Romagna region where the trap is located. The province on the \"name\" of trap is symbolic, this is the true province.",
+        "titles": "district",
+        "dc:description": "The district of the Emilia Romagna region where the trap is located. The district on the \"name\" of trap is symbolic, this is the true district.",
         "datatype": {
           "base": "string",
           "format": "BO|FC|FE|MO|PR|PC|RA|RE|RN"
