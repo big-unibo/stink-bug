@@ -7,7 +7,7 @@ object Utils {
   import org.apache.spark.sql.{DataFrame, SparkSession}
 
   val sparkSession = SparkSession.builder().master("local[*]")
-    .appName("BMSB DFM creation")
+    .appName("BMSB CUBE creation")
     .getOrCreate()
   val config: Config = ConfigFactory.load()
 

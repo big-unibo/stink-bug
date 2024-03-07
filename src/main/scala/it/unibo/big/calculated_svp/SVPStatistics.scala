@@ -81,11 +81,11 @@ object SVPStatistics extends App {
    *                           a new dataframe where:
    *                           - the first column is an integer identifier for the trap
    *                           - the second column is a geometry that is intersection between the buffer constructed using
-   *                             the trap radius and the data about the cultures and the expert knowledge selecting the
+   *                             the trap radius and the data that the expert knowledge selects as
    *                             areas where there is not svp
    *                          - the third is the trap buffer built around the trap with a radius of trapRadius
    * @return the dataframe with the result of the calculation of ground truth SVP */
-  def getGroundTruthSVP(sparkSession: SparkSession, trapRadius: Int, inputData: Map[String, DataFrame], croppedGroundTruth: (Int, Map[String, DataFrame]) => DataFrame) = {
+  def getGroundTruthSVP(sparkSession: SparkSession, trapRadius: Int, inputData: Map[String, DataFrame], croppedGroundTruth: (Int, Map[String, DataFrame]) => DataFrame): DataFrame = {
     require(trapRadius == 200 || trapRadius == 1000)
     val trapsMap = q(trapRadius, inputData, croppedGroundTruth)
     val result = trapsMap.collect { case (gid, Some((geom1, geomBuffer))) => val radiusArea = getRadiusAreaFromRadius(trapRadius)

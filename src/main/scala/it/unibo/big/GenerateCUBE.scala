@@ -1,6 +1,6 @@
 package it.unibo.big
 
-object GenerateDFM extends App {
+object GenerateCUBE extends App {
 
   import Utils._
   import it.unibo.big.calculated_svp.SVPStatistics
@@ -46,12 +46,9 @@ object GenerateDFM extends App {
     if(calculateSVP) {
       //calculate the automatic SVP
       val automaticSVP = SVPStatistics.calculateAutomaticSVP(sparkSession, caseInputData ++ cerInputData, trapRadius = 200, mapImagesSVP, croppedDf)
-      //calculate the ground truth SVP
-      val groundTruthSVP = SVPStatistics.getGroundTruthSVP(sparkSession, trapRadius = 200, caseInputData ++ cerInputData, croppedGroundTruthDf)
 
       //join the automatic svp with the trap dimension
       trapsDimensionTable = trapsDimensionTable.join(automaticSVP, Seq("gid"), "left")
-        .join(groundTruthSVP, Seq("gid"), "left")
     }
 
     //generate the case dimension and bridge tables
@@ -60,13 +57,13 @@ object GenerateDFM extends App {
     val CERDimensions = GenerateCERDimensionTables(sparkSession, cerInputData, trapsDimensionTable)
 
     for((name, (dim, bridge)) <- CERDimensions) {
-      FileUtils.saveFile(dim, config.getString(s"dataset.DFM.dim_$name"))
-      FileUtils.saveFile(bridge, config.getString(s"dataset.DFM.bridge_trap_$name"))
+      FileUtils.saveFile(dim, config.getString(s"dataset.CUBE.dim_$name"))
+      FileUtils.saveFile(bridge, config.getString(s"dataset.CUBE.bridge_trap_$name"))
     }
-    FileUtils.saveFile(trapsDimensionTable, config.getString("dataset.DFM.dim_trap"))
-    FileUtils.saveFile(normalizedFinalDf, config.getString("dataset.DFM.fact_passive_monitoring"))
-    FileUtils.saveFile(caseDimensionDf, config.getString("dataset.DFM.dim_case"))
-    FileUtils.saveFile(caseBridgeDf, config.getString("dataset.DFM.bridge_trap_case"))
-    FileUtils.saveFile(caseInputData("monitoring_session"), config.getString("dataset.DFM.monitoring_session"))
+    FileUtils.saveFile(trapsDimensionTable, config.getString("dataset.CUBE.dim_trap"))
+    FileUtils.saveFile(normalizedFinalDf, config.getString("dataset.CUBE.fact_passive_monitoring"))
+    FileUtils.saveFile(caseDimensionDf, config.getString("dataset.CUBE.dim_case"))
+    FileUtils.saveFile(caseBridgeDf, config.getString("dataset.CUBE.bridge_trap_case"))
+    FileUtils.saveFile(caseInputData("monitoring_session"), config.getString("dataset.CUBE.monitoring_session"))
   }
 }
