@@ -11,11 +11,9 @@ object SVPUtils {
   import geotrellis.vector.Geometry
   import org.apache.hadoop.fs.Path
   import org.apache.spark.sql.{DataFrame, Row, SparkSession}
-  import geotrellis.vector.io.readWktOrWkb
   import org.slf4j.{Logger, LoggerFactory}
   import it.unibo.big.Utils.readGeometry
 
-  private val MULTIBAND_INDEXES = Seq("RGB")
   private[calculated_svp] val LOGGER: Logger = LoggerFactory.getLogger(this.getClass)
 
   /**
@@ -37,26 +35,14 @@ object SVPUtils {
   /***
    *
    * @param sparkSession the spark session
-   * @param index the index to get
-   * @param title the title of the image
-   * @param date the date of the image
+   * @param path the path of the image
    * @return the tile and the source of the image
    */
-  def getIndexImageInfo ( sparkSession: SparkSession, index: String, title: String, date: String ): (CellGrid, GeoTiff[_ >: MultibandTile with Tile <: CellGrid]) = {
+  def getIndexImageInfo (sparkSession: SparkSession, path: String): (CellGrid, GeoTiff[_ >: MultibandTile with Tile <: CellGrid]) = {
+    val indexSource = HadoopGeoTiffReader
+        .readSingleband ( new Path ( path ) )( sparkSession.sparkContext )
 
-    val file_name = s"<DIRECTORY>/$date/$index/${title}_$index.tif"
-
-    if(MULTIBAND_INDEXES.contains(index)) {
-      val indexSource = HadoopGeoTiffReader
-        .readMultiband ( new Path ( file_name ) )( sparkSession.sparkContext )
-
-      (indexSource.tile, indexSource)
-    } else {
-      val indexSource = HadoopGeoTiffReader
-        .readSingleband ( new Path ( file_name ) )( sparkSession.sparkContext )
-
-      (indexSource.tile.convert ( DoubleCellType ), indexSource)
-    }
+    (indexSource.tile.convert ( DoubleCellType ), indexSource)
   }
 
   /**
@@ -128,4 +114,13 @@ object SVPUtils {
     // have the geometry that is the difference between the trap and the cultures in the trapRadius area
     getTrapsInfo(croppedDf(trapRadius, inputDataframes), x => if (x.isNullAt(1)) None else Some(readGeometry(x.getString(1)).geom, readGeometry(x.getString(2)).geom))
   }
+}
+
+object Prova extends App {
+  //TODO test if the download work for http
+  import it.unibo.big.Utils.sparkSession
+  import it.unibo.big.calculated_svp.SVPUtils.getIndexImageInfo
+
+  val link = "https://big.csr.unibo.it/downloads/stink-bug/satellite_images/20211214/NDVI/S2B_MSIL1C_20211214T101329_N0301_R022_T32TNQ_20211214T110034_NDVI.tif"
+  getIndexImageInfo (sparkSession, link)
 }

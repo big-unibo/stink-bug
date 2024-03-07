@@ -35,10 +35,10 @@ object SVPStatistics extends App {
     mapImages.foreach { case (date, images) => //add all gid date pairs, with zero coverage
       trapsMap.keys.foreach(gid => trapsDates += (gid, date) -> vegetationIndexesThresholds.keys.toSeq.map(i => i -> (0D, 0D)).toMap)
 
-      for (title <- images) {
+      for (path <- images) {
         try {
           for ((index, threshold) <- vegetationIndexesThresholds) {
-            val (t, s) = getIndexImageInfo(sparkSession, index, title, date)
+            val (t, s) = getIndexImageInfo(sparkSession, path)
             val convertedTile = t.asInstanceOf[Tile]
             val indexSource = s.asInstanceOf[SinglebandGeoTiff]
 
@@ -50,7 +50,7 @@ object SVPStatistics extends App {
                 s"""Trap $gid is in area with $indexResult % (radius $trapRadius)
                    |total values ${resPoly.size}
                    |Area covered $coveredArea %
-                   |title = $title index = $index
+                   |path = $path index = $index
                    |""".stripMargin)
 
               if (!indexResult.isNaN) {
@@ -62,7 +62,7 @@ object SVPStatistics extends App {
             }
           }
         } catch {
-          case _: FileNotFoundException => LOGGER.error(s"File not found $title")
+          case _: FileNotFoundException => LOGGER.error(s"File not found $path")
           case e: Exception => LOGGER.error(e.getMessage)
         }
       }
@@ -72,33 +72,4 @@ object SVPStatistics extends App {
     trapsIndexDf.select("gid", "NDVI").groupBy("gid").avg("NDVI").withColumnRenamed("avg(NDVI)", "svp (auto)")
   }
 
-  /**
-   *
-   * @param sparkSession       the spark session
-   * @param trapRadius         the radius of the trap to consider in the calculation of the ground truth SVP (200 or 1000)
-   * @param inputData          map of case and cer input data
-   * @param croppedGroundTruth a function that starting from the trap radius and the input dataframes returns
-   *                           a new dataframe where:
-   *                           - the first column is an integer identifier for the trap
-   *                           - the second column is a geometry that is intersection between the buffer constructed using
-   *                             the trap radius and the data that the expert knowledge selects as
-   *                             areas where there is not svp
-   *                          - the third is the trap buffer built around the trap with a radius of trapRadius
-   * @return the dataframe with the result of the calculation of ground truth SVP */
-  def getGroundTruthSVP(sparkSession: SparkSession, trapRadius: Int, inputData: Map[String, DataFrame], croppedGroundTruth: (Int, Map[String, DataFrame]) => DataFrame): DataFrame = {
-    require(trapRadius == 200 || trapRadius == 1000)
-    val trapsMap = q(trapRadius, inputData, croppedGroundTruth)
-    val result = trapsMap.collect { case (gid, Some((geom1, geomBuffer))) => val radiusArea = getRadiusAreaFromRadius(trapRadius)
-      //calculate the amount of data cells in the intersection between geom1 and geomBuffer
-      val intersectionArea = geomBuffer.intersection(geom1).asMultiPolygon match {
-        case Some(multiPolygon) => multiPolygon.area // If intersection is a MultiPolygon, get its area
-        case _ => 0.0 // If no intersection or invalid geometry, return 0
-      }
-      gid -> (intersectionArea * 100D) / radiusArea
-    }
-
-    val trapsGroundTruth = sparkSession.createDataFrame(sparkSession.sparkContext.parallelize(result.map { case (gid, perc) => Row(gid, perc)
-    }.toSeq), StructType(Seq(StructField("gid", IntegerType), StructField("svp (ground truth)", DoubleType))))
-    trapsGroundTruth
-  }
 }
