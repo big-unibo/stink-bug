@@ -121,6 +121,6 @@ object Prova extends App {
   import it.unibo.big.Utils.sparkSession
   import it.unibo.big.calculated_svp.SVPUtils.getIndexImageInfo
 
-  val link = "https://big.csr.unibo.it/downloads/stink-bug/satellite_images/20211214/NDVI/S2B_MSIL1C_20211214T101329_N0301_R022_T32TNQ_20211214T110034_NDVI.tif"
+  val link = "https://big.csr.unibo.it/downloads/stink-bug/shapefiles/satellite_images/20211214/NDVI/S2B_MSIL1C_20211214T101329_N0301_R022_T32TNQ_20211214T110034_NDVI.tif"
   getIndexImageInfo (sparkSession, link)
 }

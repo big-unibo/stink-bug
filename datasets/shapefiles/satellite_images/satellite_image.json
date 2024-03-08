@@ -1,6 +1,6 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "https://big.csr.unibo.it/downloads/stink-bug/satellite_images/",
+  "url": "https://big.csr.unibo.it/downloads/stink-bug/shapefiles/satellite_images/",
   "dc:title": "Cimice.net - Satellite images from ESA",
   "dc:description": "Each folder corresponds to a date and contains two subfolders:\n- NDVI: Holds Normalized Difference Vegetation Index (NDVI) images, indicating vegetation health and density using satellite data.\n- RGB: Contains Red, Green, Blue (RGB) images, offering visual representations of Earth's surface.\n\nThese images are processed from data published by the European Space Agency's (ESA) Sentinel-2 satellite (https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-2).",
   "dc:creator": "BIG"
