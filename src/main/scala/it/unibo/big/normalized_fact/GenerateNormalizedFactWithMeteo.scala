@@ -40,9 +40,9 @@ object GenerateNormalizedFactWithMeteo {
       Some(format.parse(result(0).toString), (result(1).toString.toDouble, result(2).toString.toDouble))
     }
 
-    def getMonitoringValue(v: Option[Double], diff: Long, daily: Boolean = false): Any = {
+    def getMonitoringValue(v: Option[Double], diff: Long): Any = {
       LOGGER.debug(s"The value monitored is $v with $diff diff days")
-      v.map(v => if (daily) v else v * diff).orNull
+      v.map(v => v * diff).orNull
     }
 
     def getMonitoringGlobalValue(value: Row, i: Int, diff: Long): Option[Double] = {
@@ -66,7 +66,6 @@ object GenerateNormalizedFactWithMeteo {
     if (!fullDf.isEmpty) {
       val fullData = fullDf.collect()
       var normalizedRecords = Seq[Row]()
-      var dailyRecords = Seq[Row]()
       var value: Row = null
       var pastGid: Option[Int] = None
       var pastDate: Option[Date] = None
@@ -100,37 +99,12 @@ object GenerateNormalizedFactWithMeteo {
         val dataAreNotBroken = actualMonitoringDate != null && workingTrap
 
         if (dataAreNotBroken) {
-          var actualPastDate = pastDate.get
 
           val actualDate = format.parse(actualMonitoringDate.toString)
           val totalDatesDiff = DateUtils.getPositiveDateDiff(pastDate, actualDate)
           val adulti = getMonitoringGlobalValue(value, 8, totalDatesDiff)
           val g2 = getMonitoringGlobalValue(value, 9, totalDatesDiff)
           val g3 = getMonitoringGlobalValue(value, 10, totalDatesDiff)
-          //get daily data
-          val adultiDaily = getMonitoringValue(adulti, totalDatesDiff, daily = true)
-          val g2Daily = getMonitoringValue(g2, totalDatesDiff, daily = true)
-          val g3Daily = getMonitoringValue(g3, totalDatesDiff, daily = true)
-
-          dailyRecords ++= values.flatMap(v => {
-            val taskDate = format.parse(v(0).toString)
-            //default the monitoring is 3 days after task day
-            val monitoringDate = if (v(1) == null) DateUtils.addDays(taskDate) else {
-              DateUtils.getMonitoringDate(taskDate, format.parse(v(1).toString))
-            }
-            var rows = Seq[Row]()
-
-            while (actualPastDate != monitoringDate) {
-              val md = DateUtils.addDays(actualPastDate, 1)
-              val r = Row.fromSeq(Seq(new sql.Date(taskDate.getTime), new sql.Date(md.getTime), gid,
-                adultiDaily, g2Daily, g3Daily, totalDatesDiff,
-                new sql.Date(actualPastDate.getTime), weatherLatLon.get._1, weatherLatLon.get._2
-              ))
-              actualPastDate = md
-              rows :+= r
-            }
-            rows
-          })
 
           normalizedRecords ++= values.map(v => {
             val taskDate = format.parse(v(0).toString)

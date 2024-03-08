@@ -32,7 +32,6 @@ object GenerateCUBE extends App {
     val mapImagesSVP : Map[String, Array[String]] = generateImagesMap(link)
 
     val croppedDf : (Int, Map[String, DataFrame]) => DataFrame = ???
-    val croppedGroundTruthDf : (Int, Map[String, DataFrame]) => DataFrame = ???
     val weatherDf : DataFrame = readWeatherSequenceFile(sparkSession, s"/abds/hbase/weather_processed")
     val calculateSVP = false //TODO set to true
 
