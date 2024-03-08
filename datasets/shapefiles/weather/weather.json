@@ -1,0 +1,55 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "weather.shp",
+  "dc:title": "Cimice.net - Weather data from ARPAE stations",
+  "dc:description": "Shape file with weather data collect from January to October (2020-2021-2022). \nThe observations are sourced from ARPAE's grib file (https://dati.arpae.it/dataset/previsioni-meteorologiche-emilia-romagna-elaborazione-app). ARPAE, the Regional Agency for Prevention, Environment, and Energy of Emilia-Romagna, integrates the functions of ARPA and the Environmental Services of the Provinces. It manages environmental and energy matters, including water resources, pollution control, waste management, and environmental assessments.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "lat",
+        "dc:description": "Latitude of the center of the monitored cell for weather data collection in the Emilia-Romagna region.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "long",
+        "dc:description": "Longitude of the center of the monitored cell for weather data collection in the Emilia-Romagna region.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "date",
+        "dc:description": "Monitored date.",
+        "datatype": {
+          "base": "string",
+          "format": "YYYY-MM-DD"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "p_type",
+        "dc:description": "The monitored weather property.",
+        "datatype": {
+          "base": "string",
+          "format": "t_day_avg|t_day_max|t_day_min|u_day_avg|u_day_max|u_day_min|prec_day|rad_day|evapo_trans|wind_direction_day|wind_speed_day_avg|wind_speed_day_max"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "value",
+        "dc:description": "The monitored value.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}
