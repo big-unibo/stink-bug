@@ -6,7 +6,7 @@ object GenerateCUBE extends App {
   import it.unibo.big.calculated_svp.SVPStatistics
   import it.unibo.big.casedimension.{GenerateCaseDimensionTable, GenerateTrapDimension}
   import it.unibo.big.environment_registry.GenerateEnvironmentRegistryDimensionTables
-  import it.unibo.big.normalized_fact.{GenerateNormalizedFactWithMeteo, GenerateTrapsValidity}
+  import it.unibo.big.normalized_fact.{WeatherReader, GenerateNormalizedFactWithMeteo, GenerateTrapsValidity}
   import it.unibo.big.service.Postgres
   import org.apache.spark.sql.DataFrame
   import org.slf4j.{Logger, LoggerFactory}
@@ -31,7 +31,7 @@ object GenerateCUBE extends App {
 
     // download the images from link
     val mapImagesSVP : Map[String, Array[String]] = generateImagesMap(link)
-    val weatherDf : DataFrame = ??? //TODO read from shape file
+    val weatherDf : DataFrame = WeatherReader.readWeatherShapefile(config.getString("dataset.weather")) //TODO check if works on a cluster
     val calculateSVP = false //TODO set to true
 
     //generate the normalized fact table
