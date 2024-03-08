@@ -117,7 +117,8 @@ object SVPUtils {
    *                 the trap radius and the data about the cultures
    *               - the third is the trap buffer built around the trap with a radius of trapRadius
      */
-    val croppedDf = ??? //TODO
+    //do the geometry intersection from the buffer created by constructing a circle of trapRadius from the trap point lat long and cultures dataframes
+    val croppedDf = ???
     //join the dataset with external table in order to
     // have the geometry that is the difference between the trap and the cultures in the trapRadius area
     getTrapsInfo(croppedDf, x => if (x.isNullAt(1)) None else Some(readGeometry(x.getString(1)).geom, readGeometry(x.getString(2)).geom))

@@ -1,6 +1,6 @@
-package it.unibo.big.cer
+package it.unibo.big.environment_registry
 
-object GenerateCERDimensionTables {
+object GenerateEnvironmentRegistryDimensionTables {
   import it.unibo.big.DimensionsTableUtils
   import it.unibo.big.Utils.readGeometry
   import org.apache.spark.sql.{DataFrame, SparkSession}
@@ -8,23 +8,23 @@ object GenerateCERDimensionTables {
   import org.apache.spark.sql.functions.{col, monotonically_increasing_id, udf}
 
   /**
-   * Configuration for the CER dimension tables
+   * Configuration for the environment registry dimension tables
    * @param columns_mapping columns mapping from the input dataframe to the dimension table
    * @param geometryName name of the geometry column
    * @param identifier name of the identifier column
    * @param table_name name of the table
    */
-  private case class CERConfiguration(columns_mapping: Map[String, String], geometryName: String, identifier: String, table_name: String)
+  private case class EnvironmentRegistryConfiguration(columns_mapping: Map[String, String], geometryName: String, identifier: String, table_name: String)
 
   /**
    * @param sparkSession the spark session
-   * @param cerInputData a map where for each cer table there is a dataframe
+   * @param environmentRegistryInputData a map where for each environment registry table there is a dataframe
    * @param dimTrapDf the trap dimension dataframe
-   * @return a map where for each cer table there is a tuple with the dimension table and the bridge table
+   * @return a map where for each environment registry table there is a tuple with the dimension table and the bridge table
    */
-  def apply(sparkSession: SparkSession, cerInputData: Map[String, DataFrame], dimTrapDf: DataFrame): Map[String, (DataFrame, DataFrame)] = {
+  def apply(sparkSession: SparkSession, environmentRegistryInputData: Map[String, DataFrame], dimTrapDf: DataFrame): Map[String, (DataFrame, DataFrame)] = {
     val configurations = Seq(
-      CERConfiguration(
+      EnvironmentRegistryConfiguration(
         Map(
           "type_name" -> "type_name"
         ),
@@ -32,7 +32,7 @@ object GenerateCERDimensionTables {
         "water_basin_id",
         "water_basin"
       ),
-      CERConfiguration(
+      EnvironmentRegistryConfiguration(
         Map(
           "praenomen" -> "praenomen",
           "usage" -> "usage",
@@ -42,7 +42,7 @@ object GenerateCERDimensionTables {
         "water_course_id",
         "water_course"
       ),
-      CERConfiguration(
+      EnvironmentRegistryConfiguration(
         Map(
           "crop_type" -> "crop_type"
         ),
@@ -52,7 +52,7 @@ object GenerateCERDimensionTables {
       )
     )
     configurations.map(c => {
-      val (dimensionTable, bridgeTable) = createDimensionTables(sparkSession, c, cerInputData, dimTrapDf)
+      val (dimensionTable, bridgeTable) = createDimensionTables(sparkSession, c, environmentRegistryInputData, dimTrapDf)
       c.table_name -> (dimensionTable, bridgeTable)
     }).toMap
   }
@@ -63,13 +63,13 @@ object GenerateCERDimensionTables {
    * creates the bridge table joining the input dataframe with the trap dimension dataframe.
    *
    * @param sparkSession the spark session
-   * @param conf the configuration of the cer table
-   * @param cerInputData a map where for each cer table there is a dataframe
+   * @param conf the configuration of the environment registry table
+   * @param environmentRegistryInputData a map where for each environment registry table there is a dataframe
    * @param dimTrapDf the trap dimension dataframe
    * @return a tuple with the dimension table and the bridge table
    */
-  private def createDimensionTables(sparkSession: SparkSession, conf: CERConfiguration, cerInputData: Map[String, DataFrame], dimTrapDf: DataFrame): (DataFrame, DataFrame) = {
-    val inputDataFrame = cerInputData(conf.table_name)
+  private def createDimensionTables(sparkSession: SparkSession, conf: EnvironmentRegistryConfiguration, environmentRegistryInputData: Map[String, DataFrame], dimTrapDf: DataFrame): (DataFrame, DataFrame) = {
+    val inputDataFrame = environmentRegistryInputData(conf.table_name)
     var dimensionTable = inputDataFrame
     val columnsMapping = conf.columns_mapping
     for ((c1, c2) <- columnsMapping) {
@@ -98,3 +98,4 @@ object GenerateCERDimensionTables {
     (newDimensionTable, newBridgeTable)
   }
 }
+

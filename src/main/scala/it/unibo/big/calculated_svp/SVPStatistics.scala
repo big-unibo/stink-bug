@@ -13,7 +13,7 @@ object SVPStatistics extends App {
   /**
    *
    * @param sparkSession the used spark session
-   * @param inputData    map of case and cer input data
+   * @param inputData    map of case and environment registry input data
    * @param trapRadius   the radius of the trap to consider in the calculation of the automatic SVP (200 or 1000)
    * @param mapImages    a map where each key is a date and the value is a list of image paths for that date,
    *                     where extract the vegetation index

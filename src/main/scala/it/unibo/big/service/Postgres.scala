@@ -4,7 +4,7 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 import it.unibo.big.FileUtilsYaml
 import java.io.{BufferedReader, InputStreamReader}
 
-class Postgres(private val sparkSession: SparkSession, databaseName: String) {
+class Postgres(private val sparkSession: SparkSession, databaseName: String) { //TODO delete
 
   private val ymlJson =
     FileUtilsYaml.loadYamlIntoJsonNode(

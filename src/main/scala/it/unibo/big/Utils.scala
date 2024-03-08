@@ -11,8 +11,8 @@ object Utils {
     .getOrCreate()
   val config: Config = ConfigFactory.load()
 
-  def readCaseInputData(): Map[String, DataFrame] = {
-    config.getConfig("dataset.CASE").entrySet().toArray
+  def readInputData(datasetName: String): Map[String, DataFrame] = {
+    config.getConfig(s"dataset.$datasetName").entrySet().toArray
     .map(_.asInstanceOf[java.util.Map.Entry[String, ConfigValue]]).map(
       t => {
         val df = sparkSession.read.option("header", "true").csv(t.getValue.render().replaceAll("\"", ""))

@@ -1,6 +1,6 @@
 package it.unibo.big.service
 
-object HBase {
+object HBase { //TODO delete
   import it.unibo.big.FileUtilsYaml
   import org.apache.hadoop.conf.Configuration
   import org.apache.hadoop.fs.Path
