@@ -6,8 +6,13 @@ object Utils {
   import geotrellis.vector.io.readWktOrWkb
   import org.apache.spark.sql.{DataFrame, SparkSession}
 
+  System.setProperty("javax.net.debug", "all")
+  System.setProperty("https.protocols", "TLSv1.2")
+
   val sparkSession = SparkSession.builder().master("local[*]")
     .appName("BMSB CUBE creation")
+    .config("spark.executor.extraJavaOptions", "-Dhttps.protocols=TLSv1.2")
+    .config("spark.driver.extraJavaOptions", "-Dhttps.protocols=TLSv1.2")
     .getOrCreate()
   val config: Config = ConfigFactory.load()
 
