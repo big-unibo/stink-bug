@@ -1,8 +1,8 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "CUBE_dim_trap.csv",
-  "dc:title": "Trap dimension",
-  "dc:description": "It represents the dimension of the monitored traps.",
+  "url": "traps.shp",
+  "dc:title": "Cimice.net - Trap data",
+  "dc:description": "Shape file with data about the traps of the Cimice.net monitoring network, collected from March 2020 to October 2022.",
   "dc:creator": "BIG",
   "tableSchema": {
     "columns": [
@@ -59,7 +59,7 @@
         "@type": "Column"
       },
       {
-        "titles": "monitoring_started",
+        "titles": "start_mon",
         "dc:description": "The date when the monitoring started for the trap.",
         "datatype": {
           "base": "string",
@@ -68,7 +68,7 @@
         "@type": "Column"
       },
       {
-        "titles": "monitoring_ended",
+        "titles": "end_mon",
         "dc:description": "The date when the monitoring ended for the trap",
         "datatype": {
           "base": "string",
@@ -77,7 +77,7 @@
         "@type": "Column"
       },
       {
-        "titles": "svp (manual)",
+        "titles": "svp_man",
         "dc:description": "Manual spontaneous vegatation percentage (null if not present).",
         "datatype": {
           "base": "number"
@@ -85,7 +85,7 @@
         "@type": "Column"
       },
       {
-        "titles": "svp (auto)",
+        "titles": "svp_auto",
         "dc:description": "Automatic spontaneous vegatation percentage.",
         "datatype": {
           "base": "number"

@@ -18,7 +18,7 @@
         "@type": "Column"
       },
       {
-        "titles": "date_start",
+        "titles": "monitoring_started",
         "dc:description": "The starting date of the monitoring session.",
         "datatype": {
           "base": "string",
@@ -27,7 +27,7 @@
         "@type": "Column"
       },
       {
-        "titles": "date_end",
+        "titles": "monitoring_ended",
         "dc:description": "The ending date of the monitoring session.",
         "datatype": {
           "base": "string",

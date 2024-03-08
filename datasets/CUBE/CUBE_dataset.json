@@ -1,7 +1,7 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
   "dc:title": "Cimice.net - CUBE dataset",
-  "dc:description": "leansed data for multi-dimensional analysis using the data collected from the CASE application in the period from march 2019 to october 2021 in the Emilia Romagna Region. The ER diagram can be found in the PDF file CUBE-ER-Diagram.pdf.",
+  "dc:description": "Cleansed data for multi-dimensional analysis using the data collected from the CASE application in the period from march 2020 to october 2022 in the Emilia Romagna Region and external sources. The ER diagram can be found in the PDF file CUBE-ER-Diagram.pdf.",
   "dc:creator": "BIG",
   "tables": [
     {
