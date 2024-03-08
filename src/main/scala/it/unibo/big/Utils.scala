@@ -6,13 +6,20 @@ object Utils {
   import geotrellis.vector.io.readWktOrWkb
   import org.apache.spark.sql.{DataFrame, SparkSession}
 
-  System.setProperty("javax.net.debug", "all")
-  System.setProperty("https.protocols", "TLSv1.2")
+  //set parameters for download from https
+  private val tslVersion = "TLSv1.3"
+  System.setProperty("javax.net.debug", "ssl")
+  System.setProperty("jdk.tls.client.protocols", tslVersion)
+  System.setProperty("https.protocols", tslVersion)
+  // Set the cipher suites for the client
+  // System.setProperty("jdk.tls.client.cipherSuites", "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384")
+  // Set the cipher suites for the server (if applicable)
+  //System.setProperty("jdk.tls.server.cipherSuites", "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384")
 
   val sparkSession = SparkSession.builder().master("local[*]")
-    .appName("BMSB CUBE creation")
-    .config("spark.executor.extraJavaOptions", "-Dhttps.protocols=TLSv1.2")
-    .config("spark.driver.extraJavaOptions", "-Dhttps.protocols=TLSv1.2")
+    .appName("Stink bug CUBE creation")
+    //.config("spark.executor.extraJavaOptions", s"-Dhttps.protocols=$tslVersion")
+    //.config("spark.driver.extraJavaOptions", s"-Dhttps.protocols=$tslVersion")
     .getOrCreate()
   val config: Config = ConfigFactory.load()
 
