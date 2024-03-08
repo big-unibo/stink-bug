@@ -8,7 +8,7 @@
     "columns": [
       {
         "titles": "timestamp",
-        "dc:description": "The timestamp of the monitoring task.",
+        "dc:description": "The timestamp assigned for the monitoring task.",
         "datatype": {
           "base": "number"
         },
@@ -55,7 +55,7 @@
       },
       {
         "titles": "monitored_days",
-        "dc:description": "Number of monitored days, if there is a previous monitoring it is the number of days between this monitoring and the previous one, other wise beteween the installation date and the monitoring",
+        "dc:description": "Number of monitored days, if there is a previous monitoring it is the number of days between the completion of this monitoring and the previous one, other wise between the installation date and the monitoring",
         "datatype": {
           "base": "number"
         },
