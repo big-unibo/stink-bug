@@ -1,0 +1,29 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "water_basins.csv",
+  "dc:title": "Environment registry: water basin data",
+  "dc:description": "Water basin data in the Emilia Romagna Region.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "geom4326",
+        "dc:description": "The geometry of the the water basin.",
+        "datatype": {
+          "base": "geometry"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "type_name",
+        "dc:description": "The water resource type.",
+        "datatype": {
+          "base": "string"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

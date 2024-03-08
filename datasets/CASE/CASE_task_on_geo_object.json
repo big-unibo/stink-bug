@@ -16,7 +16,7 @@
       },
       {
         "titles": "timestamp_assignment",
-        "dc:description": "The timestamp assignment of the task.",
+        "dc:description": "The timestamp assignment of the task (usually is the start of the week, i.e., monday).",
         "datatype": {
           "base": "string",
           "format": "YYYY-MM-DDTHH:MM:SS.SSSZ"
@@ -25,7 +25,7 @@
       },
       {
         "titles": "timestamp_deadline",
-        "dc:description": "Deadline timestamp for complete the task.",
+        "dc:description": "Deadline timestamp for complete the task (usually is the end of the week, i.e., sunday).",
         "datatype": {
           "base": "string",
           "format": "YYYY-MM-DDTHH:MM:SS.SSSZ"

@@ -1,0 +1,29 @@
+{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "crops.csv",
+  "dc:title": "Environment registry: crop data",
+  "dc:description": "Data about crops in Emilia Romagna Region.",
+  "dc:creator": "BIG",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "geom4326",
+        "dc:description": "The geometry of the crop.",
+        "datatype": {
+          "base": "geometry"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "crop_type",
+        "dc:description": "The crop type.",
+        "datatype": {
+          "base": "string"
+        },
+        "@type": "Column"
+      }
+    ],
+    "@type": "Schema"
+  },
+  "@type": "Table"
+}

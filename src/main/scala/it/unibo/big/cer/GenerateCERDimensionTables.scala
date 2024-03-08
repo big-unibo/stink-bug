@@ -26,7 +26,7 @@ object GenerateCERDimensionTables {
     val configurations = Seq(
       CERConfiguration(
         Map(
-          "d_ty_sda" -> "type_name"
+          "type_name" -> "type_name"
         ),
         "geom4326",
         "water_basin_id",
@@ -36,8 +36,7 @@ object GenerateCERDimensionTables {
         Map(
           "praenomen" -> "praenomen",
           "usage" -> "usage",
-          "culverted" -> "culverted",
-          "d_ty_sda" -> "type_name"
+          "culverted" -> "culverted"
         ),
         "geom4326",
         "water_course_id",
@@ -45,7 +44,7 @@ object GenerateCERDimensionTables {
       ),
       CERConfiguration(
         Map(
-          "raggruppam" -> "crop_type"
+          "crop_type" -> "crop_type"
         ),
         "geom4326",
         "crop_usage_id",
