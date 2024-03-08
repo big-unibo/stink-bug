@@ -109,10 +109,18 @@ object SVPUtils {
    *         the geometry of the data in the radius where data about cultures is cropped and
    *         the whole buffer of the trap that is used for the coverage, with a radius of trapRadius
    */
-  def q(trapRadius: Int, inputDataframes: Map[String, DataFrame], croppedDf: (Int, Map[String, DataFrame]) => DataFrame): Map[Int, Option[(Geometry, Geometry)]] = {
+  def q(trapRadius: Int, inputDataframes: Map[String, DataFrame]): Map[Int, Option[(Geometry, Geometry)]] = {
+    /*
+    Create a dataframe where:
+   *               - the first column is an integer identifier for the trap
+   *               - the second column is a geometry that is intersection between the buffer constructed using
+   *                 the trap radius and the data about the cultures
+   *               - the third is the trap buffer built around the trap with a radius of trapRadius
+     */
+    val croppedDf = ??? //TODO
     //join the dataset with external table in order to
     // have the geometry that is the difference between the trap and the cultures in the trapRadius area
-    getTrapsInfo(croppedDf(trapRadius, inputDataframes), x => if (x.isNullAt(1)) None else Some(readGeometry(x.getString(1)).geom, readGeometry(x.getString(2)).geom))
+    getTrapsInfo(croppedDf, x => if (x.isNullAt(1)) None else Some(readGeometry(x.getString(1)).geom, readGeometry(x.getString(2)).geom))
   }
 }
 

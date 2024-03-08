@@ -17,16 +17,10 @@ object SVPStatistics extends App {
    * @param trapRadius   the radius of the trap to consider in the calculation of the automatic SVP (200 or 1000)
    * @param mapImages    a map where each key is a date and the value is a list of image paths for that date,
    *                     where extract the vegetation index
-   * @param croppedDf    a function that starting from the trap radius and the input dataframes returns
-   *                     a new dataframe where:
-   *               - the first column is an integer identifier for the trap
-   *               - the second column is a geometry that is intersection between the buffer constructed using
-   *                 the trap radius and the data about the cultures
-   *               - the third is the trap buffer built around the trap with a radius of trapRadius
    * @return the dataframe with the result of the calculation of automatic SVP */
-  def calculateAutomaticSVP(sparkSession: SparkSession, inputData: Map[String, DataFrame], trapRadius: Int, mapImages: Map[String, Array[String]], croppedDf: (Int, Map[String, DataFrame]) => DataFrame): DataFrame = {
+  def calculateAutomaticSVP(sparkSession: SparkSession, inputData: Map[String, DataFrame], trapRadius: Int, mapImages: Map[String, Array[String]]): DataFrame = {
     require(trapRadius == 200 || trapRadius == 1000)
-    val trapsMap = q(trapRadius, inputData, croppedDf)
+    val trapsMap = q(trapRadius, inputData)
     //used vegetation index for threshold calculation
     val vegetationIndexesThresholds = Map("NDVI" -> 0.7)
 

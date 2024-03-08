@@ -30,8 +30,6 @@ object GenerateCUBE extends App {
 
     // download the images from link
     val mapImagesSVP : Map[String, Array[String]] = generateImagesMap(link)
-
-    val croppedDf : (Int, Map[String, DataFrame]) => DataFrame = ???
     val weatherDf : DataFrame = readWeatherSequenceFile(sparkSession, s"/abds/hbase/weather_processed")
     val calculateSVP = false //TODO set to true
 
@@ -44,7 +42,7 @@ object GenerateCUBE extends App {
     trapsDimensionTable = trapsDimensionTable.join(trapsValidityDf, Seq("gid"))
     if(calculateSVP) {
       //calculate the automatic SVP
-      val automaticSVP = SVPStatistics.calculateAutomaticSVP(sparkSession, caseInputData ++ cerInputData, trapRadius = 200, mapImagesSVP, croppedDf)
+      val automaticSVP = SVPStatistics.calculateAutomaticSVP(sparkSession, caseInputData ++ cerInputData, trapRadius = 200, mapImagesSVP)
 
       //join the automatic svp with the trap dimension
       trapsDimensionTable = trapsDimensionTable.join(automaticSVP, Seq("gid"), "left")
