@@ -50,24 +50,11 @@ object Utils {
     }
 
   }
-}
 
-object ImagesMap {
   import org.jsoup.Jsoup
   import scala.collection.JavaConverters._
 
   import org.jsoup.nodes.Document
-
-  /**
-   * Generate a map of images for each folder
-   * @param link the link of the folder containing the images
-   * @return a map where each key is a folder name and the value is an array of image paths
-   */
-  def generateImagesMap(link: String): Map[String, Array[String]] = {
-    val folderNames = getFileAndFolderNames(link)
-    folderNames.map(folderName => folderName -> getFileAndFolderNames(link + folderName + "/NDVI/").map(img => s"$link$folderName/NDVI/$img")).toMap
-  }
-
   /**
    * Get file and folder names from a directory listing
    * @param link the link of the directory
@@ -90,5 +77,19 @@ object ImagesMap {
 
     // Filter out filenames that are not files (e.g., directories)
     filenames.filterNot(_.isEmpty).toArray
+  }
+}
+
+object ImagesMap {
+  import Utils._
+
+  /**
+   * Generate a map of images for each folder
+   * @param link the link of the folder containing the images
+   * @return a map where each key is a folder name and the value is an array of image paths
+   */
+  def generateImagesMap(link: String): Map[String, Array[String]] = {
+    val folderNames = getFileAndFolderNames(link)
+    folderNames.map(folderName => folderName -> getFileAndFolderNames(link + folderName + "/NDVI/").map(img => s"$link$folderName/NDVI/$img")).toMap
   }
 }

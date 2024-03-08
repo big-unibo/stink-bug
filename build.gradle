@@ -33,7 +33,10 @@ scalastyle {
 
 // In this section you declare where to find the dependencies of your project
 repositories {
-    mavenCentral()
+    mavenCentral()/*.content {
+        excludeModule("javax.media", "jai_core")
+    }*/
+    //maven { url "https://repo.osgeo.org/repository/release/" }
     maven { url "https://repository.cloudera.com/artifactory/cloudera-repos/" }
 }
 
@@ -80,10 +83,12 @@ dependencies {
     implementation "org.locationtech.geotrellis:geotrellis-vector_${scalaRelease}:${geoTrellisVersion}"
     implementation "org.locationtech.geotrellis:geotrellis-spark_${scalaRelease}:${geoTrellisVersion}"
     implementation "org.locationtech.geotrellis:geotrellis-raster_${scalaRelease}:${geoTrellisVersion}"
+    /*implementation 'org.geotools:gt-shapefile:20.0'
+    implementation "org.locationtech.geotrellis:geotrellis-shapefile_${scalaRelease}:${geoTrellisVersion}"*/
     //geospark
-    /*implementation "org.datasyslab:geospark:${geoSparkVersion}"
+    implementation "org.datasyslab:geospark:${geoSparkVersion}"
     implementation "org.datasyslab:geospark-sql_2.3:${geoSparkVersion}"
-    implementation "org.datasyslab:geospark-viz_2.3:${geoSparkVersion}"*/
+    implementation "org.datasyslab:geospark-viz_2.3:${geoSparkVersion}"
     //postgresql
     implementation 'org.postgresql:postgresql:42.2.28'
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
