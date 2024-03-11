@@ -149,7 +149,7 @@ def plot_summary(items, captures_categories):
 
     legend_without_duplicate_labels(fig)
     fig.tight_layout()
-    savePdf('fig-model', fig)
+    savePdf('graphs/fig-model', fig)
 
 year_dates = {
     6: {

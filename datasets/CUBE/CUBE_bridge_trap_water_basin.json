@@ -8,7 +8,7 @@
     "columns": [
       {
         "titles": "water_basin_id",
-        "dc:description": "The water basin dimension identifier.",
+        "dc:description": "The water basin dimension identifier. (Related to cube_dim_water_basin dataset)",
         "datatype": {
           "base": "number"
         },
@@ -16,7 +16,7 @@
       },
       {
         "titles": "gid",
-        "dc:description": "The trap identifier.",
+        "dc:description": "The trap identifier. (Related to cube_dim_trap dataset)",
         "datatype": {
           "base": "number"
         },

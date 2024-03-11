@@ -16,7 +16,7 @@
       },
       {
         "titles": "gid",
-        "dc:description": "The trap identifier.",
+        "dc:description": "The trap identifier. (Related to cube_dim_trap dataset)",
         "datatype": {
           "base": "number"
         },

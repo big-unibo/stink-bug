@@ -8,7 +8,7 @@
     "columns": [
       {
         "titles": "cid",
-        "dc:description": "The CASE dimension identifier.",
+        "dc:description": "The CASE dimension identifier. (Related to cube_dim_case dataset)",
         "datatype": {
           "base": "number"
         },
@@ -16,7 +16,7 @@
       },
       {
         "titles": "gid",
-        "dc:description": "The trap identifier.",
+        "dc:description": "The trap identifier. (Related to cube_dim_trap dataset)",
         "datatype": {
           "base": "number"
         },
