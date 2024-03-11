@@ -28,7 +28,6 @@ def obtain_data(datasets):
         df = pd.merge(df, df_bridge, on=key, how='left')
         dim_data[dim] = df
 
-    fact["Tot captured"] = fact["Adults captured"] + fact["Small instars captured"] + fact["Large instars captured"]
     fact["Tot degree days"] = fact["degree_days"]
     fact["Cum degree days"] = fact["cum_degree_days"]
     def generate_season(t, ms) :

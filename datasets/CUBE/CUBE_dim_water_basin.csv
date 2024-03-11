@@ -1,12 +1,12 @@
 water_basin_id,water_resource_type
-1,stagno
-2,Altro invaso artificiale
-3,salina
-4,lago
-5,laguna
-6,lago artificiale
-7,lago per produzione energia elettrica
-8,cava in falda
-9,palude
-10,macero
+1,Pond
+2,Other artificial reservoir
+3,Saltworks
+4,Lake
+5,Lagoon
+6,Artificial lake
+7,Lake for electricity production
+8,Quarry in aquifer
+9,Swamp
+10,Pulping mill
 0,Nessuno

@@ -1,101 +1,101 @@
 cid,category,environmental_element (manual)
-315,Colture arboree,Paulownia
-316,Colture arboree,Susino
-317,Colture estensive,Soia
-318,Siepi e bordure,"Bacche (Cornus, Rhamnus frangula, Viburnum)"
-319,Siepi e bordure,Edera
-320,Colture arboree,Altra coltura arborea
-321,Colture arboree,Melo
-322,Fabbricati ad uso abitativo,Fabbricato ad uso abitativo
-323,Giardini e boschetti,Salicacee (pioppo e salice)
-324,Argini e canali,Fossi e scoline
-325,Giardini e boschetti,Catalpa e Paulownia
-326,Giardini e boschetti,"Piante da frutto (fico, caco, pomacee e drupacee)"
-327,Colture arboree,Pioppo
-328,Siepi e bordure,"Pomacee (Pyracantha, Crataegus, Cotoneaster)"
-329,Siepi e bordure,Altra siepe o bordura
-330,Colture arboree,Pero
-331,Colture estensive,Altra coltura estensiva
-332,Giardini e boschetti,"Fagacee, Ulmacee, Malvales (quercia, olmo, tiglio)"
-333,Fabbricati ad uso abitativo,Fabbricato ad uso abitativo
-334,Colture arboree,Caco
-335,Colture arboree,Noce
-336,Colture arboree,Vite
-337,Fabbricati ad uso abitativo,Fabbricato ad uso abitativo
-338,Colture arboree,Susino
-339,Siepi e bordure,Nocciolo
-340,Argini e canali,Argine canale
-341,Siepi e bordure,Drupe tardive (Ligustrum)
-342,Colture estensive,Cereali autunno-vernini
-343,Colture arboree,Ciliegio
-344,Fabbricati ad uso abitativo,Fabbricato ad uso abitativo
-345,Siepi e bordure,Gelso (Morus)
-346,Argini e canali,Argine fiume
-347,Giardini e boschetti,Sempreverdi
-348,Colture estensive,Pomodoro
-349,Colture estensive,Orticole
-350,Fabbricati ad uso agricolo,Fabbricato ad uso agricolo
-351,Colture estensive,Altra coltura estensiva
-352,Siepi e bordure,"Pomacee (Pyracantha, Crataegus, Cotoneaster)"
-353,Fabbricati ad uso agricolo,Fabbricato ad uso agricolo
-354,Fabbricati ad uso abitativo,Fabbricato ad uso abitativo
-355,Argini e canali,Argine fiume
-356,Fabbricati ad uso agricolo,Fabbricato ad uso agricolo
-357,Argini e canali,Laghetti e bacini irrigui
-358,Giardini e boschetti,"Fagacee, Ulmacee, Malvales (quercia, olmo, tiglio)"
-359,Colture arboree,Pesco e nettarino
-360,Colture estensive,Colza
-361,Colture estensive,Orticole
-362,Siepi e bordure,"Samare e disamare (Acer, Fraxinus, Ailanthus)"
-363,Giardini e boschetti,Altro giardino o boschetto
-364,Colture arboree,Ciliegio
-365,Siepi e bordure,Gelso (Morus)
-366,Colture estensive,Mais
-367,Colture arboree,Albicocco
-368,Siepi e bordure,Nocciolo
-369,Argini e canali,Fossi e scoline
-370,Argini e canali,Argine canale
-371,Fabbricati ad uso agricolo,Fabbricato ad uso agricolo
-372,Siepi e bordure,Edera
-373,Colture arboree,Vite
-374,Colture arboree,Melo
-375,Siepi e bordure,"Samare e disamare (Acer, Fraxinus, Ailanthus)"
-376,Fabbricati ad uso abitativo,Fabbricato ad uso abitativo
-377,Colture arboree,Pesco e nettarino
-378,Colture arboree,Actinidia
-379,Fabbricati ad uso abitativo,Fabbricato ad uso abitativo
-380,Giardini e boschetti,Sempreverdi
-381,Siepi e bordure,Drupe precoci (Prunus)
-382,Fabbricati ad uso agricolo,Fabbricato ad uso agricolo
-383,Colture estensive,Cereali autunno-vernini
-384,Colture estensive,Leguminose
-385,Fabbricati ad uso agricolo,Fabbricato ad uso agricolo
-386,Giardini e boschetti,Altro giardino o boschetto
-387,Fabbricati ad uso agricolo,Fabbricato ad uso agricolo
-388,Colture estensive,Leguminose
-389,Siepi e bordure,Drupe precoci (Prunus)
-390,Giardini e boschetti,"Piante da frutto (fico, caco, pomacee e drupacee)"
-391,Argini e canali,Altro argine o canale
-392,Fabbricati ad uso abitativo,Fabbricato ad uso abitativo
-393,Fabbricati ad uso agricolo,Fabbricato ad uso agricolo
-394,Colture arboree,Noce
-395,Colture arboree,Paulownia
-396,Colture estensive,Pomodoro
-397,Siepi e bordure,Drupe tardive (Ligustrum)
-398,Fabbricati ad uso abitativo,Fabbricato ad uso abitativo
-399,Giardini e boschetti,Catalpa e Paulownia
-400,Argini e canali,Laghetti e bacini irrigui
-401,Colture arboree,Actinidia
-402,Colture arboree,Pero
-403,Colture arboree,Caco
-404,Fabbricati ad uso agricolo,Fabbricato ad uso agricolo
-405,Fabbricati ad uso abitativo,Fabbricato ad uso abitativo
-406,Fabbricati ad uso agricolo,Fabbricato ad uso agricolo
-407,Colture arboree,Albicocco
-408,Colture estensive,Mais
-409,Siepi e bordure,Altra siepe o bordura
-410,Siepi e bordure,"Bacche (Cornus, Rhamnus frangula, Viburnum)"
-411,Giardini e boschetti,Salicacee (pioppo e salice)
-412,Colture estensive,Soia
+315,Tree fruit crops,Paulownia
+316,Tree fruit crops,Susino
+317,Herbaceous crops,Soia
+318,Hedges and borders,"Bacche (Cornus, Rhamnus frangula, Viburnum)"
+319,Hedges and borders,Edera
+320,Tree fruit crops,Altra coltura arborea
+321,Tree fruit crops,Melo
+322,Residential buildings,Fabbricato ad uso abitativo
+323,Gardens and groves,Salicacee (pioppo e salice)
+324,River banks and channels,Fossi e scoline
+325,Gardens and groves,Catalpa e Paulownia
+326,Gardens and groves,"Piante da frutto (fico, caco, pomacee e drupacee)"
+327,Tree fruit crops,Pioppo
+328,Hedges and borders,"Pomacee (Pyracantha, Crataegus, Cotoneaster)"
+329,Hedges and borders,Altra siepe o bordura
+330,Tree fruit crops,Pero
+331,Herbaceous crops,Altra coltura estensiva
+332,Gardens and groves,"Fagacee, Ulmacee, Malvales (quercia, olmo, tiglio)"
+333,Residential buildings,Fabbricato ad uso abitativo
+334,Tree fruit crops,Caco
+335,Tree fruit crops,Noce
+336,Tree fruit crops,Vite
+337,Residential buildings,Fabbricato ad uso abitativo
+338,Tree fruit crops,Susino
+339,Hedges and borders,Nocciolo
+340,River banks and channels,Argine canale
+341,Hedges and borders,Drupe tardive (Ligustrum)
+342,Herbaceous crops,Cereali autunno-vernini
+343,Tree fruit crops,Ciliegio
+344,Residential buildings,Fabbricato ad uso abitativo
+345,Hedges and borders,Gelso (Morus)
+346,River banks and channels,Argine fiume
+347,Gardens and groves,Sempreverdi
+348,Herbaceous crops,Pomodoro
+349,Herbaceous crops,Orticole
+350,Agricultural buildings,Fabbricato ad uso agricolo
+351,Herbaceous crops,Altra coltura estensiva
+352,Hedges and borders,"Pomacee (Pyracantha, Crataegus, Cotoneaster)"
+353,Agricultural buildings,Fabbricato ad uso agricolo
+354,Residential buildings,Fabbricato ad uso abitativo
+355,River banks and channels,Argine fiume
+356,Agricultural buildings,Fabbricato ad uso agricolo
+357,River banks and channels,Laghetti e bacini irrigui
+358,Gardens and groves,"Fagacee, Ulmacee, Malvales (quercia, olmo, tiglio)"
+359,Tree fruit crops,Pesco e nettarino
+360,Herbaceous crops,Colza
+361,Herbaceous crops,Orticole
+362,Hedges and borders,"Samare e disamare (Acer, Fraxinus, Ailanthus)"
+363,Gardens and groves,Altro giardino o boschetto
+364,Tree fruit crops,Ciliegio
+365,Hedges and borders,Gelso (Morus)
+366,Herbaceous crops,Mais
+367,Tree fruit crops,Albicocco
+368,Hedges and borders,Nocciolo
+369,River banks and channels,Fossi e scoline
+370,River banks and channels,Argine canale
+371,Agricultural buildings,Fabbricato ad uso agricolo
+372,Hedges and borders,Edera
+373,Tree fruit crops,Vite
+374,Tree fruit crops,Melo
+375,Hedges and borders,"Samare e disamare (Acer, Fraxinus, Ailanthus)"
+376,Residential buildings,Fabbricato ad uso abitativo
+377,Tree fruit crops,Pesco e nettarino
+378,Tree fruit crops,Actinidia
+379,Residential buildings,Fabbricato ad uso abitativo
+380,Gardens and groves,Sempreverdi
+381,Hedges and borders,Drupe precoci (Prunus)
+382,Agricultural buildings,Fabbricato ad uso agricolo
+383,Herbaceous crops,Cereali autunno-vernini
+384,Herbaceous crops,Leguminose
+385,Agricultural buildings,Fabbricato ad uso agricolo
+386,Gardens and groves,Altro giardino o boschetto
+387,Agricultural buildings,Fabbricato ad uso agricolo
+388,Herbaceous crops,Leguminose
+389,Hedges and borders,Drupe precoci (Prunus)
+390,Gardens and groves,"Piante da frutto (fico, caco, pomacee e drupacee)"
+391,River banks and channels,Altro argine o canale
+392,Residential buildings,Fabbricato ad uso abitativo
+393,Agricultural buildings,Fabbricato ad uso agricolo
+394,Tree fruit crops,Noce
+395,Tree fruit crops,Paulownia
+396,Herbaceous crops,Pomodoro
+397,Hedges and borders,Drupe tardive (Ligustrum)
+398,Residential buildings,Fabbricato ad uso abitativo
+399,Gardens and groves,Catalpa e Paulownia
+400,River banks and channels,Laghetti e bacini irrigui
+401,Tree fruit crops,Actinidia
+402,Tree fruit crops,Pero
+403,Tree fruit crops,Caco
+404,Agricultural buildings,Fabbricato ad uso agricolo
+405,Residential buildings,Fabbricato ad uso abitativo
+406,Agricultural buildings,Fabbricato ad uso agricolo
+407,Tree fruit crops,Albicocco
+408,Herbaceous crops,Mais
+409,Hedges and borders,Altra siepe o bordura
+410,Hedges and borders,"Bacche (Cornus, Rhamnus frangula, Viburnum)"
+411,Gardens and groves,Salicacee (pioppo e salice)
+412,Herbaceous crops,Soia
 0,Nessuno,Nessuno
-413,Colture estensive,Colza
+413,Herbaceous crops,Colza

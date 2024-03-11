@@ -39,8 +39,16 @@
         "@type": "Column"
       },
       {
-        "titles": "Large instars captured:",
+        "titles": "Large instars captured",
         "dc:description": "Number of large instars captured.",
+        "datatype": {
+          "base": "number"
+        },
+        "@type": "Column"
+      },
+      {
+        "titles": "Tot captured",
+        "dc:description": "Number of instars (is the sum of adults, small and large instars).",
         "datatype": {
           "base": "number"
         },
