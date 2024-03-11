@@ -1,65 +1,58 @@
-# BIG - Project template (BMSB)
+# BIG - Stink bug
 
 [![build](https://github.com/big-unibo/experimental-project/actions/workflows/build.yml/badge.svg)](https://github.com/big-unibo/experimental-project/actions/workflows/build.yml)
 
-## How to run the project
-
-- Change `rootProject.name` in `settings.gradle` accordingly to the project name
-- The project *must* build with Gradle (i.e., `./gradlew` produces a successful build)
-- Once completed, `./gradlew` creates `build/libs/*.jar` files. To execute Spark code
-    - If *no* external library is needed, `spark-submit` the jar (i.e., `project-name.jar`)
-    - If external libraries are needed, `spark-submit` the fat jar (i.e., `project-name-all.jar`)
-
 ## Project structure
 
-    datasets/   -- where datasets are stored (heavy datasets cannot be committed)
-    outputs/    -- where generated datasets are stored (should not be committed)
-    results/    -- where experiment/thesis results are stored (must be committed)
+    datasets/   -- where datasets are stored
+    outputs/    -- where graphical results are stored
     src/        -- source code
 
-## Working on this project
+## Published datasets
+The datasets used in this project are correlated with metadata that follows the [Dublin Core standard](https://www.dublincore.org/).
+Each dataset is correlated with a `.json` metadata file that is saved in the **dataset folder**.
+Huge datasets (shapefiles) that are not inside this repository
+are available at the [link](https://big.csr.unibo.it/downloads/stink-bug/datasets/shapefiles/).
 
-Import this project as Gradle project (this is tested with IntelliJ IDEA).
+In particular, the datasets are:
+- `CASE` dataset: it contains the data about the data collected using the CASE application and are stored in the `datasets/CASE` folder.
+- `Environment registry` dataset: it contains the data about the environment and are stored in the `datasets/Environment registry` folder.
+- `Satellite images` dataset: it contains the satellite images
+  and are stored in the [link](https://big.csr.unibo.it/downloads/stink-bug/datasets/shapefiles/satellite_images/),
+  metadata are in the `datasets/satellite_images` folder.
+- `Weather data` dataset: it contains the weather data and are stored in the [link](https://big.csr.unibo.it/downloads/stink-bug/datasets/shapefiles/weather/),
+  metadata are in the `datasets/weather` folder.
+- `CUBE` dataset: it contains the multidimensional cube generated from the previous datasets and are stored in the `datasets/CUBE` folder.
+- `traps` dataset: it contains the shapefile generated from the `CUBE` dataset and are stored in the `datasets/shapefiles/traps` folder.
 
-### Guidelines
+## Source code structure
+The code is structured in three main parts:
 
-#### Code
+1. **Conversion from harbor dataset to multidimensional cube.**
+   This part takes as input the data located in the CASE, environment registry, satellite images,
+   and weather datasets,
+   to generate the multidimensional cube and save it in the `dataset/CUBE` folder.
+   The code used is all in the folder `src/main/scala/it/unibo/big`,
+   for running the code, you need to run the `src/main/scala/it/unibo/big/GenerateCUBE.scala` class.
+2. **Generation of output graphs.**
+   This part takes as input the data located in the `dataset/CUBE` folder,
+   and generates the graphs that are saved in the `outputs` folder.
+   The code used is all in the folder `src/main/python`, for run the code you need to:
+    - build the docker container `docker build -t graph-container src/main/python`
+    - run the docker container:
+        - WINDOWS:
+            - `docker run -v %cd%/src/main/python:/app -v %cd%/datasets/CUBE:/app/datasets/CUBE -v %cd%/outputs/graphs:/app/graphs graph-generator`
+        - LINUX
+            - `docker run -v $(pwd)/src/main/python:/app -v $(pwd)/datasets:/app/datasets -v $(pwd)/outputs/graphs:/app/graphs graph-generator`
+3. **Generation of shape file dataset.**
+   This part takes as input the data located in the `dataset/CUBE` folder, and generates the shape file dataset that is
+   saved in the `dataset/shapefiles/traps` folder.
+   The code used is in the folder `src/main/bash`, for running the code, you need to:
 
-- Add as many *useful* comments as possible
-- Delete all *useless* code / resources
-- Test *early*, Test *often*, Test *everything* you can
-- Write a proper `README.md` (i.e., override this one) that explains:
-    - the project structure
-    - the algorithmic parameters
-    - how to run the project
-- Check the output of `./gradlew` to look for warnings (especially in code style)
+   - build the docker container `docker build -t ogr2ogr-container src/main/bash`
+   - run the docker container:
+       - WINDOWS:
+           - `docker run -v %cd%/datasets/CUBE:/app/input -v %cd%/datasets/shapefiles:/app/output ogr2ogr-container`
+       - LINUX
+           - `docker run -v $(pwd)/datasets/CUBE:/app/input -v $(pwd)/datasets/shapefiles:/app/output ogr2ogr-container`
 
-#### Dataset conventions
-
-- All datasets must be named as follows: `ProjectName-par1_val1-...-parN_valN.csv`
-- The only exception is for hive tables: `ProjectName__par1_val1__...__parN_valN.csv`
-    - All Spark applications *must* read/write from/to `.csv` files as well as Hive tables
-- Schemas for trajectory databases: `(userid, trajectoryid, latitude, longitude, timestamp)` where `timestamp` is unix timestamp (i.e., seconds since 01/01/1970)
-    - In `src/main/python/sample.py` you can find an example to transform an uncompliant dataset schema
-
-### Dependency management
-
-All Java/Scala dependencies must be managed through Gradle (`build.gradle`). See [here](https://docs.gradle.org/current/userguide/core_dependency_management.html).
-
-> Software projects rarely work in isolation. In most cases, a project relies on reusable functionality in the form of libraries or is broken up into individual components to compose a modularized system. Dependency management is a technique for declaring, resolving and using dependencies required by the project in an automated fashion. Gradle has built-in support for dependency management and lives up to the task of fulfilling typical scenarios encountered in modern software projects. 
-
-All Python dependencies must be managed through virtual environments. See [here](https://docs.python.org/3/library/venv.html).
-
-> The venv module provides support for creating lightweight “virtual environments” with their own site directories, optionally isolated from system site directories. Each virtual environment has its own Python binary (which matches the version of the binary that was used to create this environment) and can have its own independent set of installed Python packages in its site directories.
-
-    cd src/main/python
-    python -m venv venv
-    pip install -r requirements.txt
-
-To activate venv in Windows (with bash shell; e.g., git bash)
-
-    source venv/Scripts/activate
-
-To activate venv in Linux
-
-    source venv/bin/activate
