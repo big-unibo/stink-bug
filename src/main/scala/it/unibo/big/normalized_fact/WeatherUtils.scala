@@ -32,13 +32,13 @@ private[normalized_fact] object MeteoUtils {
     val groupedData = struct.slice(0, 7).map(x => col(x.name))
 
     var tmpDf = df.join(weatherDf, joinCondition)
-      .withColumn(degreeDay, when(col("product_type").equalTo(averageDayTemperature) &&
+      .withColumn(degreeDay, when(col("p_type").equalTo(averageDayTemperature) &&
         col("value") > gradeDay_lowerBound, col("value") - gradeDay_lowerBound).otherwise(0))
-      .groupBy(groupedData :+ col("product_type"): _*)
-      .agg(when(col("product_type").equalTo("prec_day"),
+      .groupBy(groupedData :+ col("p_type"): _*)
+      .agg(when(col("p_type").equalTo("prec_day"),
         sum(col("value"))).otherwise(avg(col("value"))).as("value"), sum(col(degreeDay)).as(degreeDay))
       .groupBy(groupedData: _*)
-      .pivot("product_type").agg(first("value").as("value"), max(col(degreeDay)).as(degreeDay)) //max because it takes values of 0 for other weather fields other than hourly and average temperature
+      .pivot("p_type").agg(first("value").as("value"), max(col(degreeDay)).as(degreeDay)) //max because it takes values of 0 for other weather fields other than hourly and average temperature
       .withColumnRenamed(s"${averageDayTemperature}_$degreeDay", s"$meteoAdditionalInfo$degreeDay")
       .drop(meteoInfos.map(x => s"${x}_$degreeDay") : _*)
 
@@ -78,12 +78,12 @@ private[normalized_fact] object MeteoUtils {
       .withColumn("latitude", getLatitude(col("geometry")))
       .withColumn("longitude", getLongitude(col("geometry")))
       .withColumn("installationDate", to_date(col("timestamp_completed")))
-      .withColumn("startDate", to_date(lit(year(col("installationDate"))) + "/01/01", "yyyy/MM/dd"))
+      .withColumn("startDate", to_date(concat(year(col("installationDate")).cast("string"), lit("/01/01")), "yyyy/MM/dd"))
       .withColumn("installationDateString", date_format(col("timestamp_completed"), "DD-MM-YYYY"))
       .crossJoin(weatherDf)
       .withColumnRenamed("lat", "latW")
       .withColumnRenamed("long", "lonW")
-      .withColumn("distance", harvesineUDF(col("latitude"), col("longitude"), col("lat"), col("long")))
+      .withColumn("distance", harvesineUDF(col("latitude"), col("longitude"), col("latW"), col("lonW")))
     // Use window function to find minimum distance for each group
     val windowSpec = Window.partitionBy(col("gid"), col("installationDate"))
     val installationWeatherDf = fullInstallation
@@ -92,7 +92,7 @@ private[normalized_fact] object MeteoUtils {
       //filter the weather data before the installation date in the same year, to calculate cumulative
       .filter(col("date").between(col("startDate"), col("installationDate")))
       //add column for useful hours and grade day
-      .withColumn(degreeDay, when(col("product_type").equalTo(averageDayTemperature) &&
+      .withColumn(degreeDay, when(col("p_type").equalTo(averageDayTemperature) &&
         col("value") > gradeDay_lowerBound, col("value") - gradeDay_lowerBound).otherwise(0))
       .drop("distance")
       .drop("minDistance")

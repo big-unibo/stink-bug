@@ -1,11 +1,10 @@
 package it.unibo.big.normalized_fact
 
-object WeatherReader extends App {
+object WeatherReader {
   import org.apache.commons.io.FileUtils
   import org.datasyslab.geospark.formatMapper.shapefileParser.ShapefileReader
   import org.datasyslab.geosparksql.utils.Adapter
   import org.apache.spark.sql.DataFrame
-  import it.unibo.big.Utils._
 
   import java.io.File
   import java.net.URL
@@ -24,7 +23,7 @@ object WeatherReader extends App {
 
     //read the shapefile and convert to dataframe
     val spatialRDD = ShapefileReader.readToGeometryRDD(sparkSession.sparkContext, tmpFolder)
-    Adapter.toDf(spatialRDD, sparkSession)
+    val df = Adapter.toDf(spatialRDD, sparkSession).cache
+    df
   }
-  readWeatherShapefile(config.getString("dataset.weather")).show()
 }

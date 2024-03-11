@@ -21,9 +21,9 @@ object GenerateCUBE extends App {
     val caseInputData: Map[String, DataFrame] = Utils.readInputData("CASE")
 
     val postgres = new Postgres(sparkSession, "cimice")
-    val environmentRegistryInputData = Map("water_basin" -> postgres.queryTable("select d_ty_sda as type_name, geom4326 from acque_interne"),
+    val environmentRegistryInputData = Map("water_basin" -> postgres.queryTable("select d_ty_sda as type_name, geom4326 from acqueinterne"),
       "water_course" -> postgres.queryTable("select prenome as praenomen, uso as usage, tombinato as culverted, geom4326 from retebonifica"),
-      "crop" -> postgres.queryTable("select raggruppam as crop_type, geom4326 from uso_suolo"))
+      "crop" -> postgres.queryTable("select raggruppam as crop_type, geom_4326 as geom4326 from uso_suolo"))
 
    //TODO change val environmentRegistryInputData = Utils.readInputData("environment_registry")
 
