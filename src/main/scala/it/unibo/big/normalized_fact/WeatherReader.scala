@@ -23,6 +23,7 @@ object WeatherReader {
 
     //read the shapefile and convert to dataframe
     val spatialRDD = ShapefileReader.readToGeometryRDD(sparkSession.sparkContext, tmpFolder)
-    Adapter.toDf(spatialRDD, sparkSession)
+    val df = Adapter.toDf(spatialRDD, sparkSession).cache
+    df
   }
 }
