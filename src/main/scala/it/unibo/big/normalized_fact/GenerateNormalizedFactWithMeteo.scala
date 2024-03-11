@@ -30,15 +30,13 @@ object GenerateNormalizedFactWithMeteo {
     val installationWeatherDf = MeteoUtils.getInstallationWeatherDataframe(sparkSession, inst, weatherDf).cache()
 
     /**
-     *
-     * @param gid the trap identifier
-     * @return the installation date and the lat and lon of the weather cell near the trap
+     * A map where for each gid there is the installation date and the lat and lon of the weather cell near the trap
      */
-    def getInstallationInfos(gid: Int): Option[(Date, (Double, Double))] = {
-      val result = installationWeatherDf.filter(col("gid") === gid)
-        .select(col("installationDateString"), col("latW"), col("lonW")).first()
-      Some(format.parse(result(0).toString), (result(1).toString.toDouble, result(2).toString.toDouble))
-    }
+    val installationMap: Map[Int, Option[(Date, (Double, Double))]] = installationWeatherDf.collect().map(r => {
+      r.getInt(r.fieldIndex("gid")) ->
+        Some(format.parse(r.getString(r.fieldIndex("installationDateString"))),
+          (r.getDouble(r.fieldIndex("latW")), r.getDouble(r.fieldIndex("lonW"))))
+    }).toMap
 
     def getMonitoringValue(v: Option[Double], diff: Long): Any = {
       LOGGER.debug(s"The value monitored is $v with $diff diff days")
@@ -88,7 +86,7 @@ object GenerateNormalizedFactWithMeteo {
         val getInstallationDate = if (pastGid.isDefined) !(pastGid.get == gid && pastDate.isDefined) else true
 
         pastDate = if (getInstallationDate) {
-          val installationData = getInstallationInfos(gid)
+          val installationData = installationMap(gid)
           weatherLatLon = installationData.map(_._2)
           installationData.map(_._1)
         } else pastDate
