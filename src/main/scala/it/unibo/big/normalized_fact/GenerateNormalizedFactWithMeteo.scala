@@ -208,7 +208,7 @@ object GenerateNormalizedFactWithMeteo {
         coalesce(col("is_working"), lit(true)).as("is_working"),
         coalesce(col("is_monitored"), lit(false)).as("is_monitored"),
         col("monitoring.Adults captured"), col("monitoring.Small instars captured"), col("monitoring.Large instars captured")
-      ).cache
+      ).withColumn("Tot captured", col("Adults captured") + col("Small instars captured") + col("Large instars captured")).cache
     (fullDf, inst)
   }
 }
