@@ -36,7 +36,7 @@ object GenerateNormalizedFactWithMeteo {
      */
     def getInstallationInfos(gid: Int): Option[(Date, (Double, Double))] = {
       val result = installationWeatherDf.filter(col("gid") === gid)
-        .select(col("installationDateString"), col("latW"), col("longW")).first()
+        .select(col("installationDateString"), col("latW"), col("lonW")).first()
       Some(format.parse(result(0).toString), (result(1).toString.toDouble, result(2).toString.toDouble))
     }
 
@@ -186,7 +186,7 @@ object GenerateNormalizedFactWithMeteo {
     val inst = caseInputData("traps").as("geo").join(caseInputData("task_on_geo_object").as("togo"), "gid")
       .filter((col("togo.task_id") === 5 && col("geo.ms_id").isin(9, 12)) || (col("togo.task_id") === 2 && col("geo.ms_id") === 6))
       .filter(col("geo.geometry").isNotNull)
-      .select(col("togo.timestamp_completed"), col("geo.name"), col("geo.gid"), col("geo.ms_id"))
+      .select(col("togo.timestamp_completed"), col("geo.name"), col("geo.gid"), col("geo.ms_id"), col("geo.geometry"))
     //get the not monitored tasks for each trap
     val notMonitoredTrapsDf = togo_dates.as("togo_dates").join(inst.as("inst"), "ms_id")
       .where(col("timestamp_assignment") > col("inst.timestamp_completed"))
