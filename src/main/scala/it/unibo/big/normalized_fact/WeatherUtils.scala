@@ -80,7 +80,7 @@ private[normalized_fact] object MeteoUtils {
       .withColumn("installationDate", to_date(col("timestamp_completed")))
       .withColumn("startDate", to_date(concat(year(col("installationDate")).cast("string"), lit("/01/01")), "yyyy/MM/dd"))
       .withColumn("installationDateString", date_format(col("timestamp_completed"), "DD-MM-YYYY"))
-      .crossJoin(weatherDf)
+      .crossJoin(weatherDf.withColumn("date", to_date(col("date"))))
       .withColumnRenamed("lat", "latW")
       .withColumnRenamed("long", "lonW")
       .withColumn("distance", harvesineUDF(col("latitude"), col("longitude"), col("latW"), col("lonW")))
