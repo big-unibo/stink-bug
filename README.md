@@ -9,23 +9,33 @@
     src/        -- source code
 
 ## Published datasets
-The datasets used in this project are correlated with metadata that follows the [Dublin Core standard](https://www.dublincore.org/).
+
+The datasets used in this project are correlated with metadata that follows
+the [Dublin Core standard](https://www.dublincore.org/).
 Each dataset is correlated with a `.json` metadata file that is saved in the **dataset folder**.
 Huge datasets (shapefiles) that are not inside this repository
 are available at the [link](https://big.csr.unibo.it/downloads/stink-bug/datasets/shapefiles/).
 
 In particular, the datasets are:
-- `CASE` dataset: it contains the data about the data collected using the CASE application and are stored in the `datasets/CASE` folder.
-- `Environment registry` dataset: it contains the data about the environment and are stored in the `datasets/Environment registry` folder.
-- `Satellite images` dataset: it contains the satellite images
+
+- **CASE** dataset: it contains the data about the data collected using the CASE application and are stored in
+  the `datasets/CASE` folder.
+- **Environment registry** dataset: it contains the data about the environment and are stored in
+  the `datasets/Environment registry` folder. 
+  As these data are not publishable, the dataset only contains a header with the information necessary for our processes to utilize this data.
+- **Satellite images** dataset: it contains the satellite images
   and are stored in the [link](https://big.csr.unibo.it/downloads/stink-bug/datasets/shapefiles/satellite_images/),
   metadata are in the `datasets/satellite_images` folder.
-- `Weather data` dataset: it contains the weather data and are stored in the [link](https://big.csr.unibo.it/downloads/stink-bug/datasets/shapefiles/weather/),
+- **Weather** dataset: it contains the weather data and are stored in
+  the [link](https://big.csr.unibo.it/downloads/stink-bug/datasets/shapefiles/weather/),
   metadata are in the `datasets/weather` folder.
-- `CUBE` dataset: it contains the multidimensional cube generated from the previous datasets and are stored in the `datasets/CUBE` folder.
-- `traps` dataset: it contains the shapefile generated from the `CUBE` dataset and are stored in the `datasets/shapefiles/traps` folder.
+- **CUBE** dataset: it contains the multidimensional cube generated from the previous datasets and are stored in
+  the `datasets/CUBE` folder.
+- **traps** dataset: it contains the shapefile generated from the `CUBE` dataset and are stored in
+  the `datasets/shapefiles/traps` folder.
 
 ## Source code structure
+
 The code is structured in three main parts:
 
 1. **Conversion from harbor dataset to multidimensional cube.**
@@ -49,10 +59,10 @@ The code is structured in three main parts:
    saved in the `dataset/shapefiles/traps` folder.
    The code used is in the folder `src/main/bash`, for running the code, you need to:
 
-   - build the docker container `docker build -t ogr2ogr-container src/main/bash`
-   - run the docker container:
-       - WINDOWS:
-           - `docker run -v %cd%/datasets/CUBE:/app/input -v %cd%/datasets/shapefiles:/app/output ogr2ogr-container`
-       - LINUX
-           - `docker run -v $(pwd)/datasets/CUBE:/app/input -v $(pwd)/datasets/shapefiles:/app/output ogr2ogr-container`
+    - build the docker container `docker build -t ogr2ogr-container src/main/bash`
+    - run the docker container:
+        - WINDOWS:
+            - `docker run -v %cd%/datasets/CUBE:/app/input -v %cd%/datasets/shapefiles:/app/output ogr2ogr-container`
+        - LINUX
+            - `docker run -v $(pwd)/datasets/CUBE:/app/input -v $(pwd)/datasets/shapefiles:/app/output ogr2ogr-container`
 
