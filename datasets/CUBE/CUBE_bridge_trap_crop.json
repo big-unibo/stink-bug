@@ -1,6 +1,6 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "CUBE_bridge_trap_case.csv",
+  "url": "cube_bridge_trap_case.csv",
   "dc:title": "crop-trap bridge table",
   "dc:description": "Bridge table between trap and crop dimensions.",
   "dc:creator": "BIG",

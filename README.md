@@ -23,14 +23,14 @@ Compliance with [FAIR principles](https://www.go-fair.org/fair-principles/) is e
 The datasets are described by metadata that follow the [Dublin Core standard](https://www.dublincore.org/).
 Each data file is associated with a `.json` metadata file in the same folder.
 Big files that do not fit within this repository
-are available at the [link](https://big.csr.unibo.it/downloads/stink-bug/datasets/shapefiles/).
+are available at the [link](https://big.csr.unibo.it/downloads/stink-bug/datasets/).
 
 In particular, the datasets folder contains the following:
 
 - **CASE**: the data collected using the CASE application.
 - **Environment registry**: a mockup of the environment data (which are not currently publishable) from Consorzio CER (Canale Emiliano-Romagnolo), showing which information is accessed by the [code](#code).
-- **Satellite images**: the rasters of satellite images collected from the ESA (European Space Agency); due to size limitations, this repository contains only the metadata, while the files are available at [this link](https://big.csr.unibo.it/downloads/stink-bug/datasets/rasters/satellite_images/).
-- **Weather**: the weather data collected from ARPAE (Agency for Prevention, Environment, and Water); due to size limitations, this repository contains only the metadata, while the files are available at [this link](https://big.csr.unibo.it/downloads/stink-bug/datasets/shapefiles/weather/).
+- **Satellite images**: the rasters of satellite images collected from the ESA (European Space Agency); due to size limitations, this repository contains only the metadata, while the files are available at [this link](https://big.csr.unibo.it/downloads/stink-bug/datasets/satellite/).
+- **Weather**: the weather data collected from ARPAE (Agency for Prevention, Environment, and Water); due to size limitations, this repository contains only the metadata, while the files are available at [this link](https://big.csr.unibo.it/downloads/stink-bug/datasets/weather/).
 - **Cube**: the multidimensional cube generated from the previous datasets; the dimension of the traps is also available as a shapefile.
 
 
@@ -43,7 +43,7 @@ The code is structured in three main parts:
    and weather datasets,
    to generate the multidimensional cube and save it in the `dataset/cube` folder.
    The code used is all in the folder `src/main/scala/it/unibo/big`,
-   for running the code, you need to run the `src/main/scala/it/unibo/big/GenerateCUBE.scala` class.
+   for running the code, you need to run the `src/main/scala/it/unibo/big/GenerateCube.scala` class.
    This code needs to be executed on a machine with Spark (or a Spark cluster),
    using the versions specified in the `build.gradle` file and with a Java 8 JDK that supports TSLv1.3. 
 2. **Analytical processes.**
@@ -58,13 +58,12 @@ The code is structured in three main parts:
             - `docker run -v $(pwd)/src/main/python:/app -v $(pwd)/datasets:/app/datasets -v $(pwd)/outputs/graphs:/app/graphs graph-generator`
 3. **Traps shapefile generation.**
    This part takes as input the data located in the `dataset/cube` folder, and generates the shapefile dataset that is
-   saved in the `dataset/shapefiles/traps` folder.
+   saved in the `dataset/cube/shapefile` folder.
    The code used is in the folder `src/main/bash`, for running the code, you need to:
 
     - build the docker container `docker build -t ogr2ogr-container src/main/bash`
     - run the docker container:
         - WINDOWS:
-            - `docker run -v %cd%/datasets/cube:/app/input -v %cd%/datasets/shapefiles:/app/output ogr2ogr-container`
+            - `docker run -v %cd%/datasets/cube:/app/input -v %cd%/datasets/cube:/app/output ogr2ogr-container`
         - LINUX
-            - `docker run -v $(pwd)/datasets/cube:/app/input -v $(pwd)/datasets/shapefiles:/app/output ogr2ogr-container`
-
+            - `docker run -v $(pwd)/datasets/cube:/app/input -v $(pwd)/datasets/cube:/app/output ogr2ogr-container`

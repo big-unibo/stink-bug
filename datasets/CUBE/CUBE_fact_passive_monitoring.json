@@ -1,6 +1,6 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "CUBE_fact_passive_monitoring.csv",
+  "url": "cube_fact_passive_monitoring.csv",
   "dc:title": "Fact table",
   "dc:description": "Fact table of passive monitoring.",
   "dc:creator": "BIG",

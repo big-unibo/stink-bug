@@ -1,6 +1,6 @@
 package it.unibo.big
 
-object GenerateCUBE extends App {
+object GenerateCube extends App {
 
   import Utils._
   import it.unibo.big.calculated_svp.SVPStatistics
@@ -27,7 +27,7 @@ object GenerateCUBE extends App {
 
    //TODO change val environmentRegistryInputData = Utils.readInputData("environment_registry")
 
-    val link = config.getString("dataset.satellite_images")
+    val link = config.getString("dataset.satellite")
 
     // download the images from link
     val mapImagesSVP : Map[String, Array[String]] = generateImagesMap(link)
@@ -55,13 +55,13 @@ object GenerateCUBE extends App {
     val environmentRegistryDimensions = GenerateEnvironmentRegistryDimensionTables(sparkSession, environmentRegistryInputData, trapsDimensionTable)
 
     for((name, (dim, bridge)) <- environmentRegistryDimensions) {
-      FileUtils.saveFile(dim, config.getString(s"dataset.CUBE.dim_$name"))
-      FileUtils.saveFile(bridge, config.getString(s"dataset.CUBE.bridge_trap_$name"))
+      FileUtils.saveFile(dim, config.getString(s"dataset.cube.dim_$name"))
+      FileUtils.saveFile(bridge, config.getString(s"dataset.cube.bridge_trap_$name"))
     }
-    FileUtils.saveFile(trapsDimensionTable, config.getString("dataset.CUBE.dim_trap"))
-    FileUtils.saveFile(normalizedFinalDf, config.getString("dataset.CUBE.fact_passive_monitoring"))
-    FileUtils.saveFile(caseDimensionDf, config.getString("dataset.CUBE.dim_case"))
-    FileUtils.saveFile(caseBridgeDf, config.getString("dataset.CUBE.bridge_trap_case"))
-    FileUtils.saveFile(caseInputData("monitoring_session"), config.getString("dataset.CUBE.monitoring_session"))
+    FileUtils.saveFile(trapsDimensionTable, config.getString("dataset.cube.dim_trap"))
+    FileUtils.saveFile(normalizedFinalDf, config.getString("dataset.cube.fact_passive_monitoring"))
+    FileUtils.saveFile(caseDimensionDf, config.getString("dataset.cube.dim_case"))
+    FileUtils.saveFile(caseBridgeDf, config.getString("dataset.cube.bridge_trap_case"))
+    FileUtils.saveFile(caseInputData("monitoring_session"), config.getString("dataset.cube.monitoring_session"))
   }
 }

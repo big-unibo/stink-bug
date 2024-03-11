@@ -1,6 +1,6 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "CUBE_dim_case.csv",
+  "url": "cube_dim_case.csv",
   "dc:title": "CASE dimension",
   "dc:description": "Dimension table about CASE environment data.",
   "dc:creator": "BIG",

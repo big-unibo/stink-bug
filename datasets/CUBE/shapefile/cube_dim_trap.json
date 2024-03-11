@@ -1,6 +1,6 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "traps.shp",
+  "url": "cube_dim_trap.shp",
   "dc:title": "Cimice.net - Trap data",
   "dc:description": "Shape file with data about the traps of the Cimice.net monitoring network, collected from March 2020 to October 2022.",
   "dc:creator": "BIG",

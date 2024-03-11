@@ -1,6 +1,6 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "CUBE_dim_water_course.csv",
+  "url": "cube_dim_water_course.csv",
   "dc:title": "water_course dimension",
   "dc:description": "Dimension table about water_course data.",
   "dc:creator": "BIG",

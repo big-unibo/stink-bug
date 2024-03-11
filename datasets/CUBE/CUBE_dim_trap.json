@@ -1,6 +1,6 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "CUBE_dim_trap.csv",
+  "url": "cube_dim_trap.csv",
   "dc:title": "Trap dimension",
   "dc:description": "It represents the dimension of the monitored traps.",
   "dc:creator": "BIG",
