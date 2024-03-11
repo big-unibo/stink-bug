@@ -24,7 +24,7 @@
       },
       {
         "titles": "question_id",
-        "dc:description": "The question identifier.",
+        "dc:description": "The question identifier. (Related to CASE_question dataset)",
         "datatype": {
           "base": "number"
         },
