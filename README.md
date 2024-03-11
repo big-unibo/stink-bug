@@ -54,6 +54,8 @@ The code is structured in three main parts:
    to generate the multidimensional cube and save it in the `dataset/CUBE` folder.
    The code used is all in the folder `src/main/scala/it/unibo/big`,
    for running the code, you need to run the `src/main/scala/it/unibo/big/GenerateCUBE.scala` class.
+   This code needs to be executed on a machine with Spark (or a Spark cluster),
+   using the versions specified in the `build.gradle` file and with a Java 8 JDK that supports TSLv1.3. 
 2. **Generation of output graphs.**
    This part takes as input the data located in the `dataset/CUBE` folder,
    and generates the graphs that are saved in the `outputs` folder.
