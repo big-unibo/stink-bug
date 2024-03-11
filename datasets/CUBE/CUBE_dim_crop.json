@@ -1,6 +1,6 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "CUBE_dim_crop.csv",
+  "url": "cube_dim_crop.csv",
   "dc:title": "Crop dimension",
   "dc:description": "Dimension table about crop data.",
   "dc:creator": "BIG",

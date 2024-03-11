@@ -1,6 +1,6 @@
 {
   "@context": "http://www.w3.org/ns/csvw",
-  "url": "CUBE_monitoring_session.csv",
+  "url": "cube_monitoring_session.csv",
   "dc:title": "Monitoring session",
   "dc:description": "Details about the monitoring years",
   "dc:creator": "BIG",

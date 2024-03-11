@@ -34,7 +34,7 @@
       },
       {
         "titles": "task_id",
-        "dc:description": "The task identifier.",
+        "dc:description": "The task identifier. (Related to CASE_task dataset)",
         "datatype": {
           "base": "number"
         },

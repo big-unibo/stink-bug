@@ -43,7 +43,7 @@
       },
       {
         "titles": "task_id",
-        "dc:description": "The task identifier.",
+        "dc:description": "The task identifier. (Related to CASE_task dataset)",
         "datatype": {
           "base": "number"
         },
@@ -51,7 +51,7 @@
       },
       {
         "titles": "gid",
-        "dc:description": "The trap identifier.",
+        "dc:description": "The trap identifier. (Related to case_traps dataset)",
         "datatype": {
           "base": "number"
         },

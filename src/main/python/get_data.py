@@ -11,10 +11,10 @@ def obtain_data(datasets):
     - traps: the traps data
     - dim_data: the dimension data enriched with the trap identifier
     """
-    fact = pd.read_csv(datasets + "CUBE/CUBE_fact_passive_monitoring.csv", quotechar='"', sep=",", quoting=csv.QUOTE_ALL)
+    fact = pd.read_csv(datasets + "cube/cube_fact_passive_monitoring.csv", quotechar='"', sep=",", quoting=csv.QUOTE_ALL)
     fact.timestamp = fact.timestamp.apply(lambda x: datetime.fromtimestamp(x))
 
-    traps = pd.read_csv(datasets + 'CUBE/CUBE_dim_trap.csv', quotechar='"', sep=",", quoting=csv.QUOTE_ALL)
+    traps = pd.read_csv(datasets + 'cube/cube_dim_trap.csv', quotechar='"', sep=",", quoting=csv.QUOTE_ALL)
     dim_data = {}
     dimensions = {
         "case": "cid",
@@ -23,8 +23,8 @@ def obtain_data(datasets):
         "water_basin": "water_basin_id"
     }
     for dim, key in dimensions.items():
-        df = pd.read_csv(datasets + 'CUBE/CUBE_dim_' + dim + '.csv', quotechar='"', sep=",", quoting=csv.QUOTE_ALL)
-        df_bridge = pd.read_csv(datasets + 'CUBE/CUBE_bridge_trap_' + dim + '.csv', quotechar='"', sep=",", quoting=csv.QUOTE_ALL)
+        df = pd.read_csv(datasets + 'cube/cube_dim_' + dim + '.csv', quotechar='"', sep=",", quoting=csv.QUOTE_ALL)
+        df_bridge = pd.read_csv(datasets + 'cube/cube_bridge_trap_' + dim + '.csv', quotechar='"', sep=",", quoting=csv.QUOTE_ALL)
         df = pd.merge(df, df_bridge, on=key, how='left')
         dim_data[dim] = df
 

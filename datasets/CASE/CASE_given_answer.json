@@ -8,7 +8,7 @@
     "columns": [
       {
         "titles": "answer_id",
-        "dc:description": "The answer identifier.",
+        "dc:description": "The answer identifier. (Related to CASE_answer dataset)",
         "datatype": {
           "base": "number"
         },
@@ -16,7 +16,7 @@
       },
       {
         "titles": "togo_id",
-        "dc:description": "The task on geo object identifier.",
+        "dc:description": "The task on geo object identifier. (Related to CASE_task_on_geo_object dataset)",
         "datatype": {
           "base": "number"
         },

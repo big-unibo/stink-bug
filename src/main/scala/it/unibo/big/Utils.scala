@@ -17,7 +17,7 @@ object Utils {
   //System.setProperty("jdk.tls.server.cipherSuites", "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384")
 
   val sparkSession = SparkSession.builder().master("local[*]")
-    .appName("Stink bug CUBE creation")
+    .appName("Stink bug cube creation")
     //.config("spark.executor.extraJavaOptions", s"-Dhttps.protocols=$tslVersion")
     //.config("spark.driver.extraJavaOptions", s"-Dhttps.protocols=$tslVersion")
     .getOrCreate()
