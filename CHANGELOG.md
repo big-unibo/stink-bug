@@ -1,3 +1,21 @@
+## [1.0.4](https://github.com/big-unibo/stink-bug/compare/1.0.3...1.0.4) (2024-03-12)
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.8.3 ([8f09ef9](https://github.com/big-unibo/stink-bug/commit/8f09ef9e6adafebca4f879c284b839ecc27d0756))
+* **deps:** update python docker tag to v3.12 ([b0b2c76](https://github.com/big-unibo/stink-bug/commit/b0b2c76e904426013ea9bbebd950b5ebaa57f3c0))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.16.2 ([1d79445](https://github.com/big-unibo/stink-bug/commit/1d794450a5ce264213889e3db5be1fd854294ca0))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v4.1.0 ([d2e9b30](https://github.com/big-unibo/stink-bug/commit/d2e9b301d8ab4c1de4816b56ea0fd37820ca2c3a))
+
 ## [1.0.3](https://github.com/big-unibo/stink-bug/compare/1.0.2...1.0.3) (2024-03-12)
 
 
