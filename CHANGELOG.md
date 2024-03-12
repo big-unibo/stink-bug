@@ -1,3 +1,16 @@
+## [1.0.3](https://github.com/big-unibo/stink-bug/compare/1.0.2...1.0.3) (2024-03-12)
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.7.5 ([4db0ae3](https://github.com/big-unibo/stink-bug/commit/4db0ae362747759f58d48c92a5b9e86f656c2482))
+* **deps:** update dependency seaborn to v0.13.2 ([fe3a1aa](https://github.com/big-unibo/stink-bug/commit/fe3a1aab3c7b46b0dd3a3660dd255895264ce699))
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.apache.httpcomponents:httpclient to v4.5.14 ([7e16bf2](https://github.com/big-unibo/stink-bug/commit/7e16bf267331be901a407b8850d6e04cc1fab487))
+
 ## [1.0.2](https://github.com/big-unibo/BMSB/compare/1.0.1...1.0.2) (2024-03-05)
 
 
