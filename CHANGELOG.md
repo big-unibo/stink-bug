@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/big-unibo/stink-bug/compare/1.0.4...1.0.5) (2024-03-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.jsoup:jsoup to v1.17.2 ([33a99d2](https://github.com/big-unibo/stink-bug/commit/33a99d2e8b03f16bb8016b2f8edfe41fa38b90b5))
+
 ## [1.0.4](https://github.com/big-unibo/stink-bug/compare/1.0.3...1.0.4) (2024-03-12)
 
 
