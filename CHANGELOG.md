@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/big-unibo/stink-bug/compare/1.0.6...1.0.7) (2024-03-13)
+
+
+### Bug Fixes
+
+* **deps:** update geotrellisversion to v2.3.3 ([d68bfeb](https://github.com/big-unibo/stink-bug/commit/d68bfebae4f2d900a65f118f295496b956e63a4d))
+
 ## [1.0.6](https://github.com/big-unibo/stink-bug/compare/1.0.5...1.0.6) (2024-03-13)
 
 
