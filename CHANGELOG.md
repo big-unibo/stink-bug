@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/big-unibo/stink-bug/compare/1.0.7...1.0.8) (2024-03-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.17.0 ([35d1702](https://github.com/big-unibo/stink-bug/commit/35d1702690878298a92b5b8114ced913d4420dcd))
+
 ## [1.0.7](https://github.com/big-unibo/stink-bug/compare/1.0.6...1.0.7) (2024-03-13)
 
 
