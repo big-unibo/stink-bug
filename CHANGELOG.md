@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/big-unibo/stink-bug/compare/1.0.5...1.0.6) (2024-03-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.postgresql:postgresql to v42.7.2 ([598084d](https://github.com/big-unibo/stink-bug/commit/598084d558f39e1f00b19ad9252bde71e0654650))
+
 ## [1.0.5](https://github.com/big-unibo/stink-bug/compare/1.0.4...1.0.5) (2024-03-12)
 
 
