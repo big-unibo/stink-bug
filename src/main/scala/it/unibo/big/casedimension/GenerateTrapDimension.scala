@@ -47,7 +47,7 @@ object GenerateTrapDimension {
     //add the rest of the trap
     val rows = trapsRows.filterKeys(!trapsWithSVP.contains(_)).toSeq.map {
       case (gid, (geom, r)) =>
-        val point = geom.asInstanceOf[geotrellis.vector.Point]
+        val point = geom.geom.asInstanceOf[geotrellis.vector.Point]
         (gid, r.getString(r.fieldIndex("district")), point.y, point.x, r.getString(r.fieldIndex("name")), r.getString(r.fieldIndex("ms_id")).toInt, r.getString(r.fieldIndex("monitoring_started")), r.getString(r.fieldIndex("monitoring_ended")), null)
     }
     val trapsDimDf = trapsWithValuedSVP.union(sparkSession.createDataFrame(rows).toDF("gid", "district", "latitude", "longitude", "name", "ms_id", "monitoring_started", "monitoring_ended", "svp (manual)"))
