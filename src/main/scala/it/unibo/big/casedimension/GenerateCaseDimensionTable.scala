@@ -14,7 +14,7 @@ object GenerateCaseDimensionTable {
    */
   def apply(sparkSession: SparkSession, caseInputData: Map[String, DataFrame], trapDimension: DataFrame): (DataFrame, DataFrame) = {
     val dimCaseDf : DataFrame = caseInputData("task_on_geo_object").as("togo").join(caseInputData("traps").as("go"), "gid")
-      .join(caseInputData("geo_answer").as("ga"), "gid")
+      .join(caseInputData("given_answer").as("ga"), "togo_id")
       .join(caseInputData("answer").as("a"), "answer_id")
       .where((col("ms_id").isin(9, 12) && col("task_id") === 5) || (col("ms_id") === 6 && col("task_id") === 2))
       .where(col("question_id").isin(
