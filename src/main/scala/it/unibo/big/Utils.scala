@@ -5,6 +5,7 @@ object Utils {
   import geotrellis.vector._
   import geotrellis.vector.io.readWktOrWkb
   import org.apache.spark.sql.{DataFrame, SparkSession}
+  import org.apache.spark.sql.functions.udf
 
   //set parameters for download from https
   private val tslVersion = "TLSv1.3"
@@ -48,8 +49,25 @@ object Utils {
       case _: Exception =>
         throw new Exception(s"Error reading geometry from input string: $inputString")
     }
-
   }
+
+  /**
+   * Get the latitude from the geometry
+   * @return the latitude
+   */
+  def getLatitude = udf((geom: String) => {
+    val point = readGeometry(geom).geom.asInstanceOf[geotrellis.vector.Point]
+    point.y
+  })
+
+  /**
+   * Get the longitude from the geometry
+   * @return the longitude
+   */
+  def getLongitude = udf((geom: String) => {
+    val point = readGeometry(geom).geom.asInstanceOf[geotrellis.vector.Point]
+    point.x
+  })
 
   import org.jsoup.Jsoup
   import scala.collection.JavaConverters._

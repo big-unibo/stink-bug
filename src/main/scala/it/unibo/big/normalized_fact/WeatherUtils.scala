@@ -1,7 +1,7 @@
 package it.unibo.big.normalized_fact
 
 private[normalized_fact] object MeteoUtils {
-  import it.unibo.big.Utils.readGeometry
+  import it.unibo.big.Utils._
   import org.apache.spark.sql.expressions.Window
   import org.apache.spark.sql.functions._
   import org.apache.spark.sql.types.StructType
@@ -66,14 +66,6 @@ private[normalized_fact] object MeteoUtils {
   def getInstallationWeatherDataframe(sparkSession: SparkSession, instDf: DataFrame, weatherDf: DataFrame): DataFrame = {
     val harvesineUDF = sparkSession.udf.register("harvesine",
       (lat1: Double, lon1: Double, lat2: Double, lon2: Double) => Distances.haversine(lat1, lon1, lat2, lon2))
-    def getLatitude = udf((geom: String) => {
-      val point = readGeometry(geom).geom.asInstanceOf[geotrellis.vector.Point]
-      point.y
-    })
-    def getLongitude = udf((geom: String) => {
-      val point = readGeometry(geom).geom.asInstanceOf[geotrellis.vector.Point]
-      point.x
-    })
 
     val newInstDf = instDf.withColumn("installationDate", to_date(col("timestamp_completed")))
       .withColumn("year", year(col("installationDate")))

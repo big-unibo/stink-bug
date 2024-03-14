@@ -1,7 +1,7 @@
 package it.unibo.big.casedimension
 
 object GenerateTrapDimension {
-  import it.unibo.big.Utils.readGeometry
+  import it.unibo.big.Utils._
   import org.apache.spark.sql.functions.{col, when}
   import org.apache.spark.sql.{DataFrame, SparkSession}
 
@@ -17,16 +17,19 @@ object GenerateTrapDimension {
       .join(caseInputData("answer").as("a"), "answer_id")
       .where(col("question_id") === "BMSB.INSTNEW.Q16")
       .where(col("ms_id").isin(9, 12))
-      .select(col("gid"), col("district"), col("geometry"), col("name"), col("ms_id"), col("date_start"), col("date_end"), col("ga.text").cast("integer").as("svp (manual)"))
+      .select(col("gid"), col("district"), col("geometry"), col("name"), col("ms_id"), col("monitoring_started"), col("monitoring_ended"), col("ga.text").cast("integer").as("svp (manual)"))
+      .withColumn("latitude", getLatitude(col("geometry")))
+      .withColumn("longitude", getLongitude(col("geometry")))
     //look with traps without svp value and link to the nearest traps in 100 meters radius if present
     val traps = caseInputData("traps").cache
     val trapsRows = traps.collect().map(r => {
-      r(0).asInstanceOf[Int] -> (readGeometry(r.get(r.fieldIndex("geometry")).toString).geom, r)
+      r(0).toString.toInt -> (readGeometry(r.get(r.fieldIndex("geometry")).toString).geom, r)
     }).toMap
     var trapsWithSVP = trapsWithValuedSVP.collect().map(r => {
-      val gid =  r(0).asInstanceOf[Int]
-      gid -> (trapsRows(gid)._1, r.get(r.fieldIndex("svp (manual")).asInstanceOf[Int])
+      val gid =  r(0).toString.toInt
+      gid -> (trapsRows(gid)._1, r.get(r.fieldIndex("svp (manual)")).asInstanceOf[Int])
     }).toMap
+    trapsWithValuedSVP = trapsWithValuedSVP.drop("geometry")
     for ((gid, (geom, r)) <- trapsRows) {
       if(!trapsWithSVP.contains(gid)) {
         val closest = trapsWithSVP.map {
@@ -35,17 +38,19 @@ object GenerateTrapDimension {
         if(closest._2 <= 100) {
           //add new row to the dataframe trapsWithValuedSVP
           trapsWithSVP += gid -> (geom, closest._3)
-          trapsWithValuedSVP = trapsWithValuedSVP.union(sparkSession.createDataFrame(Seq((gid, geom, r.get(r.fieldIndex("name")), r.get(r.fieldIndex("ms_id")), r.get(r.fieldIndex("date_start")), r.get(r.fieldIndex("date_end")), closest._3)))
-            .toDF("gid", "geometry", "name", "ms_id", "date_start", "date_end", "svp (manual)"))
+          val point = geom.asInstanceOf[geotrellis.vector.Point]
+          trapsWithValuedSVP = trapsWithValuedSVP.union(sparkSession.createDataFrame(Seq((gid, r.getString(r.fieldIndex("district")), point.y, point.x, r.getString(r.fieldIndex("name")), r.getString(r.fieldIndex("ms_id")).toInt, r.getString(r.fieldIndex("monitoring_started")), r.getString(r.fieldIndex("monitoring_ended")), closest._3)))
+            .toDF("gid", "district", "latitude", "longitude", "name", "ms_id", "monitoring_started", "monitoring_ended", "svp (manual)"))
         }
       }
     }
     //add the rest of the trap
     val rows = trapsRows.filterKeys(!trapsWithSVP.contains(_)).toSeq.map {
       case (gid, (geom, r)) =>
-        (gid, geom, r.get(r.fieldIndex("name")), r.get(r.fieldIndex("ms_id")), r.get(r.fieldIndex("date_start")), r.get(r.fieldIndex("date_end")), null)
+        val point = geom.asInstanceOf[geotrellis.vector.Point]
+        (gid, r.getString(r.fieldIndex("district")), point.y, point.x, r.getString(r.fieldIndex("name")), r.getString(r.fieldIndex("ms_id")).toInt, r.getString(r.fieldIndex("monitoring_started")), r.getString(r.fieldIndex("monitoring_ended")), null)
     }
-    val trapsDimDf = trapsWithValuedSVP.union(sparkSession.createDataFrame(rows).toDF("gid", "geometry", "name", "ms_id", "date_start", "date_end", "svp (manual)"))
+    val trapsDimDf = trapsWithValuedSVP.union(sparkSession.createDataFrame(rows).toDF("gid", "district", "latitude", "longitude", "name", "ms_id", "monitoring_started", "monitoring_ended", "svp (manual)"))
     calculateArea(trapsDimDf)
   }
 
