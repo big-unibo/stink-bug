@@ -38,7 +38,7 @@ object GenerateTrapDimension {
         if(closest._2 <= 100) {
           //add new row to the dataframe trapsWithValuedSVP
           trapsWithSVP += gid -> (geom, closest._3)
-          val point = geom.asInstanceOf[geotrellis.vector.Point]
+          val point = geom.geom.asInstanceOf[geotrellis.vector.Point]
           trapsWithValuedSVP = trapsWithValuedSVP.union(sparkSession.createDataFrame(Seq((gid, r.getString(r.fieldIndex("district")), point.y, point.x, r.getString(r.fieldIndex("name")), r.getString(r.fieldIndex("ms_id")).toInt, r.getString(r.fieldIndex("monitoring_started")), r.getString(r.fieldIndex("monitoring_ended")), closest._3)))
             .toDF("gid", "district", "latitude", "longitude", "name", "ms_id", "monitoring_started", "monitoring_ended", "svp (manual)"))
         }
