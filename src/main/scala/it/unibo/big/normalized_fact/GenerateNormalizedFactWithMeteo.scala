@@ -33,9 +33,9 @@ object GenerateNormalizedFactWithMeteo {
      * A map where for each gid there is the installation date and the lat and lon of the weather cell near the trap
      */
     val installationMap: Map[Int, Option[(Date, (Double, Double))]] = installationWeatherDf.collect().map(r => {
-      r.getInt(r.fieldIndex("gid")) ->
-        Some(format.parse(r.getString(r.fieldIndex("installationDateString"))),
-          (r.getDouble(r.fieldIndex("latW")), r.getDouble(r.fieldIndex("lonW"))))
+      r.getString(r.fieldIndex("gid")).toInt ->
+        Some(r.getDate(r.fieldIndex("installationDate")),
+          (r.getString(r.fieldIndex("latW")).toDouble, r.getString(r.fieldIndex("lonW")).toDouble))
     }).toMap
 
     def getMonitoringValue(v: Option[Double], diff: Long): Any = {
@@ -88,7 +88,7 @@ object GenerateNormalizedFactWithMeteo {
         pastDate = if (getInstallationDate) {
           val installationData = installationMap(gid)
           weatherLatLon = installationData.map(_._2)
-          installationData.map(_._1)
+          installationData.map(x => new java.util.Date(x._1.getTime))
         } else pastDate
 
         //The timestamp completed is ok
@@ -208,7 +208,9 @@ object GenerateNormalizedFactWithMeteo {
         coalesce(col("is_working"), lit(true)).as("is_working"),
         coalesce(col("is_monitored"), lit(false)).as("is_monitored"),
         col("monitoring.Adults captured"), col("monitoring.Small instars captured"), col("monitoring.Large instars captured")
-      ).withColumn("Tot captured", col("Adults captured") + col("Small instars captured") + col("Large instars captured")).cache
+      ).withColumn("Tot captured", col("Adults captured") + col("Small instars captured") + col("Large instars captured"))
+      .orderBy(col("gid"), col("timestamp_assignment"))
+      .cache
     (fullDf, inst)
   }
 }
