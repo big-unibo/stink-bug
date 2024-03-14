@@ -3,9 +3,10 @@ package it.unibo.big.environment_registry
 object GenerateEnvironmentRegistryDimensionTables {
   import it.unibo.big.DimensionsTableUtils
   import it.unibo.big.Utils.readGeometry
-  import org.apache.spark.sql.{DataFrame, SparkSession}
   import org.apache.spark.sql.expressions.UserDefinedFunction
-  import org.apache.spark.sql.functions.{col, monotonically_increasing_id, udf}
+  import org.apache.spark.sql.functions._
+  import org.apache.spark.sql.{DataFrame, SparkSession}
+  import org.apache.spark.sql.expressions.Window
 
   /**
    * Configuration for the environment registry dimension tables
@@ -77,20 +78,21 @@ object GenerateEnvironmentRegistryDimensionTables {
     }
 
     // User defined function to check if two geometries are near in a 200 meters radius
-    val near: UserDefinedFunction = udf((geom1: String, geom2: String) => {
-      val g1 = readGeometry(geom1).geom
-      val g2 = readGeometry(geom2).geom
-      g1.distance(g2) < 200
+    val distance: UserDefinedFunction = udf((geom1: String, latitude: Double, longitude: Double) => {
+      val g1 = readGeometry(geom1)
+      val g2 = geotrellis.vector.Point.apply(longitude, latitude).withSRID(4326)
+      g1.distance(g2)
     })
 
+    val windowSpec = Window.orderBy(columnsMapping.values.toSeq.map(col): _*)
     dimensionTable = dimensionTable.select(columnsMapping.values.map(col).toSeq :_*)
-      .distinct().withColumn(conf.identifier, monotonically_increasing_id())
+      .distinct().withColumn(conf.identifier, row_number().over(windowSpec))
     var bridgeTable = dimTrapDf.join(inputDataFrame, "ms_id")
+      .withColumn("distance", distance(inputDataFrame(conf.geometryName), col("latitude"), col("longitude")))
     //join bridge table in all the columns on columns mapping
-    val joinConditions = columnsMapping.keys.map(c => col(c) === col(columnsMapping(c)))
-    bridgeTable = bridgeTable.join(inputDataFrame, joinConditions.reduce((a, b) => a && b))
-      .where(near(col(conf.geometryName), col("geom")))
-      .select(col("gid"), col(conf.identifier))
+    val joinConditions = columnsMapping.keys.map(c => dimensionTable(c) === bridgeTable(columnsMapping(c)))
+    bridgeTable = bridgeTable.where(col("distance") <= 200).join(dimensionTable, joinConditions.reduce((a, b) => a && b))
+      .select(bridgeTable("gid"), dimensionTable(conf.identifier))
       .distinct()
     //add link to the trap that not have a value in the bridge
     val (newDimensionTable, newBridgeTable) = DimensionsTableUtils.addNotNearRows(sparkSession, conf.identifier, dimensionTable, bridgeTable, dimTrapDf)

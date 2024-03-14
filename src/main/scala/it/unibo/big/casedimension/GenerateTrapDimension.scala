@@ -23,7 +23,7 @@ object GenerateTrapDimension {
     //look with traps without svp value and link to the nearest traps in 100 meters radius if present
     val traps = caseInputData("traps").cache
     val trapsRows = traps.collect().map(r => {
-      r(0).toString.toInt -> (readGeometry(r.get(r.fieldIndex("geometry")).toString).geom, r)
+      r(0).toString.toInt -> (readGeometry(r.get(r.fieldIndex("geometry")).toString), r)
     }).toMap
     var trapsWithSVP = trapsWithValuedSVP.collect().map(r => {
       val gid =  r(0).toString.toInt
