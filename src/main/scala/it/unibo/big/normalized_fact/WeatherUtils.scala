@@ -47,7 +47,7 @@ private[normalized_fact] object MeteoUtils {
 
     tmpDf = tmpDf.join(startingComulatives, Seq("gid"), "left")
       //generate cumulative sum of useful hours and grade day
-      .withColumn(s"cum_$degreeDay", col("cum_dd") + sum(col(degreeDay)).over(Window.partitionBy("gid").orderBy("date")))
+      .withColumn(s"cum_$degreeDay", col("cum_dd") + sum(col(degreeDay)).over(Window.partitionBy("gid").orderBy("t")))
       .select(tmpColumns.head, tmpColumns.tail: _*) //select only columns of the original dataframe
 
     for (c <- meteoInfos) {
@@ -74,15 +74,32 @@ private[normalized_fact] object MeteoUtils {
       val point = readGeometry(geom).geom.asInstanceOf[geotrellis.vector.Point]
       point.x
     })
-    val fullInstallation = instDf
-      .withColumn("latitude", getLatitude(col("geometry")))
-      .withColumn("longitude", getLongitude(col("geometry")))
-      .withColumn("installationDate", to_date(col("timestamp_completed")))
-      .withColumn("startDate", to_date(concat(year(col("installationDate")).cast("string"), lit("/01/01")), "yyyy/MM/dd"))
-      .withColumn("installationDateString", date_format(col("timestamp_completed"), "DD-MM-YYYY"))
-      .crossJoin(weatherDf.withColumn("date", to_date(col("date"))))
+
+    val newInstDf = instDf.withColumn("installationDate", to_date(col("timestamp_completed")))
+      .withColumn("year", year(col("installationDate")))
+      .withColumn("startDate", to_date(concat(year(col("installationDate")).cast("string"), lit("/01/01")), "yyyy/MM/dd")).repartition(col("year")).cache
+
+    newInstDf.collect
+
+    val groups = newInstDf.groupBy("year").agg(max("installationDate").as("installationDate"), min("startDate").as("startDate"))
+    val newWeatherDf = weatherDf.withColumn("date", to_date(col("date")))
       .withColumnRenamed("lat", "latW")
       .withColumnRenamed("long", "lonW")
+      .withColumn("year", year(col("date")))
+      .repartition(col("year"))
+
+    //filter weather dataframe to get only the data before the installation date
+    val filteredWeatherDf = newWeatherDf.join(groups, Seq("year"))
+      .filter(col("date").between(col("startDate"), col("installationDate")))
+      .select("date", "latW", "lonW", "p_type", "value", "year").cache()
+
+    //collect the weather data for caching
+    filteredWeatherDf.collect
+
+    val fullInstallation = newInstDf
+      .withColumn("latitude", getLatitude(col("geometry")))
+      .withColumn("longitude", getLongitude(col("geometry")))
+      .join(filteredWeatherDf, "year")
       .withColumn("distance", harvesineUDF(col("latitude"), col("longitude"), col("latW"), col("lonW")))
     // Use window function to find minimum distance for each group
     val windowSpec = Window.partitionBy(col("gid"), col("installationDate"))
