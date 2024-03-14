@@ -1,3 +1,15 @@
+## [1.0.9](https://github.com/big-unibo/stink-bug/compare/1.0.8...1.0.9) (2024-03-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.1.0-jre ([7bca32e](https://github.com/big-unibo/stink-bug/commit/7bca32e36e1a5ca367f26118eedaad5d1e742b78))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v4.2.0 ([acfe25d](https://github.com/big-unibo/stink-bug/commit/acfe25d6a1abcf3b1da4904e576e02adfde1fab2))
+
 ## [1.0.8](https://github.com/big-unibo/stink-bug/compare/1.0.7...1.0.8) (2024-03-13)
 
 
