@@ -42,7 +42,7 @@
       },
       {
         "titles": "ms_id",
-        "dc:description": "The monitoring session id.",
+        "dc:description": "The monitoring session id. (Related to CASE_monitoring_session dataset)",
         "datatype": {
           "base": "number",
           "minimum": "6",

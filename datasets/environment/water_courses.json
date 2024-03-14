@@ -38,6 +38,17 @@
           "format": "yes|no|nothing"
         },
         "@type": "Column"
+      },
+      {
+        "titles": "ms_id",
+        "dc:description": "The monitoring session id of the water course geometry. (Related to CASE_monitoring_session dataset)",
+        "datatype": {
+          "base": "number",
+          "minimum": "6",
+          "maximum": "12",
+          "format": "#00##"
+        },
+        "@type": "Column"
       }
     ],
     "@type": "Schema"
