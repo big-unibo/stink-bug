@@ -6,6 +6,7 @@ object Utils {
   import geotrellis.vector.io.readWktOrWkb
   import org.apache.spark.sql.functions._
   import org.apache.spark.sql.{DataFrame, SparkSession}
+  import org.datasyslab.geosparksql.utils.GeoSparkSQLRegistrator
 
   //set parameters for download from https
   private val tslVersion = "TLSv1.3"
@@ -23,6 +24,9 @@ object Utils {
     //.config("spark.driver.extraJavaOptions", s"-Dhttps.protocols=$tslVersion")
     .getOrCreate()
   val config: Config = ConfigFactory.load()
+
+  // Register GeoSparkSQL functions
+  GeoSparkSQLRegistrator.registerAll(sparkSession)
 
   def readInputData(datasetName: String): Map[String, DataFrame] = {
     config.getConfig(s"dataset.$datasetName").entrySet().toArray
@@ -60,7 +64,7 @@ object Utils {
   def getGeometryColumn(geom: String, df: DataFrame): DataFrame = {
     df.withColumn("wkt", expr(s"substring($geom, 2, length($geom) - 2)"))
       .withColumn("wkt", split(col("wkt"), ";").getItem(1))
-      .withColumn(geom, expr("ST_TRANSFORM(ST_GeomFromWKT(wkt))"))
+      .withColumn(geom, expr("ST_GeomFromWKT(wkt)"))//TODO .withColumn(geom, expr(s"ST_Transform($geom, 4136)"))
       .drop("wkt")
   }
 
