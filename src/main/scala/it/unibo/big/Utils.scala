@@ -4,8 +4,8 @@ object Utils {
   import com.typesafe.config.{Config, ConfigFactory, ConfigValue}
   import geotrellis.vector._
   import geotrellis.vector.io.readWktOrWkb
+  import org.apache.spark.sql.functions._
   import org.apache.spark.sql.{DataFrame, SparkSession}
-  import org.apache.spark.sql.functions.udf
 
   //set parameters for download from https
   private val tslVersion = "TLSv1.3"
@@ -52,6 +52,19 @@ object Utils {
   }
 
   /**
+   * Get the geometry column from the input dataframe
+   * @param geom the name of the geometry column that is a string in EWKT format
+   * @param df the input dataframe
+   * @return the dataframe with the geometry column transformed
+   */
+  def getGeometryColumn(geom: String, df: DataFrame): DataFrame = {
+    df.withColumn("wkt", expr(s"substring($geom, 2, length($geom) - 2)"))
+      .withColumn("wkt", split(col("wkt"), ";").getItem(1))
+      .withColumn(geom, expr("ST_TRANSFORM(ST_GeomFromWKT(wkt))"))
+      .drop("wkt")
+  }
+
+  /**
    * Get the latitude from the geometry
    * @return the latitude
    */
@@ -70,9 +83,9 @@ object Utils {
   })
 
   import org.jsoup.Jsoup
-  import scala.collection.JavaConverters._
-
   import org.jsoup.nodes.Document
+
+  import scala.collection.JavaConverters._
   /**
    * Get file and folder names from a directory listing
    * @param link the link of the directory
