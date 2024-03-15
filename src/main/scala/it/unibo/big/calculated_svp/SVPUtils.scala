@@ -1,5 +1,7 @@
 package it.unibo.big.calculated_svp
 
+import org.apache.spark.sql.expressions.Window
+
 /**
  * Utils for the SVP statistics
  */
@@ -12,6 +14,8 @@ object SVPUtils {
   import org.apache.hadoop.fs.Path
   import org.apache.spark.sql.{DataFrame, Row, SparkSession}
   import org.slf4j.{Logger, LoggerFactory}
+  import org.apache.spark.sql.functions.expr
+  import it.unibo.big.Utils.getGeometryColumn
 
   private[calculated_svp] val LOGGER: Logger = LoggerFactory.getLogger(this.getClass)
 
@@ -111,7 +115,12 @@ object SVPUtils {
    *               - the third is the trap buffer built around the trap with a radius of trapRadius
      */
     //do the geometry intersection from the buffer created by constructing a circle of trapRadius from the trap point lat long and cultures dataframes
-    val croppedDf = ??? //TODO: implement the query
+    val traps = getGeometryColumn("geometry", inputDataframes("traps")).withColumn("st_buffer", expr(s"ST_Buffer(geometry, $trapRadius)"))
+    val cultures = getGeometryColumn("geom4236", inputDataframes("cultures"))
+
+    val unionGeomDF = cultures.withColumn("union_geom", expr("st_union(geom4236)")).distinct() //TODO check union
+    val croppedDf = traps.join(unionGeomDF, expr("ST_Intersection(st_buffer, union_geom)")).select("gid", "union_geom", "st_buffer").cache()
+    //TODO check
     //join the dataset with external table in order to
     // have the geometry that is the difference between the trap and the cultures in the trapRadius area
     getTrapsInfo(croppedDf, x => if (x.isNullAt(1)) None else Some(x.getAs[Geometry](1), x.getAs[Geometry](2)))
