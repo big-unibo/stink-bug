@@ -1,3 +1,20 @@
+## [1.0.11](https://github.com/big-unibo/stink-bug/compare/1.0.10...1.0.11) (2024-03-15)
+
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.1.2 ([6273c47](https://github.com/big-unibo/stink-bug/commit/6273c47a4df06e87fa3088f7a82fbd8f76ce2ecd))
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.postgresql:postgresql to v42.7.3 ([ee974f8](https://github.com/big-unibo/stink-bug/commit/ee974f8b92e3cdc9a5f9e26efb2270c6cea64276))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v4.2.1 ([e6c426c](https://github.com/big-unibo/stink-bug/commit/e6c426cd53a4852e9c98dcbb74c4b08084699d4e))
+
 ## [1.0.9](https://github.com/big-unibo/stink-bug/compare/1.0.8...1.0.9) (2024-03-14)
 
 
