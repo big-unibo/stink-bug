@@ -88,6 +88,13 @@ object Utils {
     point.x
   })
 
+  /**
+   * Given a set of geometries
+   * @return the union of the geometries com.vividsolutions.jts.geom.Geometry
+   */
+  def st_union = udf((geometries: Seq[com.vividsolutions.jts.geom.Geometry]) => geometries.reduce(_.union(_)))
+  def st_difference = udf((geom1: com.vividsolutions.jts.geom.Geometry, geom2: com.vividsolutions.jts.geom.Geometry) => geom1.difference(geom2))
+
   import org.jsoup.Jsoup
   import org.jsoup.nodes.Document
 
