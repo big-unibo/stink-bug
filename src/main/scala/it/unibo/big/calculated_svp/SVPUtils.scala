@@ -9,10 +9,11 @@ object SVPUtils {
   import geotrellis.raster.{CellGrid, DoubleCellType, MultibandTile, Tile, isData}
   import geotrellis.spark.io.hadoop._
   import geotrellis.vector.Geometry
+  import it.unibo.big.Utils._
   import org.apache.hadoop.fs.Path
+  import org.apache.spark.sql.functions.{col, collect_list, expr}
   import org.apache.spark.sql.{DataFrame, Row, SparkSession}
   import org.slf4j.{Logger, LoggerFactory}
-  import it.unibo.big.Utils.readGeometry
 
   private[calculated_svp] val LOGGER: Logger = LoggerFactory.getLogger(this.getClass)
 
@@ -98,13 +99,7 @@ object SVPUtils {
   /**
    *
    * @param trapRadius the used radius
-   * @param croppedDf a function that starting from the trap radius and the input dataframes returns
-   *                  a new dataframe where:
-   *                  - the first column is an integer identifier for the trap
-   *                  - the second column is a geometry that is intersection between the buffer constructed using
-   *                    the trap radius and the data about the cultures
-   *                  - the third is the trap buffer built around the trap with a radius of trapRadius
-   * @param inputDataframes the dataframes to use for the query
+  * @param inputDataframes the dataframes to use for the query
    * @return a map with traps ids,
    *         the geometry of the data in the radius where data about cultures is cropped and
    *         the whole buffer of the trap that is used for the coverage, with a radius of trapRadius
@@ -118,9 +113,15 @@ object SVPUtils {
    *               - the third is the trap buffer built around the trap with a radius of trapRadius
      */
     //do the geometry intersection from the buffer created by constructing a circle of trapRadius from the trap point lat long and cultures dataframes
-    val croppedDf = ???
+    val traps = getGeometryColumn("geometry", inputDataframes("traps")).withColumn("st_buffer", expr(s"ST_Buffer(geometry, $trapRadius)"))
+    val cultures = getGeometryColumn("geom4326", inputDataframes("crop"))
+    val unionGeomDF = cultures.groupBy().agg(st_union(collect_list(cultures("geom4326"))).as("union_geom")).limit(1)
+    val croppedDf = traps.crossJoin(unionGeomDF)
+      .withColumn("union_geom", expr("ST_Intersection(st_buffer, union_geom)"))
+      .withColumn("union_geom", st_difference(col("st_buffer"), col("union_geom")))
+      .select("gid", "union_geom", "st_buffer").cache()
     //join the dataset with external table in order to
     // have the geometry that is the difference between the trap and the cultures in the trapRadius area
-    getTrapsInfo(croppedDf, x => if (x.isNullAt(1)) None else Some(readGeometry(x.getString(1)).geom, readGeometry(x.getString(2)).geom))
+    getTrapsInfo(croppedDf, x => if (x.isNullAt(1)) None else Some(x.getAs[Geometry](1), x.getAs[Geometry](2)))
   }
 }
