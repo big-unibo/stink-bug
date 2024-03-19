@@ -134,10 +134,9 @@ object GenerateNormalizedFactWithMeteo {
     }
     val normalizedFinalDf = addUsefulDegreeDaysAndGroupData(dfNormalized, installationWeatherDf, weatherDf = weatherDf, struct = struct)
       .withColumn("Tot captured", col("Adults captured") + col("Small instars captured") + col("Large instars captured"))
-      .select(unix_timestamp(date_format(to_date(col("t")), "yyyy-MM-dd HH:mm:ss")).as("timestamp"),
+      .select(unix_timestamp(from_utc_timestamp(to_timestamp(col("t"), "yyyy-MM-dd").cast("timestamp"), "Europe/Rome")).cast("integer").as("timestamp"),
         col("gid"), col("Adults captured"),
         col("Small instars captured"), col("Large instars captured"),
-        col("Days of monitoring").as("days_of_monitoring"),
         col("t_day_avg").as("Avg temperature"),
         col("t_day_min").as("Min temperature"),
         col("t_day_max").as("Max temperature"),
