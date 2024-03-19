@@ -1,3 +1,10 @@
+## [1.0.12](https://github.com/big-unibo/stink-bug/compare/1.0.11...1.0.12) (2024-03-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.apache.hadoop:hadoop-hdfs to v3.4.0 ([aec5274](https://github.com/big-unibo/stink-bug/commit/aec5274c4a385f964cee4bb4e817f83ecf6ad508))
+
 ## [1.0.11](https://github.com/big-unibo/stink-bug/compare/1.0.10...1.0.11) (2024-03-15)
 
 
