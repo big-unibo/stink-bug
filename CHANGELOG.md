@@ -1,3 +1,19 @@
+## [1.0.13](https://github.com/big-unibo/stink-bug/compare/1.0.12...1.0.13) (2024-04-12)
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.8.4 ([ac8411b](https://github.com/big-unibo/stink-bug/commit/ac8411bd452bf71aeda10370208daaad87c76df2))
+* **deps:** update dependency pandas to v2.2.2 ([9cace7e](https://github.com/big-unibo/stink-bug/commit/9cace7e9da8389b17fb0a5922235fa4eafebc8af))
+* **deps:** update dependency scikit-learn to v1.4.2 ([86a182d](https://github.com/big-unibo/stink-bug/commit/86a182d69ae0429afa9509d8c7a2c2179217a5f1))
+* **deps:** update dependency scipy to v1.13.0 ([f4300f2](https://github.com/big-unibo/stink-bug/commit/f4300f2711e26a566ddeaf88aebd0d9efc8d2eda))
+* **deps:** update node.js to 20.12 ([9e8c96c](https://github.com/big-unibo/stink-bug/commit/9e8c96cbb65de2af7598ee25ed10eae732ea0c3c))
+
+
+### Bug Fixes
+
+* **deps:** update slf4j monorepo to v2.0.13 ([16dd67c](https://github.com/big-unibo/stink-bug/commit/16dd67c5d5a80bf3eded4e17ac9e4165160cb40d))
+
 ## [1.0.12](https://github.com/big-unibo/stink-bug/compare/1.0.11...1.0.12) (2024-03-19)
 
 
