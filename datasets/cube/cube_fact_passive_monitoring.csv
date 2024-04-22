@@ -1,4 +1,4 @@
-timestamp,gid,Adults captured,Small instars captured,Large instars captured,Avg temperature,Max temperature,Min temperature,Avg humidity,Max humidity,Min humidity,Tot precipitations,Avg wind speed,Max wind speed,monitored_days,degree_days,cum_degree_days,Tot captured
+timestamp,gid,Adults captured,Small instars captured,Large instars captured,Avg temperature,Max temperature,Min temperature,Avg humidity,Max humidity,Min humidity,Tot precipitations,Avg wind speed,Max wind speed,monitored_days,degree_days,Tot captured,cum_degree_days
 1587945600,149,0.0,0.0,0.0,16.9666687011719,22.6833333333334,10.5500020345052,63.5,84.83333333333333,41.5,2.19999885559082,1.4999999503294628,3.2000000874201455,6,28.6000122070314,0.0,68.20002441406311
 1587945600,144,0.0,0.0,0.0,15.7857169015067,22.8857186453683,8.04286237444199,64.5714285714286,90.14285714285714,39.0,4.00000071525574,1.6571428775787354,3.157142843518938,7,25.100018310547,0.0,52.1999938964849
 1587945600,215,5.0,0.0,0.0,17.0374961853028,22.7875038146973,11.1499992370606,53.0,72.375,36.25,2.59999942779541,2.6250000447034836,4.737500220537186,8,38.6999694824221,5.0,77.2000000000007

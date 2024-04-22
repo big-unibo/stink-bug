@@ -24,9 +24,9 @@ def main():
                                             "Max humidity", "Min humidity",
                                             "Avg wind speed", "Max wind speed", "Tot degree days", "Cum degree days"]
 
-
+    filtered_fact = fact[fact["svp (manual)"].notnull()]
     print("Plot trend data")
-    plot_trend_data(fact, captures_categories, captures_categories_reduced)
+    plot_trend_data(filtered_fact, captures_categories, captures_categories_reduced)
     print("Correlation between areas")
     plot_correlation_between_areas(fact)
     print("Scatter plot SVP")
@@ -34,9 +34,9 @@ def main():
     print("Compute and visualize MIC")
     plot_mic_heatmaps(fact, casualty_vars)
     print("Plot wind and precipitations")
-    plot_wind_and_prec(fact, casualty_vars)
+    plot_wind_and_prec(filtered_fact, casualty_vars)
     print("Generate and plot model")
-    generate_and_plot_model(fact, captures_categories)
+    generate_and_plot_model(fact[fact["timestamp"].dt.isocalendar().week.between(18, 42)], captures_categories)
     print("Plot dimensions vs captures graphs")
     plot_dim_vs()
 
