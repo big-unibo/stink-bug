@@ -4,7 +4,10 @@ object Utils {
   import com.typesafe.config.{Config, ConfigFactory, ConfigValue}
   import geotrellis.vector._
   import geotrellis.vector.io.readWktOrWkb
+  import org.apache.spark.sql.functions._
   import org.apache.spark.sql.{DataFrame, SparkSession}
+  import org.datasyslab.geosparksql.utils.GeoSparkSQLRegistrator
+  org.apache.spark.sql.geosparksql.expressions.ST_Transform
 
   //set parameters for download from https
   private val tslVersion = "TLSv1.3"
@@ -22,6 +25,9 @@ object Utils {
     //.config("spark.driver.extraJavaOptions", s"-Dhttps.protocols=$tslVersion")
     .getOrCreate()
   val config: Config = ConfigFactory.load()
+
+  // Register GeoSparkSQL functions
+  GeoSparkSQLRegistrator.registerAll(sparkSession)
 
   def readInputData(datasetName: String): Map[String, DataFrame] = {
     config.getConfig(s"dataset.$datasetName").entrySet().toArray
@@ -48,13 +54,51 @@ object Utils {
       case _: Exception =>
         throw new Exception(s"Error reading geometry from input string: $inputString")
     }
-
   }
 
-  import org.jsoup.Jsoup
-  import scala.collection.JavaConverters._
+  /**
+   * Get the geometry column from the input dataframe
+   * @param geom the name of the geometry column that is a string in EWKT format
+   * @param df the input dataframe
+   * @return the dataframe with the geometry column transformed
+   */
+  def getGeometryColumn(geom: String, df: DataFrame): DataFrame = {
+    df.withColumn("wkt", expr(s"substring($geom, 2, length($geom) - 2)"))
+      .withColumn("wkt", split(col("wkt"), ";").getItem(1))
+      .withColumn(geom, expr("ST_GeomFromWKT(wkt)"))
+      .withColumn(geom, expr(s"ST_Transform($geom, 'EPSG:4326', 'EPSG:32632')"))
+      .drop("wkt")
+  }
 
+  /**
+   * Get the latitude from the geometry
+   * @return the latitude
+   */
+  def getLatitude = udf((geom: String) => {
+    val point = readGeometry(geom).geom.asInstanceOf[geotrellis.vector.Point]
+    point.y
+  })
+
+  /**
+   * Get the longitude from the geometry
+   * @return the longitude
+   */
+  def getLongitude = udf((geom: String) => {
+    val point = readGeometry(geom).geom.asInstanceOf[geotrellis.vector.Point]
+    point.x
+  })
+
+  /**
+   * Given a set of geometries
+   * @return the union of the geometries com.vividsolutions.jts.geom.Geometry
+   */
+  def st_union = udf((geometries: Seq[com.vividsolutions.jts.geom.Geometry]) => geometries.reduce(_.union(_)))
+  def st_difference = udf((geom1: com.vividsolutions.jts.geom.Geometry, geom2: com.vividsolutions.jts.geom.Geometry) => geom1.difference(geom2))
+
+  import org.jsoup.Jsoup
   import org.jsoup.nodes.Document
+
+  import scala.collection.JavaConverters._
   /**
    * Get file and folder names from a directory listing
    * @param link the link of the directory

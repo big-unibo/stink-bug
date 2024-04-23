@@ -8,7 +8,7 @@ object FileUtils {
   /**
    * Default options for the save
    */
-  private val optionsMapDefault = Map("header" -> "true", "decimal" -> ",", "sep" -> ";")
+  private val optionsMapDefault = Map("header" -> "true", "decimal" -> ".", "sep" -> ",")
 
   /**
    * Save a DataFrame to a file

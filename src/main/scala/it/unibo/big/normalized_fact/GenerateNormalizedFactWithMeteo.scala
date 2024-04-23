@@ -33,9 +33,9 @@ object GenerateNormalizedFactWithMeteo {
      * A map where for each gid there is the installation date and the lat and lon of the weather cell near the trap
      */
     val installationMap: Map[Int, Option[(Date, (Double, Double))]] = installationWeatherDf.collect().map(r => {
-      r.getInt(r.fieldIndex("gid")) ->
-        Some(format.parse(r.getString(r.fieldIndex("installationDateString"))),
-          (r.getDouble(r.fieldIndex("latW")), r.getDouble(r.fieldIndex("lonW"))))
+      r.getString(r.fieldIndex("gid")).toInt ->
+        Some(r.getDate(r.fieldIndex("installationDate")),
+          (r.getString(r.fieldIndex("latW")).toDouble, r.getString(r.fieldIndex("lonW")).toDouble))
     }).toMap
 
     def getMonitoringValue(v: Option[Double], diff: Long): Any = {
@@ -88,7 +88,7 @@ object GenerateNormalizedFactWithMeteo {
         pastDate = if (getInstallationDate) {
           val installationData = installationMap(gid)
           weatherLatLon = installationData.map(_._2)
-          installationData.map(_._1)
+          installationData.map(x => new java.util.Date(x._1.getTime))
         } else pastDate
 
         //The timestamp completed is ok
@@ -133,6 +133,23 @@ object GenerateNormalizedFactWithMeteo {
       dfNormalized = sparkSession.createDataFrame(sparkSession.sparkContext.parallelize(normalizedRecords), struct)
     }
     val normalizedFinalDf = addUsefulDegreeDaysAndGroupData(dfNormalized, installationWeatherDf, weatherDf = weatherDf, struct = struct)
+      .withColumn("Tot captured", col("Adults captured") + col("Small instars captured") + col("Large instars captured"))
+      .select(unix_timestamp(from_utc_timestamp(to_timestamp(col("t"), "yyyy-MM-dd").cast("timestamp"), "Europe/Rome")).cast("integer").as("timestamp"),
+        col("gid"), col("Adults captured"),
+        col("Small instars captured"), col("Large instars captured"),
+        col("t_day_avg").as("Avg temperature"),
+        col("t_day_min").as("Min temperature"),
+        col("t_day_max").as("Max temperature"),
+        col("u_day_avg").as("Avg humidity"),
+        col("u_day_max").as("Max humidity"),
+        col("u_day_min").as("Min humidity"),
+        col("prec_day").as("Tot precipitations"),
+        col("wind_speed_day_avg").as("Avg wind speed"),
+        col("wind_speed_day_max").as("Max wind speed"),
+        col("Days of monitoring").as("monitored_days"),
+        col("degree_day").as("degree_days"),
+        col("cum_degree_day").as("cum_degree_days"),
+        col("Tot captured"))
     normalizedFinalDf
   }
 
@@ -208,7 +225,9 @@ object GenerateNormalizedFactWithMeteo {
         coalesce(col("is_working"), lit(true)).as("is_working"),
         coalesce(col("is_monitored"), lit(false)).as("is_monitored"),
         col("monitoring.Adults captured"), col("monitoring.Small instars captured"), col("monitoring.Large instars captured")
-      ).withColumn("Tot captured", col("Adults captured") + col("Small instars captured") + col("Large instars captured")).cache
+      )
+      .orderBy(col("gid"), col("timestamp_assignment"))
+      .cache
     (fullDf, inst)
   }
 }

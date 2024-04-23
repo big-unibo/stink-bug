@@ -17,7 +17,7 @@ object GenerateTrapsValidity {
    * @return a dataframe where for each gid (trap identifier) there is the validity (valid, invalid, noisy)
    */
   def apply(sparkSession: SparkSession, caseInputData: Map[String, DataFrame]): DataFrame = {
-    val preprocessData = getNormalizedCaputresDataframe(sparkSession, caseInputData)._1
+    val preprocessData = getNormalizedCaputresDataframe(sparkSession, caseInputData)._1.select("taskDate", "name", "togo_id", "gid", "ms_id", "is_working", "is_monitored")
     val struct = StructType(
       StructField("gid", IntegerType) ::
         StructField("validity", StringType) :: Nil
@@ -38,7 +38,7 @@ object GenerateTrapsValidity {
           value = fullData(i)
           i += 1
           values :+= value
-        } while (!value(7).asInstanceOf[Boolean] && i < fullData.length && (if (i < fullData.length) value(3) == fullData(i)(3) else true) && value(6).asInstanceOf[Boolean])
+        } while (!value(6).asInstanceOf[Boolean] && i < fullData.length && (if (i < fullData.length) value(3) == fullData(i)(3) else true) && value(5).asInstanceOf[Boolean])
 
         gid = value(3).toString.toInt
 
@@ -49,12 +49,12 @@ object GenerateTrapsValidity {
           numberOfUnworkings = 0
         }
 
-        if (value(6).asInstanceOf[Boolean]) { //if working
-          numberOfConsecutiveUnMonitoring = Math.max(numberOfConsecutiveUnMonitoring, values.count(x => !x(7).asInstanceOf[Boolean]))
+        if (value(5).asInstanceOf[Boolean]) { //if working
+          numberOfConsecutiveUnMonitoring = Math.max(numberOfConsecutiveUnMonitoring, values.count(x => !x(6).asInstanceOf[Boolean]))
         } else {
           numberOfUnworkings += 1
           values.foreach(v => {
-            if (!v(7).asInstanceOf[Boolean]) {
+            if (!v(6).asInstanceOf[Boolean]) {
               numberOfUnworkings += 1
             }
           })

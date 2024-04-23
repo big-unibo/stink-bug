@@ -21,6 +21,17 @@
           "base": "string"
         },
         "@type": "Column"
+      },
+      {
+        "titles": "ms_id",
+        "dc:description": "The monitoring session id of the crop geometry. (Related to CASE_monitoring_session dataset)",
+        "datatype": {
+          "base": "number",
+          "minimum": "6",
+          "maximum": "12",
+          "format": "#00##"
+        },
+        "@type": "Column"
       }
     ],
     "@type": "Schema"
