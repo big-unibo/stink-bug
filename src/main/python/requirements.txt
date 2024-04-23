@@ -6,3 +6,4 @@ notebook==7.1.1
 matplotlib==3.7.1
 mictools==1.1.4
 seaborn==0.13.1
+pyloess==0.1.0
