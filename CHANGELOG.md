@@ -1,3 +1,21 @@
+## [1.0.14](https://github.com/big-unibo/stink-bug/compare/1.0.13...1.0.14) (2024-05-02)
+
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.1.3 ([d88064d](https://github.com/big-unibo/stink-bug/commit/d88064d6898cceea34c504380df2d564e5a47a4b))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.2.0-jre ([81f3ccc](https://github.com/big-unibo/stink-bug/commit/81f3ccc8aea60cd77d6ee2090ad4dfe2a1782000))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.1.3 ([2176e88](https://github.com/big-unibo/stink-bug/commit/2176e88a5a326181afe0f9a40e0c130b7a33d0ea))
+* **deps:** update actions/checkout action to v4.1.4 ([ea8105c](https://github.com/big-unibo/stink-bug/commit/ea8105c4643e4733f0d981bc53092909f385f105))
+
 ## [1.0.13](https://github.com/big-unibo/stink-bug/compare/1.0.12...1.0.13) (2024-04-12)
 
 
