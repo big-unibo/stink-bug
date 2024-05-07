@@ -1,3 +1,15 @@
+## [1.0.15](https://github.com/big-unibo/stink-bug/compare/1.0.14...1.0.15) (2024-05-07)
+
+
+### Dependency updates
+
+* **deps:** update node.js to 20.13 ([026f3b8](https://github.com/big-unibo/stink-bug/commit/026f3b83112d4914d6395ee84fc2b72e0b3cbbb8))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.17.1 ([5fa6c7e](https://github.com/big-unibo/stink-bug/commit/5fa6c7e325da8b0ed738067988c11d59837165d3))
+
 ## [1.0.14](https://github.com/big-unibo/stink-bug/compare/1.0.13...1.0.14) (2024-05-02)
 
 
