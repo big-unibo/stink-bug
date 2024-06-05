@@ -21,7 +21,16 @@ test {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-shadowJar { zip64 = true }
+shadowJar {
+    // Include the contents of the "dataset" folder located at the root level of the project
+    from('datasets') {
+        into 'datasets' // Destination folder inside the JAR
+    }
+
+    // Set the classifier for the shadow JAR
+    archiveClassifier.set('all')
+    zip64 = true
+}
 
 javadoc { failOnError true }
 
@@ -50,9 +59,9 @@ idea {
 dependencies {
     implementation "com.typesafe:config:$typesafeconfigVersion"
     implementation 'com.google.guava:guava:33.1.0-jre'
-    implementation 'org.scala-lang:scala-library:2.11.12'
-    implementation 'org.scala-lang:scala-reflect:2.11.12'
-    implementation 'org.scala-lang:scala-compiler:2.11.12'
+    implementation "org.scala-lang:scala-library:$scalaVersion"
+    implementation "org.scala-lang:scala-reflect:$scalaVersion"
+    implementation "org.scala-lang:scala-compiler:$scalaVersion"
     implementation 'org.slf4j:slf4j-api:2.0.13'
     testCompileOnly 'org.slf4j:slf4j-simple:2.0.13'
     // implementation 'org.apache.spark:spark-core_2.11:2.4.7'
@@ -70,15 +79,10 @@ dependencies {
     testImplementation 'org.apache.hadoop:hadoop-hdfs:3.4.0'
     
     // SPARK CLUSTER LIBRARIES
-    implementation "org.apache.spark:spark-core_2.11:2.4.8.7.2.16.3-8"
-    implementation "org.apache.spark:spark-sql_2.11:2.4.8.7.2.16.0-287"
-    implementation "org.apache.spark:spark-hive_2.11:2.4.8.7.2.16.3-8"
-    //implementation "org.apache.spark:spark-mllib_2.11:2.4.8.7.2.16.3-8"
-    
-    // implementation "org.apache.spark:spark-core_2.11:2.4.0-cdh6.2.0"
-    // implementation "org.apache.spark:spark-sql_2.11:2.4.0-cdh6.2.0"
-    // implementation "org.apache.spark:spark-hive_2.11:2.4.0-cdh6.2.0"
-    // implementation "org.apache.spark:spark-mllib_2.11:2.4.0-cdh6.2.0"
+    implementation "org.apache.spark:spark-core_$scalaRelease:$sparkVersion"
+    implementation "org.apache.spark:spark-sql_$scalaRelease:$sparkVersion"
+    implementation "org.apache.spark:spark-hive_$scalaRelease:$sparkVersion"
+    //implementation "org.apache.spark:spark-mllib_$scalaRelease:$sparkVersion"
     //geo trellis
     implementation "org.locationtech.geotrellis:geotrellis-vector_${scalaRelease}:${geoTrellisVersion}"
     implementation "org.locationtech.geotrellis:geotrellis-spark_${scalaRelease}:${geoTrellisVersion}"
@@ -86,9 +90,16 @@ dependencies {
     /*implementation 'org.geotools:gt-shapefile:20.0'
     implementation "org.locationtech.geotrellis:geotrellis-shapefile_${scalaRelease}:${geoTrellisVersion}"*/
     //geospark
-    implementation "org.datasyslab:geospark:${geoSparkVersion}"
-    implementation "org.datasyslab:geospark-sql_2.3:${geoSparkVersion}"
-    implementation "org.datasyslab:geospark-viz_2.3:${geoSparkVersion}"
+    implementation "org.apache.sedona:sedona-spark-common-3.5_$scalaRelease:1.6.0"
+    implementation "org.apache.sedona:sedona-sql-3.4_$scalaRelease:1.4.1"
+    implementation "org.apache.sedona:sedona-viz-3.4_$scalaRelease:1.4.1"
+    implementation 'org.datasyslab:geotools-wrapper:1.4.0-28.2'
+
+    //compileOnly "org.datasyslab:geospark:${geoSparkVersion}"
+    //implementation "org.datasyslab:geospark-sql_2.3:${geoSparkVersion}"
+    //implementation "org.datasyslab:geospark-viz_2.3:${geoSparkVersion}"
+    //geom
+    implementation 'com.vividsolutions:jts-core:1.14.0'
     //postgresql
     implementation 'org.postgresql:postgresql:42.7.3'
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
@@ -96,10 +107,6 @@ dependencies {
     implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jacksonVersion}"
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
     implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:${jacksonVersion}"
-    // HBase
-    implementation "org.apache.hbase:hbase-common:${clouderaHBaseVersion}"
-    implementation "org.apache.hbase:hbase-client:${clouderaHBaseVersion}"
-    implementation "org.apache.hbase:hbase-spark:${clouderaHBaseVersion}"
     //download as http client
     implementation 'org.apache.httpcomponents:httpclient:4.5.14'
     implementation 'org.jsoup:jsoup:1.17.2'
