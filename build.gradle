@@ -90,7 +90,7 @@ dependencies {
     implementation "org.datasyslab:geospark-sql_2.3:${geoSparkVersion}"
     implementation "org.datasyslab:geospark-viz_2.3:${geoSparkVersion}"
     //postgresql
-    implementation 'org.postgresql:postgresql:42.7.3'
+    implementation 'org.postgresql:postgresql:42.7.4'
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
     implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jacksonVersion}"
