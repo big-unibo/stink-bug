@@ -6,7 +6,8 @@ object Utils {
   import geotrellis.vector.io.readWktOrWkb
   import org.apache.spark.sql.functions._
   import org.apache.spark.sql.{DataFrame, SparkSession}
-  import org.apache.sedona.spark.SedonaContext
+  import org.datasyslab.geosparksql.utils.GeoSparkSQLRegistrator
+  org.apache.spark.sql.geosparksql.expressions.ST_Transform
 
   //set parameters for download from https
   private val tslVersion = "TLSv1.3"
@@ -18,7 +19,7 @@ object Utils {
   // Set the cipher suites for the server (if applicable)
   //System.setProperty("jdk.tls.server.cipherSuites", "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384")
 
-  val sparkSession = SparkSession.builder()//.master("local[*]")
+  val sparkSession = SparkSession.builder().master("local[*]")
     .appName("Stink bug cube creation")
     //.config("spark.executor.extraJavaOptions", s"-Dhttps.protocols=$tslVersion")
     //.config("spark.driver.extraJavaOptions", s"-Dhttps.protocols=$tslVersion")
@@ -26,13 +27,13 @@ object Utils {
   val config: Config = ConfigFactory.load()
 
   // Register GeoSparkSQL functions
-  val sedona: SparkSession = SedonaContext.create(sparkSession)
+  GeoSparkSQLRegistrator.registerAll(sparkSession)
 
   def readInputData(datasetName: String): Map[String, DataFrame] = {
     config.getConfig(s"dataset.$datasetName").entrySet().toArray
     .map(_.asInstanceOf[java.util.Map.Entry[String, ConfigValue]]).map(
       t => {
-        val df = sedona.read.option("header", "true").csv(t.getValue.render().replaceAll("\"", ""))
+        val df = sparkSession.read.option("header", "true").csv(t.getValue.render().replaceAll("\"", ""))
         t.getKey -> df
       }).toMap
   }

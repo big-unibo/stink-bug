@@ -2,8 +2,8 @@ package it.unibo.big.normalized_fact
 
 object WeatherReader {
   import org.apache.commons.io.FileUtils
-  import org.apache.sedona.core.formatMapper.shapefileParser.ShapefileReader
-  import org.apache.sedona.sql.utils.Adapter
+  import org.datasyslab.geospark.formatMapper.shapefileParser.ShapefileReader
+  import org.datasyslab.geosparksql.utils.Adapter
   import org.apache.spark.sql.DataFrame
 
   import java.io.File
