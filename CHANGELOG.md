@@ -1,3 +1,55 @@
+## [1.0.16](https://github.com/big-unibo/stink-bug/compare/1.0.15...1.0.16) (2024-06-01)
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.9.0 ([a5f7e63](https://github.com/big-unibo/stink-bug/commit/a5f7e63780b0033f4cbec82d7073a78e03d20a05))
+* **deps:** update dependency notebook to v7.2.0 ([dbf7a10](https://github.com/big-unibo/stink-bug/commit/dbf7a1076e29d5e2605653d1b4502a3eb83fbc25))
+* **deps:** update dependency scikit-learn to v1.5.0 ([6d01133](https://github.com/big-unibo/stink-bug/commit/6d0113323ff3d84dc6e0a2831ecdc05fa9af3037))
+* **deps:** update dependency scipy to v1.13.1 ([ad506b9](https://github.com/big-unibo/stink-bug/commit/ad506b9c16b603a668a68f37675ed27a28a16108))
+* **deps:** update node.js to 20.14 ([6f80447](https://github.com/big-unibo/stink-bug/commit/6f80447699ef102687b5e3eac9d8894ffac68a90))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.2.1-jre ([e74f2b7](https://github.com/big-unibo/stink-bug/commit/e74f2b7f588e959deab5695598be9072cd2b670e))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.1.5 ([566f789](https://github.com/big-unibo/stink-bug/commit/566f789710385c872a63df6a6387cde1362d48b0))
+* **deps:** update actions/checkout action to v4.1.6 ([38b0134](https://github.com/big-unibo/stink-bug/commit/38b01340fde693c61f75284d54fd98b834dd9abe))
+
+## [1.0.15](https://github.com/big-unibo/stink-bug/compare/1.0.14...1.0.15) (2024-05-07)
+
+
+### Dependency updates
+
+* **deps:** update node.js to 20.13 ([026f3b8](https://github.com/big-unibo/stink-bug/commit/026f3b83112d4914d6395ee84fc2b72e0b3cbbb8))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.17.1 ([5fa6c7e](https://github.com/big-unibo/stink-bug/commit/5fa6c7e325da8b0ed738067988c11d59837165d3))
+
+## [1.0.14](https://github.com/big-unibo/stink-bug/compare/1.0.13...1.0.14) (2024-05-02)
+
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.1.3 ([d88064d](https://github.com/big-unibo/stink-bug/commit/d88064d6898cceea34c504380df2d564e5a47a4b))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.2.0-jre ([81f3ccc](https://github.com/big-unibo/stink-bug/commit/81f3ccc8aea60cd77d6ee2090ad4dfe2a1782000))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.1.3 ([2176e88](https://github.com/big-unibo/stink-bug/commit/2176e88a5a326181afe0f9a40e0c130b7a33d0ea))
+* **deps:** update actions/checkout action to v4.1.4 ([ea8105c](https://github.com/big-unibo/stink-bug/commit/ea8105c4643e4733f0d981bc53092909f385f105))
+
 ## [1.0.13](https://github.com/big-unibo/stink-bug/compare/1.0.12...1.0.13) (2024-04-12)
 
 
