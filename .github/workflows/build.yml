@@ -42,6 +42,10 @@ jobs:
           ./gradlew shadowJar
           mkdir -p dist/
           cp build/libs/* dist/
+      - name: Install Node
+        uses: actions/setup-node@v4.3.0
+        with:
+          node-version-file: package.json
       - name: Release
         run: |
           npm install
